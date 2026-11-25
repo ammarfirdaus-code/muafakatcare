@@ -16,10 +16,12 @@ return [
     'alamat' => env('MC_ALAMAT'),
     'whatsapp' => env('MC_WHATSAPP'),   // format 60XXXXXXXXX
     'emel' => env('MC_EMEL'),
+    // Akaun rasmi (boleh ditindih melalui .env; nilai kosong = sembunyi).
     'sosial' => array_filter([
-        'Facebook' => env('MC_FACEBOOK'),
-        'Instagram' => env('MC_INSTAGRAM'),
-        'TikTok' => env('MC_TIKTOK'),
+        'Facebook' => env('MC_FACEBOOK', 'https://www.facebook.com/muafakatcare'),
+        'Instagram' => env('MC_INSTAGRAM', 'https://www.instagram.com/ngomuafakatcare'),
+        'TikTok' => env('MC_TIKTOK', 'https://www.tiktok.com/@muafakatcare'),
+        'Telegram' => env('MC_TELEGRAM', 'https://t.me/muafakatcare'),
     ]),
     'bank' => [
         'nama' => 'Maybank Islamic',

@@ -10,7 +10,7 @@
 <section class="hero" aria-roledescription="carousel" aria-label="Kempen sedang berlangsung">
     <div class="slides" id="slides" tabindex="0">
         @forelse ($slaid as $k)
-            <div class="slide" role="group" aria-roledescription="slaid" aria-label="{{ $loop->iteration }} daripada {{ $slaid->count() }}">
+            <div class="slide @if ($loop->first) aktif @endif" role="group" aria-roledescription="slaid" aria-label="{{ $loop->iteration }} daripada {{ $slaid->count() }}">
                 <div class="wrap"><div class="sgrid">
                     <div>
                         @if ($k->label)<span class="eyebrow">{{ $k->label }}</span>@endif
@@ -59,7 +59,7 @@
 <section class="trio">
     <div class="wrap">
         <a href="{{ route('tentang') }}"><h3><span>➤</span>Ketahui Tentang Kami</h3><p>Jom kenali {{ $mc['nama'] }} dan lihat sendiri kebaikan yang boleh kita usahakan bersama.</p></a>
-        <a href="#sukarelawan"><h3><span>☺</span>Sertai Sukarelawan</h3><p>Bungkus, hantar, ziarah. Mari turun padang bersama pasukan kami.</p></a>
+        <a href="{{ route('mohon-bantuan') }}"><h3><span>✚</span>Mohon Bantuan</h3><p>Perlukan foodbank, katil hospital atau bantuan kecemasan? Hantar permohonan kepada pasukan kami.</p></a>
         <a href="#kempen"><h3><span>➤</span>Kempen Sedang Berlangsung</h3><p>Pilih kempen yang sedang berjalan dan salurkan infak anda hari ini.</p></a>
     </div>
 </section>
@@ -104,7 +104,7 @@
         <div class="snum">
             @foreach ($kaunter as $c)
                 <div>
-                    @if ($c->nilai !== null)<strong>{{ number_format($c->nilai) }}</strong>@else<strong class="tunggu">Akan dikemas kini</strong>@endif
+                    @if ($c->nilai !== null)<strong data-kira="{{ $c->nilai }}">{{ number_format($c->nilai) }}</strong>@else<strong class="tunggu">Akan dikemas kini</strong>@endif
                     <span>{{ $c->label }}</span>
                 </div>
             @endforeach
@@ -168,34 +168,6 @@
     </div>
 </section>
 
-{{-- 8. Panel sukarelawan --}}
-<section class="section" id="sukarelawan">
-    <div class="wrap">
-        <div class="skuad">
-            <div class="sk-logo">
-                <div class="bulat"><img src="{{ asset('img/logo.png') }}" alt="{{ $mc['nama'] }}"></div>
-                <p>{{ $mc['tagline'] }}</p>
-            </div>
-            <div>
-                <h2>Sertai Sukarelawan {{ $mc['nama'] }}</h2>
-                <form method="POST" action="{{ route('sukarelawan.hantar') }}">
-                    @csrf
-                    <p hidden><label>Jangan isi <input name="laman_web" tabindex="-1" autocomplete="off"></label></p>
-                    <div class="f2">
-                        <div><label for="sk-nama">Nama</label><input id="sk-nama" name="nama" value="{{ old('nama') }}" autocomplete="name" required>@error('nama')<p class="err">{{ $message }}</p>@enderror</div>
-                        <div><label for="sk-telefon">No. telefon</label><input id="sk-telefon" name="telefon" type="tel" value="{{ old('telefon') }}" autocomplete="tel" required>@error('telefon')<p class="err">{{ $message }}</p>@enderror</div>
-                    </div>
-                    <label for="sk-minat">Kemahiran atau bantuan yang boleh disumbang</label>
-                    <textarea id="sk-minat" name="minat" rows="3">{{ old('minat') }}</textarea>
-                    <label class="setuju"><input type="checkbox" name="setuju" value="1" required> <span>Saya bersetuju dihubungi mengikut <a href="{{ route('privasi') }}">Notis Privasi</a>.</span></label>
-                    @error('setuju')<p class="err">{{ $message }}</p>@enderror
-                    <button class="btn btn-indigo" type="submit">Daftar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
-
 @if ($slaid->count() > 1)
 <script>
 (function () {
@@ -206,7 +178,9 @@
     function ke(i) { el.scrollTo({ left: ((i + n) % n) * el.clientWidth, behavior: tenang ? 'auto' : 'smooth' }); }
     hero.querySelectorAll('.sarrow').forEach(function (b) { b.addEventListener('click', function () { ke(kini() + Number(b.dataset.arah)); }); });
     dots.forEach(function (d, i) { d.addEventListener('click', function () { ke(i); }); });
-    el.addEventListener('scroll', function () { var k = kini(); dots.forEach(function (d, i) { d.setAttribute('aria-current', i === k ? 'true' : 'false'); }); }, { passive: true });
+    var sl = el.querySelectorAll('.slide');
+    function tanda() { var k = kini(); dots.forEach(function (d, i) { d.setAttribute('aria-current', i === k ? 'true' : 'false'); }); sl.forEach(function (x, i) { x.classList.toggle('aktif', i === k); }); }
+    el.addEventListener('scroll', tanda, { passive: true }); tanda();
     ['mouseenter', 'focusin', 'touchstart'].forEach(function (e) { hero.addEventListener(e, function () { jeda = true; }, { passive: true }); });
     ['mouseleave', 'focusout'].forEach(function (e) { hero.addEventListener(e, function () { jeda = false; }); });
     if (!tenang) setInterval(function () { if (!jeda && !document.hidden) ke(kini() + 1); }, 7000);

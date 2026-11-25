@@ -29,11 +29,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}?v={{ filemtime(public_path('css/app.css')) }}">
     <script type="application/ld+json">{!! json_encode($ngo, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) !!}</script>
+    <script>document.documentElement.classList.add('js')</script>
     @stack('schema')
 </head>
 <body>
     @include('components.header')
     <main>@yield('content')</main>
     @include('components.footer')
+    <script>
+    (function () {
+        var tenang = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var sasaran = document.querySelectorAll('.shead, .mcol, .trio a, .stat .wrap > div, .kc, .card, .berita > *, .kosong, .steps li, .section h2, .page-head .wrap > *, .ftr .cols > div');
+        if (tenang || !('IntersectionObserver' in window)) return;
+        function kira(el) {
+            var akhir = Number(el.dataset.kira), mula = performance.now();
+            (function langkah(t) { var p = Math.min(1, (t - mula) / 1400), n = Math.round(akhir * (1 - Math.pow(1 - p, 3))); el.textContent = n.toLocaleString('en-MY'); if (p < 1) requestAnimationFrame(langkah); })(mula);
+        }
+        var io = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('nampak');
+                e.target.querySelectorAll('[data-kira]').forEach(kira);
+                io.unobserve(e.target);
+                setTimeout(function () { e.target.classList.remove('gerak', 'nampak'); e.target.style.transitionDelay = ''; }, 1500);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        sasaran.forEach(function (el) {
+            var adik = Array.prototype.indexOf.call(el.parentElement.children, el);
+            el.classList.add('gerak'); el.style.transitionDelay = Math.min(adik, 5) * 90 + 'ms';
+            io.observe(el);
+        });
+    })();
+    </script>
 </body>
 </html>

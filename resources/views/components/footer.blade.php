@@ -17,7 +17,7 @@
         <div>
             <h4>Pautan</h4>
             <a href="{{ route('tentang') }}">Tentang Kami</a>
-            <a href="{{ route('sukarelawan') }}">Sertai Kami</a>
+            <a href="{{ route('sukarelawan') }}">Jadi Sukarelawan</a>
             <a href="{{ route('impak') }}">Papan Impak</a>
             <a href="{{ route('infak') }}">Jom Infak</a>
             <a href="{{ route('mohon-bantuan') }}">Mohon Bantuan</a>

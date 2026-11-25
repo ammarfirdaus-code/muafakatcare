@@ -30,7 +30,8 @@ class HalamanTest extends TestCase
         $this->get('/')
             ->assertSee('Foodbank Bulanan')
             ->assertSee('RM50')
-            ->assertSee('Sertai Sukarelawan')
+            ->assertDontSee('Sertai Sukarelawan')
+            ->assertSee('t.me/muafakatcare', false)
             ->assertSee('pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank', false)
             ->assertSee('PPM-002-10-13032020');
     }

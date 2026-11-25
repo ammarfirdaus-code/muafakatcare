@@ -1,5 +1,5 @@
 @php
-    $menu = ['/' => 'Utama', '/tentang' => 'Tentang Kami', '/program/foodbank' => 'Program Kami', '/sukarelawan' => 'Sertai Kami', '/impak' => 'Impak', '/hubungi' => 'Hubungi Kami'];
+    $menu = ['/' => 'Utama', '/tentang' => 'Tentang Kami', '/program/foodbank' => 'Program Kami', '/mohon-bantuan' => 'Mohon Bantuan', '/impak' => 'Impak', '/hubungi' => 'Hubungi Kami'];
     $kini = '/'.ltrim(request()->path(), '/');
 @endphp
 <header class="hdr @if (request()->routeIs('utama')) atas @endif">

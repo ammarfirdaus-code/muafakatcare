@@ -187,22 +187,6 @@ form input, form textarea, form select { width: 100%; padding: 12px; border: 1px
 .steps li { counter-increment: s; background: #fff; border: 1px solid var(--gray); border-radius: var(--radius); padding: 22px; }
 .steps li::before { content: counter(s); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--red); color: #fff; font-weight: 700; margin-bottom: 10px; }
 .steps strong { display: block; color: var(--indigo); }
-/* ---- Panel sukarelawan ---- */
-.skuad { background: var(--red); color: #fff; border-radius: 40px; padding: 56px; display: grid; grid-template-columns: 1fr 1.25fr; gap: 48px; align-items: center; }
-.sk-logo { text-align: center; }
-.sk-logo .bulat { width: min(280px, 70%); aspect-ratio: 1; margin: 0 auto 18px; background: #fff; border-radius: 50%; display: grid; place-items: center; padding: 26px; box-shadow: 0 0 0 10px rgba(255,255,255,.18); }
-.sk-logo p { font: 600 1.15rem Poppins, sans-serif; margin: 0; }
-.skuad h2 { color: #fff; }
-.skuad form label { color: #fff; font-weight: 500; margin: 12px 0 5px; }
-.skuad form input, .skuad form textarea { border: 0; }
-.skuad .f2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
-.skuad .setuju { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; margin: 16px 0; font-weight: 400; }
-.skuad .setuju input { width: auto; margin-top: 4px; }
-.skuad a { color: #fff; }
-.skuad .err { color: #fff; background: rgba(15,18,53,.35); padding: 4px 10px; border-radius: 6px; }
-.btn-indigo { background: var(--indigo); color: #fff; }
-.btn-indigo:hover { background: var(--midnight); }
-
 .two { display: grid; grid-template-columns: 1.6fr 1fr; gap: 40px; align-items: start; }
 .two aside { position: sticky; top: 96px; }
 .acc { font: 700 1.4rem Poppins, sans-serif; color: var(--indigo); letter-spacing: .04em; }
@@ -211,7 +195,7 @@ form input, form textarea, form select { width: 100%; padding: 12px; border: 1px
 table.data { border-collapse: collapse; margin-bottom: 20px; }
 table.data th, table.data td { text-align: left; padding: 8px 16px 8px 0; border-bottom: 1px solid var(--gray); }
 @media (max-width: 900px) {
-  .sgrid, .two, .stat .wrap, .berita, .skuad { grid-template-columns: 1fr; }
+  .sgrid, .two, .stat .wrap, .berita { grid-template-columns: 1fr; }
   .two aside { position: static; }
   .sgrid { padding: 0; gap: 32px; }
   .slide { padding: 116px 0 84px; }
@@ -220,10 +204,27 @@ table.data th, table.data td { text-align: left; padding: 8px 16px 8px 0; border
   .trio .wrap { grid-template-columns: 1fr; padding: 0; }
   .trio a { border-left: 0; border-top: 1px solid rgba(255,255,255,.18); padding: 26px 16px; }
   .trio a:first-child { border-top: 0; }
-  .skuad { padding: 36px 20px; border-radius: 28px; gap: 28px; }
-  .sk-logo .bulat { width: 170px; padding: 18px; }
   .mp { min-height: 240px; }
   .mcol.songsang { flex-direction: column; }
 }
-@media (max-width: 480px) { .bsen a { grid-template-columns: 104px 1fr; } .skuad .f2 { grid-template-columns: 1fr; } }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .slides { scroll-behavior: auto; } .btn, .mp, .mk { transition: none; } }
+@media (max-width: 480px) { .bsen a { grid-template-columns: 104px 1fr; } }
+/* ---- Gerakan ---- */
+.js .gerak { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.js .gerak.nampak { opacity: 1; transform: none; }
+.js .slide .sgrid > div:first-child > * { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+.js .slide .svis { opacity: 0; transition: opacity .7s ease .25s, transform .7s cubic-bezier(.2,.7,.2,1) .25s; transform: translateX(40px) rotate(1.5deg); }
+.js .slide.aktif .sgrid > div:first-child > * { opacity: 1; transform: none; }
+.js .slide.aktif .sgrid > div:first-child > :nth-child(2) { transition-delay: .12s; }
+.js .slide.aktif .sgrid > div:first-child > :nth-child(3) { transition-delay: .24s; }
+.js .slide.aktif .sgrid > div:first-child > :nth-child(4) { transition-delay: .36s; }
+.js .slide.aktif .svis { opacity: 1; transform: rotate(1.5deg); }
+.thumb img, .mk.foto img { transition: transform .5s ease; }
+.kc:hover .thumb img, .mk.foto:hover img, .bsen a:hover .thumb img, .butama a:hover .thumb img { transform: scale(1.06); }
+.kc { transition: transform .2s, box-shadow .2s; }
+.kc:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(15,18,53,.08), 0 16px 36px rgba(15,18,53,.12); }
+.hero { background-size: auto, auto, 240px 240px; animation: hanyut 60s linear infinite; }
+@keyframes hanyut { to { background-position: 0 0, 0 0, 240px 240px; } }
+@media (max-width: 900px) { .js .slide .svis, .js .slide.aktif .svis { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .js .gerak, .js .slide .sgrid > div:first-child > *, .js .slide .svis { opacity: 1; transform: none; transition: none; }
+  .hero { animation: none; } html { scroll-behavior: auto; } .slides { scroll-behavior: auto; } .btn, .mp, .mk { transition: none; } }
