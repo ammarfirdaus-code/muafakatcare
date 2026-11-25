@@ -5,7 +5,7 @@
     @if ($laporan->isNotEmpty())
         <div class="grid g3">@foreach ($laporan as $r) @include('components.impak-card', ['r' => $r]) @endforeach</div>
     @else
-        <p class="lead">Laporan pertama akan diterbitkan selepas agihan bulan ini.</p>
+        <p class="lead">{{ __('Laporan pertama akan diterbitkan selepas agihan bulan ini.') }}</p>
     @endif
 </div></section>
 @endsection

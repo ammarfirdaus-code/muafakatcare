@@ -25,6 +25,30 @@ class HalamanTest extends TestCase
         }
     }
 
+    public function test_versi_inggeris_dibuka_dan_diterjemah(): void
+    {
+        foreach (['/en', '/en/infak', '/en/impak', '/en/tentang', '/en/soalan-lazim', '/en/laporan', '/en/mohon-bantuan', '/en/sukarelawan', '/en/hubungi', '/en/privasi', '/en/program/foodbank'] as $url) {
+            $this->get($url)->assertOk()->assertSee('<html lang="en">', false);
+        }
+
+        $this->get('/en')
+            ->assertSee('Monthly Foodbank')
+            ->assertSee('one basic food pack')
+            ->assertSee('OUR MISSION')
+            ->assertSee('href="'.url('/en/infak').'"', false)
+            ->assertDontSee('MISI KAMI');
+        $this->get('/')->assertSee('<html lang="ms">', false)->assertSee('MISI KAMI')->assertSee('hreflang="en"', false);
+        $this->get('/en/tentang')->assertSee('since 2020')->assertSee('Chairman');
+    }
+
+    public function test_borang_inggeris_kekal_dalam_bahasa_inggeris(): void
+    {
+        $this->post('/en/mohon-bantuan', [
+            'nama' => 'Test', 'telefon' => '012-3456789', 'kawasan' => 'Bakri',
+            'jenis' => 'Foodbank', 'setuju' => '1',
+        ])->assertRedirect('/en/terima-kasih');
+    }
+
     public function test_laman_utama_papar_kempen_dan_pautan_bcl(): void
     {
         $this->get('/')

@@ -12,6 +12,17 @@ return [
         'Membantu kebajikan masyarakat melalui bantuan makanan, kesihatan, pendidikan agama, bantuan kecemasan dan sokongan komuniti.',
         'Menjadi gerakan kebajikan komuniti yang dipercayai, konsisten dan dekat dengan mereka yang memerlukan.',
     ],
+    // Sumber: laman web lama pertubuhan (Canva, 2025).
+    'pasukan' => [
+        'Sukri Basir' => 'Pengerusi',
+        'Ts. Mahmod' => 'Timbalan Pengerusi',
+        'Firdaus Shahir' => 'Setiausaha',
+        'Normala Ali' => 'Bendahari',
+        'Mohmad Anuar' => 'Ahli Jawatankuasa',
+        'Norzathy Nazar' => 'Ahli Jawatankuasa',
+        'Amirul Kahar' => 'Ahli Jawatankuasa',
+        'Ibrahim Pairan' => 'Ahli Jawatankuasa',
+    ],
     'kawasan' => 'Bakri dan Muar, Johor',
     'alamat' => env('MC_ALAMAT', 'JBB 29, Kampung Jeram Masjid, 84000 Muar, Johor'),
     'whatsapp' => env('MC_WHATSAPP', '601112240882'),   // format 60XXXXXXXXX

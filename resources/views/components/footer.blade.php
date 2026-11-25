@@ -7,7 +7,7 @@
         <div>
             <img src="{{ asset('img/logo.png') }}" alt="{{ $mc['nama'] }}" class="flogo">
             <p><strong style="color:#fff">{{ $mc['nama_pertubuhan'] }}<br>({{ $mc['no_ppm'] }})</strong></p>
-            <p class="small">{{ $mc['alamat'] ?: 'Alamat: akan dikemas kini' }}</p>
+            <p class="small">{{ $mc['alamat'] ?: __('Alamat: akan dikemas kini') }}</p>
             @if ($mc['whatsapp']) <a href="https://wa.me/{{ $mc['whatsapp'] }}" rel="noopener">WhatsApp: +{{ $mc['whatsapp'] }}</a> @endif
             @if ($mc['emel']) <a href="mailto:{{ $mc['emel'] }}">{{ $mc['emel'] }}</a> @endif
             @if ($mc['sosial'])
@@ -15,28 +15,28 @@
             @endif
         </div>
         <div>
-            <h4>Pautan</h4>
-            <a href="{{ route('tentang') }}">Tentang Kami</a>
-            <a href="{{ route('sukarelawan') }}">Jadi Sukarelawan</a>
-            <a href="{{ route('impak') }}">Papan Impak</a>
-            <a href="{{ route('infak') }}">Jom Infak</a>
-            <a href="{{ route('mohon-bantuan') }}">Mohon Bantuan</a>
-            <a href="{{ route('hubungi') }}">Hubungi Kami</a>
+            <h4>{{ __('Pautan') }}</h4>
+            <a href="{{ lr('tentang') }}">{{ __('Tentang Kami') }}</a>
+            <a href="{{ lr('sukarelawan') }}">{{ __('Jadi Sukarelawan') }}</a>
+            <a href="{{ lr('impak') }}">{{ __('Papan Impak') }}</a>
+            <a href="{{ lr('infak') }}">{{ __('Jom Infak') }}</a>
+            <a href="{{ lr('mohon-bantuan') }}">{{ __('Mohon Bantuan') }}</a>
+            <a href="{{ lr('hubungi') }}">{{ __('Hubungi Kami') }}</a>
         </div>
         <div>
-            <h4>Ketelusan</h4>
-            <a href="{{ route('laporan') }}">Laporan</a>
-            <a href="{{ route('soalan-lazim') }}">Soalan Lazim</a>
-            <a href="{{ route('privasi') }}">Notis Privasi (PDPA)</a>
+            <h4>{{ __('Ketelusan') }}</h4>
+            <a href="{{ lr('laporan') }}">{{ __('Laporan') }}</a>
+            <a href="{{ lr('soalan-lazim') }}">{{ __('Soalan Lazim') }}</a>
+            <a href="{{ lr('privasi') }}">{{ __('Notis Privasi (PDPA)') }}</a>
         </div>
         <div>
-            <h4>Program Kami</h4>
-            @foreach ($programFooter as $p)<a href="{{ route('program', $p) }}">{{ $p->nama }}</a>@endforeach
+            <h4>{{ __('Program Kami') }}</h4>
+            @foreach ($programFooter as $p)<a href="{{ lr('program', $p) }}">{{ __($p->nama) }}</a>@endforeach
             <div class="fbank">
                 <span class="small">{{ $mc['bank']['nama'] }}</span>
                 <strong>{{ $mc['bank']['no_akaun'] }}</strong>
                 <span class="small">{{ $mc['bank']['pemegang'] }}</span><br>
-                <a class="btn btn-red" href="{{ route('infak') }}">Cara Infak</a>
+                <a class="btn btn-red" href="{{ lr('infak') }}">{{ __('Cara Infak') }}</a>
             </div>
         </div>
     </div>

@@ -7,35 +7,35 @@
 @endphp
 
 {{-- 1. Hero slaid: satu slaid bagi setiap kempen aktif --}}
-<section class="hero" aria-roledescription="carousel" aria-label="Kempen sedang berlangsung">
+<section class="hero" aria-roledescription="carousel" aria-label="{{ __('Kempen Sedang Berlangsung') }}">
     <div class="slides" id="slides" tabindex="0">
         @forelse ($slaid as $k)
-            <div class="slide @if ($loop->first) aktif @endif" role="group" aria-roledescription="slaid" aria-label="{{ $loop->iteration }} daripada {{ $slaid->count() }}">
+            <div class="slide @if ($loop->first) aktif @endif" role="group" aria-roledescription="slide" aria-label="{{ $loop->iteration }} / {{ $slaid->count() }}">
                 <div class="wrap"><div class="sgrid">
                     <div>
-                        @if ($k->label)<span class="eyebrow">{{ $k->label }}</span>@endif
-                        <{{ $loop->first ? 'h1' : 'h2' }} class="hl"><mark>{{ $k->hero_sorotan ?? $k->tajuk }}</mark> {{ $k->hero_ayat }}</{{ $loop->first ? 'h1' : 'h2' }}>
-                        <p class="hsub">{{ $k->ringkas }}</p>
+                        @if ($k->label)<span class="eyebrow">{{ __($k->label) }}</span>@endif
+                        <{{ $loop->first ? 'h1' : 'h2' }} class="hl"><mark>{{ __($k->hero_sorotan ?? $k->tajuk) }}</mark> {{ $k->hero_ayat ? __($k->hero_ayat) : '' }}</{{ $loop->first ? 'h1' : 'h2' }}>
+                        <p class="hsub">{{ __($k->ringkas) }}</p>
                         <div class="cta">
-                            <a class="btn btn-white" href="{{ $k->pautan_bcl ?? route('infak') }}" rel="noopener">Bantu Mereka</a>
-                            <a class="btn btn-ghost" href="{{ $k->program ? route('program', $k->program) : route('impak') }}">Ketahui Selanjutnya</a>
+                            <a class="btn btn-white" href="{{ $k->pautan_bcl ?? lr('infak') }}" rel="noopener">{{ __('Bantu Mereka') }}</a>
+                            <a class="btn btn-ghost" href="{{ $k->program ? lr('program', $k->program) : lr('impak') }}">{{ __('Ketahui Selanjutnya') }}</a>
                         </div>
                     </div>
                     <div class="svis">
-                        @if ($k->gambar)<div class="thumb"><img src="{{ asset($k->gambar) }}" alt="{{ $k->tajuk }}"></div>@endif
-                        <span class="pill">{{ $k->program?->nama ?? 'Kempen' }}</span>
-                        <h3>{{ $k->tajuk }}</h3>
+                        @if ($k->gambar)<div class="thumb"><img src="{{ asset($k->gambar) }}" alt="{{ __($k->tajuk) }}"></div>@endif
+                        <span class="pill">{{ __($k->program?->nama ?? 'Kempen') }}</span>
+                        <h3>{{ __($k->tajuk) }}</h3>
                         @if ($k->sasaran)
                             <div class="progress"><span style="width: {{ $k->peratus() ?? 0 }}%"></span></div>
                             <p class="muted">
-                                @if ($k->terkumpul !== null) {{ $k->format($k->terkumpul) }} daripada {{ $k->format($k->sasaran) }} · {{ $k->peratus() }}%
-                                @else Sasaran {{ $k->format($k->sasaran) }} · kemajuan akan dikemas kini @endif
+                                @if ($k->terkumpul !== null) {{ __(':a daripada :b', ['a' => $k->format($k->terkumpul), 'b' => $k->format($k->sasaran)]) }} · {{ $k->peratus() }}%
+                                @else {{ __('Sasaran :b · kemajuan dikemas kini setiap hari', ['b' => $k->format($k->sasaran)]) }} @endif
                             </p>
                         @endif
                         <ul class="ticks">
-                            <li>Pertubuhan berdaftar {{ $mc['no_ppm'] }}</li>
-                            <li>Infak melalui saluran rasmi pertubuhan sahaja</li>
-                            <li>Setiap agihan direkod di Papan Impak</li>
+                            <li>{{ __('Pertubuhan berdaftar') }} {{ $mc['no_ppm'] }}</li>
+                            <li>{{ __('Infak melalui saluran rasmi pertubuhan sahaja') }}</li>
+                            <li>{{ __('Setiap agihan direkod di Papan Impak') }}</li>
                         </ul>
                     </div>
                 </div></div>
@@ -43,24 +43,24 @@
         @empty
             <div class="slide"><div class="wrap"><div class="sgrid"><div>
                 <h1 class="hl"><mark>{{ $mc['nama'] }}</mark> {{ $mc['tagline'] }}</h1>
-                <p class="hsub">{{ $mc['pengenalan'] }}</p>
-                <div class="cta"><a class="btn btn-white" href="{{ route('infak') }}">Bantu Mereka</a><a class="btn btn-ghost" href="{{ route('tentang') }}">Ketahui Selanjutnya</a></div>
+                <p class="hsub">{{ __($mc['pengenalan']) }}</p>
+                <div class="cta"><a class="btn btn-white" href="{{ lr('infak') }}">{{ __('Bantu Mereka') }}</a><a class="btn btn-ghost" href="{{ lr('tentang') }}">{{ __('Ketahui Selanjutnya') }}</a></div>
             </div></div></div></div>
         @endforelse
     </div>
     @if ($slaid->count() > 1)
-        <button class="sarrow prev" type="button" aria-label="Slaid sebelumnya" data-arah="-1">‹</button>
-        <button class="sarrow next" type="button" aria-label="Slaid seterusnya" data-arah="1">›</button>
-        <div class="dots">@foreach ($slaid as $k)<button type="button" aria-label="Slaid {{ $loop->iteration }}: {{ $k->tajuk }}" @if ($loop->first) aria-current="true" @endif></button>@endforeach</div>
+        <button class="sarrow prev" type="button" aria-label="{{ __('Slaid sebelumnya') }}" data-arah="-1">‹</button>
+        <button class="sarrow next" type="button" aria-label="{{ __('Slaid seterusnya') }}" data-arah="1">›</button>
+        <div class="dots">@foreach ($slaid as $k)<button type="button" aria-label="{{ $loop->iteration }}: {{ __($k->tajuk) }}" @if ($loop->first) aria-current="true" @endif></button>@endforeach</div>
     @endif
 </section>
 
 {{-- 2. Tiga kotak pautan --}}
 <section class="trio">
     <div class="wrap">
-        <a href="{{ route('tentang') }}"><h3><span>➤</span>Ketahui Tentang Kami</h3><p>Jom kenali {{ $mc['nama'] }} dan lihat sendiri kebaikan yang boleh kita usahakan bersama.</p></a>
-        <a href="{{ route('mohon-bantuan') }}"><h3><span>✚</span>Mohon Bantuan</h3><p>Perlukan foodbank, katil hospital atau bantuan kecemasan? Hantar permohonan kepada pasukan kami.</p></a>
-        <a href="#kempen"><h3><span>➤</span>Kempen Sedang Berlangsung</h3><p>Pilih kempen yang sedang berjalan dan salurkan infak anda hari ini.</p></a>
+        <a href="{{ lr('tentang') }}"><h3><span>➤</span>{{ __('Ketahui Tentang Kami') }}</h3><p>{{ __('Jom kenali Muafakat Care dan lihat sendiri kebaikan yang boleh kita usahakan bersama.') }}</p></a>
+        <a href="{{ lr('mohon-bantuan') }}"><h3><span>✚</span>{{ __('Mohon Bantuan') }}</h3><p>{{ __('Perlukan foodbank, katil hospital atau bantuan kecemasan? Hantar permohonan kepada pasukan kami.') }}</p></a>
+        <a href="#kempen"><h3><span>➤</span>{{ __('Kempen Sedang Berlangsung') }}</h3><p>{{ __('Pilih kempen yang sedang berjalan dan salurkan infak anda hari ini.') }}</p></a>
     </div>
 </section>
 
@@ -68,24 +68,24 @@
 <section class="section">
     <div class="wrap">
         <div class="shead">
-            <h2>MISI KAMI</h2>
-            <p>{{ $mc['misi'][0] }}</p>
-            <p>{{ $mc['misi'][1] }}</p>
+            <h2>{{ __('MISI KAMI') }}</h2>
+            <p>{{ __($mc['misi'][0]) }}</p>
+            <p>{{ __($mc['misi'][1]) }}</p>
         </div>
         <div class="mozek">
             @foreach ($programs as $p)
                 <div class="mcol @if ($loop->even) songsang @endif">
-                    <a class="mp" href="{{ route('program', $p) }}">
+                    <a class="mp" href="{{ lr('program', $p) }}">
                         <span class="ic" aria-hidden="true">{{ $p->ikon }}</span>
-                        <h3>{{ $p->nama }}</h3>
-                        <p>{{ $p->satu_baris }}</p>
+                        <h3>{{ __($p->nama) }}</h3>
+                        <p>{{ __($p->satu_baris) }}</p>
                     </a>
                     @if ($p->gambar)
-                        <a class="mk foto" href="{{ route('program', $p) }}"><img src="{{ asset($p->gambar) }}" alt="{{ $p->nama }}" loading="lazy">@if ($p->kos_seunit)<span>{{ $p->kos_seunit }}</span>@endif</a>
+                        <a class="mk foto" href="{{ lr('program', $p) }}"><img src="{{ asset($p->gambar) }}" alt="{{ __($p->nama) }}" loading="lazy">@if ($p->kos_seunit)<span>{{ __($p->kos_seunit) }}</span>@endif</a>
                     @elseif ($p->kos_seunit)
-                        <a class="mk" href="{{ route('program', $p) }}"><small>Kos</small><strong>{{ $p->kos_seunit }}</strong><span>Baca lagi →</span></a>
+                        <a class="mk" href="{{ lr('program', $p) }}"><small>{{ __('Kos') }}</small><strong>{{ __($p->kos_seunit) }}</strong><span>{{ __('Baca lagi') }} →</span></a>
                     @else
-                        <a class="mk" href="{{ route('mohon-bantuan') }}"><small>Untuk penerima</small><strong>Perlukan bantuan ini?</strong><span>Mohon bantuan →</span></a>
+                        <a class="mk" href="{{ lr('mohon-bantuan') }}"><small>{{ __('Untuk penerima') }}</small><strong>{{ __('Perlukan bantuan ini?') }}</strong><span>{{ __('Mohon Bantuan') }} →</span></a>
                     @endif
                 </div>
             @endforeach
@@ -97,15 +97,15 @@
 <section class="stat">
     <div class="wrap">
         <div>
-            <h2>Statistik bantuan</h2>
-            <p>Bantuan yang telah disalurkan melalui kesemua program {{ $mc['nama'] }}.
-                {{ $adaAngka ? 'Dikemas kini: '.$kaunter->max('updated_at')->format('d/m/Y').'.' : 'Angka rasmi sedang disemak dengan rekod bank dan akan dikemas kini.' }}</p>
+            <h2>{{ __('Statistik bantuan') }}</h2>
+            <p>{{ __('Bantuan yang telah disalurkan melalui kesemua program Muafakat Care.') }}
+                {{ $adaAngka ? __('Dikemas kini').': '.$kaunter->max('updated_at')->format('d/m/Y').'.' : __('Angka rasmi sedang disemak dengan rekod bank dan akan dikemas kini.') }}</p>
         </div>
         <div class="snum">
             @foreach ($kaunter as $c)
                 <div>
-                    @if ($c->nilai !== null)<strong data-kira="{{ $c->nilai }}">{{ number_format($c->nilai) }}</strong>@else<strong class="tunggu">Akan dikemas kini</strong>@endif
-                    <span>{{ $c->label }}</span>
+                    @if ($c->nilai !== null)<strong data-kira="{{ $c->nilai }}">{{ number_format($c->nilai) }}</strong>@else<strong class="tunggu">{{ __('Akan dikemas kini') }}</strong>@endif
+                    <span>{{ __($c->label) }}</span>
                 </div>
             @endforeach
         </div>
@@ -115,8 +115,8 @@
 {{-- 5. Kempen --}}
 <section class="section alt" id="kempen">
     <div class="wrap">
-        <h2>Kempen Sedang Berlangsung</h2>
-        <p class="lead">Ayuh lakukan kebaikan melalui kempen-kempen yang sedang berjalan.</p>
+        <h2>{{ __('Kempen Sedang Berlangsung') }}</h2>
+        <p class="lead">{{ __('Ayuh lakukan kebaikan melalui kempen-kempen yang sedang berjalan.') }}</p>
         <div class="grid gk" style="margin-top:24px">
             @foreach ($kempens as $k) @include('components.kempen-card', ['k' => $k]) @endforeach
         </div>
@@ -126,31 +126,31 @@
 {{-- 6. Aktiviti & hebahan (laporan agihan yang diterbitkan) --}}
 <section class="section">
     <div class="wrap">
-        <h2>Aktiviti &amp; Hebahan</h2>
+        <h2>{{ __('Aktiviti & Hebahan') }}</h2>
         @if ($laporan->isNotEmpty())
             @php $utama = $laporan->first(); @endphp
             <div class="berita">
-                <article class="butama"><a href="{{ route('impak.bulan', $utama->bulan) }}">
-                    <span class="tag">{{ $utama->program?->nama ?? 'Laporan agihan' }}</span>
-                    <h3>{{ $utama->tajuk }}</h3>
+                <article class="butama"><a href="{{ lr('impak.bulan', $utama->bulan) }}">
+                    <span class="tag">{{ __($utama->program?->nama ?? 'Laporan agihan') }}</span>
+                    <h3>{{ __($utama->tajuk) }}</h3>
                     <p class="muted">{{ $utama->tarikh_agihan?->format('d/m/Y') }} @if ($utama->lokasi) · {{ $utama->lokasi }} @endif</p>
-                    <div class="thumb">@if (!empty($utama->gambar[0]))<img src="{{ asset($utama->gambar[0]) }}" alt="{{ $utama->tajuk }}" loading="lazy">@else<span>@if ($utama->penerima !== null){{ $utama->penerima }} penerima @else {{ $utama->tajuk }} @endif</span>@endif</div>
+                    <div class="thumb">@if (!empty($utama->gambar[0]))<img src="{{ asset($utama->gambar[0]) }}" alt="{{ __($utama->tajuk) }}" loading="lazy">@else<span>@if ($utama->penerima !== null){{ $utama->penerima }} {{ __('penerima') }} @else {{ __($utama->tajuk) }} @endif</span>@endif</div>
                 </a></article>
                 <div class="bsen">
                     @foreach ($laporan->skip(1) as $r)
-                        <article><a href="{{ route('impak.bulan', $r->bulan) }}">
-                            <div class="thumb">@if (!empty($r->gambar[0]))<img src="{{ asset($r->gambar[0]) }}" alt="{{ $r->tajuk }}" loading="lazy">@else<span>{{ $r->program?->nama ?? 'Agihan' }}</span>@endif</div>
-                            <div><span class="tag">{{ $r->program?->nama ?? 'Laporan agihan' }}</span><h3>{{ $r->tajuk }}</h3><p class="muted" style="margin:0">{{ $r->tarikh_agihan?->format('d/m/Y') }}</p></div>
+                        <article><a href="{{ lr('impak.bulan', $r->bulan) }}">
+                            <div class="thumb">@if (!empty($r->gambar[0]))<img src="{{ asset($r->gambar[0]) }}" alt="{{ __($r->tajuk) }}" loading="lazy">@else<span>{{ __($r->program?->nama ?? 'Agihan') }}</span>@endif</div>
+                            <div><span class="tag">{{ __($r->program?->nama ?? 'Laporan agihan') }}</span><h3>{{ __($r->tajuk) }}</h3><p class="muted" style="margin:0">{{ $r->tarikh_agihan?->format('d/m/Y') }}</p></div>
                         </a></article>
                     @endforeach
                 </div>
             </div>
         @else
-            <div class="kosong"><p style="margin:0">Laporan agihan bulanan akan dipaparkan di sini, lengkap dengan tarikh, bilangan penerima dan kos.</p></div>
+            <div class="kosong"><p style="margin:0">{{ __('Laporan agihan bulanan akan dipaparkan di sini, lengkap dengan tarikh, bilangan penerima dan kos.') }}</p></div>
         @endif
         <div class="ikuti">
-            <a class="btn btn-line" href="{{ route('impak') }}">Lihat semua laporan</a>
-            @foreach ($mc['sosial'] as $nama => $url)<a class="btn btn-line" href="{{ $url }}" rel="noopener">Ikuti kami di {{ $nama }}</a>@endforeach
+            <a class="btn btn-line" href="{{ lr('impak') }}">{{ __('Lihat semua laporan') }}</a>
+            @foreach ($mc['sosial'] as $nama => $url)<a class="btn btn-line" href="{{ $url }}" rel="noopener">{{ __('Ikuti kami di :nama', ['nama' => $nama]) }}</a>@endforeach
         </div>
     </div>
 </section>
@@ -158,12 +158,12 @@
 {{-- 7. Ketelusan --}}
 <section class="section alt">
     <div class="wrap">
-        <h2>Bagaimana infak anda sampai</h2>
+        <h2>{{ __('Bagaimana infak anda sampai') }}</h2>
         <ol class="steps grid g4">
-            <li><strong>Anda infak</strong><span>Melalui BCL, pindahan bank atau QR DuitNow.</span></li>
-            <li><strong>Kami rekod</strong><span>Setiap ringgit masuk ke buku tunai pertubuhan.</span></li>
-            <li><strong>Sukarelawan salurkan</strong><span>Barang dibeli, dibungkus dan dihantar ke rumah penerima.</span></li>
-            <li><strong>Laporan dikongsi</strong><span>Gambar dan angka agihan di Papan Impak.</span></li>
+            <li><strong>{{ __('Anda infak') }}</strong><span>{{ __('Melalui BCL, pindahan bank atau QR DuitNow.') }}</span></li>
+            <li><strong>{{ __('Kami rekod') }}</strong><span>{{ __('Setiap ringgit masuk ke buku tunai pertubuhan.') }}</span></li>
+            <li><strong>{{ __('Sukarelawan salurkan') }}</strong><span>{{ __('Barang dibeli, dibungkus dan dihantar ke rumah penerima.') }}</span></li>
+            <li><strong>{{ __('Laporan dikongsi') }}</strong><span>{{ __('Gambar dan angka agihan di Papan Impak.') }}</span></li>
         </ol>
     </div>
 </section>

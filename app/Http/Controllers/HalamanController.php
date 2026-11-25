@@ -58,6 +58,7 @@ class HalamanController extends Controller
         $urls = collect(['/', '/infak', '/impak', '/tentang', '/soalan-lazim', '/laporan', '/mohon-bantuan', '/sukarelawan', '/hubungi'])
             ->merge(Program::pluck('slug')->map(fn ($s) => "/program/$s"))
             ->merge(LaporanImpak::terbit()->pluck('bulan')->unique()->map(fn ($b) => "/impak/$b"));
+        $urls = $urls->merge($urls->map(fn ($u) => rtrim('/en'.$u, '/')));
 
         return response()->view('sitemap', ['urls' => $urls], 200)->header('Content-Type', 'application/xml');
     }
