@@ -7,6 +7,11 @@ return [
     'no_ppm' => 'PPM-002-10-13032020',
     'tagline' => 'Care That Unites Communities',
     'pengenalan' => 'Muafakat Care ialah program Pertubuhan Kebajikan Muafakat Bakri (PPM-002-10-13032020), sebuah NGO kebajikan di Bakri, Muar, Johor.',
+    // Sumber: dokumen strategi jenama (asas DESIGN v2).
+    'misi' => [
+        'Membantu kebajikan masyarakat melalui bantuan makanan, kesihatan, pendidikan agama, bantuan kecemasan dan sokongan komuniti.',
+        'Menjadi gerakan kebajikan komuniti yang dipercayai, konsisten dan dekat dengan mereka yang memerlukan.',
+    ],
     'kawasan' => 'Bakri dan Muar, Johor',
     'alamat' => env('MC_ALAMAT'),
     'whatsapp' => env('MC_WHATSAPP'),   // format 60XXXXXXXXX

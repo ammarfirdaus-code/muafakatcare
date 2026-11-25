@@ -18,16 +18,16 @@ class KandunganAwalSeeder extends Seeder
     {
         Program::updateOrCreate(['slug' => 'foodbank'], [
             'ikon' => '🍚', 'nama' => 'Foodbank Bulanan', 'satu_baris' => 'Pek makanan asas setiap bulan untuk asnaf, ibu tunggal, warga emas dan B40.',
-            'tldr' => 'Foodbank Bulanan Muafakat Care mengagihkan pek makanan asas kepada keluarga yang memerlukan di Bakri dan Muar, Johor, setiap bulan. Satu pek bernilai RM60 untuk satu keluarga.',
+            'tldr' => 'Foodbank Bulanan Muafakat Care mengagihkan pek makanan asas kepada keluarga yang memerlukan di Bakri dan Muar, Johor, setiap bulan. Satu pek makanan asas bernilai RM50.',
             'apa_kami_buat' => ['Senarai penerima disemak oleh pasukan sukarelawan setiap bulan.', 'Barang dibeli, dibungkus dan dihantar ke rumah penerima.', 'Setiap agihan direkod dan dikongsi di Papan Impak.'],
-            'kos_seunit' => 'RM60 = 1 pek untuk 1 keluarga', 'isi_pek' => [],
-            'faq' => [['s' => 'Berapa kos satu pek foodbank?', 'j' => 'RM60 untuk satu pek, mencukupi untuk satu keluarga.'], ['s' => 'Siapa penerima foodbank?', 'j' => 'Asnaf, ibu tunggal, warga emas dan keluarga B40 di kawasan Bakri dan Muar yang disemak oleh pasukan kami.']], 'susunan' => 0,
+            'kos_seunit' => 'RM50 = 1 pek makanan asas', 'isi_pek' => [],
+            'faq' => [['s' => 'Berapa kos satu pek foodbank?', 'j' => 'RM50 untuk satu pek makanan asas. Infak ikut kemampuan, RM10 pun diterima.'], ['s' => 'Siapa penerima foodbank?', 'j' => 'Asnaf, ibu tunggal, warga emas dan keluarga B40 di kawasan Bakri dan Muar yang disemak oleh pasukan kami.']], 'susunan' => 0,
         ]);
         Program::updateOrCreate(['slug' => 'wakaf-katil'], [
             'ikon' => '🛏️', 'nama' => 'Wakaf Katil Hospital', 'satu_baris' => 'Katil hospital untuk pesakit terlantar di rumah, dipinjamkan tanpa caj.',
             'tldr' => 'Program Wakaf Katil Hospital Muafakat Care meminjamkan katil hospital tanpa caj kepada keluarga yang menjaga pesakit terlantar di rumah. Bila tidak digunakan lagi, katil dipulangkan untuk pesakit seterusnya.',
             'apa_kami_buat' => ['Keluarga pesakit memohon melalui WhatsApp atau borang.', 'Pasukan kami hantar dan pasang katil di rumah.', 'Katil dipulangkan bila tidak diperlukan, dan disalurkan kepada pesakit lain.'],
-            'kos_seunit' => null, 'isi_pek' => [],
+            'kos_seunit' => 'RM50 = 1 slot wakaf', 'isi_pek' => [],
             'faq' => [['s' => 'Ada caj pinjam katil?', 'j' => 'Tiada caj. Katil ini hasil wakaf orang ramai.']], 'susunan' => 1,
         ]);
         Program::updateOrCreate(['slug' => 'sedekah-subuh'], [
@@ -47,9 +47,10 @@ class KandunganAwalSeeder extends Seeder
 
         Kempen::updateOrCreate(['slug' => 'foodbank'], [
             'program_id' => Program::where('slug', 'foodbank')->value('id'),
-            'aktif' => true, 'label' => 'Kempen bulan ini', 'tajuk' => 'Foodbank Oktober 2026',
-            'ringkas' => 'Bantu isi dapur keluarga asnaf, ibu tunggal dan warga emas di Bakri & Muar. RM60 = 1 pek untuk 1 keluarga.',
-            'unit' => 'pek', 'sasaran' => 50, 'terkumpul' => null,
+            'aktif' => true, 'label' => 'Kempen bulan ini', 'tajuk' => 'Foodbank Bulanan',
+            'ringkas' => 'Bantu isi dapur keluarga asnaf, ibu tunggal dan warga emas di Bakri & Muar. Pek makanan asas dihantar terus ke rumah penerima.',
+            'hero_sorotan' => 'RM50', 'hero_ayat' => '= satu pek makanan asas.',
+            'unit' => 'pek', 'sasaran' => null, 'terkumpul' => null,  // sasaran bulanan: isi bila Ammar sahkan
             'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank',
             'susunan' => 0,
         ]);
@@ -57,17 +58,28 @@ class KandunganAwalSeeder extends Seeder
             'program_id' => Program::where('slug', 'wakaf-katil')->value('id'),
             'aktif' => true, 'label' => 'Wakaf', 'tajuk' => 'Wakaf Katil Hospital',
             'ringkas' => 'Katil hospital untuk pesakit terlantar di rumah, dipinjamkan tanpa caj dan dipulangkan bila tak diperlukan.',
+            'hero_sorotan' => 'Satu katil', 'hero_ayat' => 'untuk pesakit seterusnya.',
             'unit' => 'katil', 'sasaran' => null, 'terkumpul' => null,
-            'pautan_bcl' => null,  // GANTI: pautan BCL wakaf katil belum disahkan
+            'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/katil-hospital-wakaf',
             'susunan' => 1,
+        ]);
+        Kempen::updateOrCreate(['slug' => 'tabung-banjir'], [
+            'program_id' => Program::where('slug', 'bantuan')->value('id'),
+            'aktif' => true, 'label' => 'Siap siaga', 'tajuk' => 'Tabung Banjir Siap Siaga',
+            'ringkas' => 'Pek makanan dan kit kebersihan disediakan lebih awal, kemudian dihantar terus ke lokasi banjir.',
+            'hero_sorotan' => 'Siap siaga', 'hero_ayat' => 'sebelum banjir tiba.',
+            'unit' => 'RM', 'sasaran' => null, 'terkumpul' => null,
+            'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/banjir-selangor-pantai-timur',
+            'susunan' => 2,
         ]);
         Kempen::updateOrCreate(['slug' => 'infak-subuh'], [
             'program_id' => Program::where('slug', 'sedekah-subuh')->value('id'),
             'aktif' => true, 'label' => 'Harian', 'tajuk' => 'Sedekah Subuh',
             'ringkas' => 'Infak kecil setiap pagi, serendah RM1, disalurkan kepada program bulanan.',
+            'hero_sorotan' => 'Serendah RM1', 'hero_ayat' => 'mulakan pagi dengan sedekah.',
             'unit' => 'RM', 'sasaran' => null, 'terkumpul' => null,
             'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-subuh',
-            'susunan' => 2,
+            'susunan' => 3,
         ]);
         Kempen::updateOrCreate(['slug' => 'infak-jumaat'], [
             'program_id' => Program::where('slug', 'sedekah-subuh')->value('id'),
@@ -75,7 +87,7 @@ class KandunganAwalSeeder extends Seeder
             'ringkas' => 'Sedekah penghulu hari, setiap Jumaat, untuk program kebajikan Muafakat Care.',
             'unit' => 'RM', 'sasaran' => null, 'terkumpul' => null,
             'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-jumaat',
-            'susunan' => 3,
+            'susunan' => 4,
         ]);
 
         KaunterImpak::updateOrCreate(['label' => 'Pek foodbank diagihkan'], ['nilai' => null, 'susunan' => 0]);
@@ -86,7 +98,7 @@ class KandunganAwalSeeder extends Seeder
         SoalanLazim::updateOrCreate(['soalan' => 'Apa itu Muafakat Care?'], ['jawapan' => 'Muafakat Care ialah program Pertubuhan Kebajikan Muafakat Bakri (PPM-002-10-13032020), sebuah NGO kebajikan di Bakri, Muar, Johor yang menjalankan foodbank bulanan, wakaf katil hospital, sedekah subuh dan bantuan kecemasan.', 'susunan' => 0]);
         SoalanLazim::updateOrCreate(['soalan' => 'Adakah Muafakat Care berdaftar?'], ['jawapan' => 'Ya. Muafakat Care berada di bawah Pertubuhan Kebajikan Muafakat Bakri, berdaftar dengan Jabatan Pendaftaran Pertubuhan Malaysia (ROS), no. PPM-002-10-13032020.', 'susunan' => 1]);
         SoalanLazim::updateOrCreate(['soalan' => 'Kawasan mana yang dibantu?'], ['jawapan' => 'Fokus utama kami ialah kawasan Bakri dan Muar, Johor.', 'susunan' => 2]);
-        SoalanLazim::updateOrCreate(['soalan' => 'Berapa kos satu pek foodbank?'], ['jawapan' => 'RM60 untuk satu pek, mencukupi untuk satu keluarga.', 'susunan' => 3]);
+        SoalanLazim::updateOrCreate(['soalan' => 'Berapa kos satu pek foodbank?'], ['jawapan' => 'RM50 untuk satu pek makanan asas. Infak ikut kemampuan, RM10 pun diterima.', 'susunan' => 3]);
         SoalanLazim::updateOrCreate(['soalan' => 'Bagaimana saya tahu infak saya sampai?'], ['jawapan' => 'Setiap agihan direkod dan dilaporkan di Papan Impak, lengkap dengan tarikh, bilangan penerima dan kos.', 'susunan' => 4]);
         SoalanLazim::updateOrCreate(['soalan' => 'Akaun mana yang sah untuk infak?'], ['jawapan' => 'Hanya pautan BCL rasmi dan akaun Maybank Islamic atas nama Pertubuhan Kebajikan Muafakat Bakri. Kami tidak pernah meminta infak ke akaun peribadi.', 'susunan' => 5]);
         SoalanLazim::updateOrCreate(['soalan' => 'Bagaimana nak mohon bantuan?'], ['jawapan' => 'Isi borang di halaman Mohon Bantuan atau hubungi kami melalui WhatsApp. Pasukan kami akan menyemak permohonan anda.', 'susunan' => 6]);

@@ -14,10 +14,10 @@ class HalamanController extends Controller
     public function utama()
     {
         return view('pages.utama', [
-            'kempens' => Kempen::aktif()->get(),
+            'kempens' => Kempen::aktif()->with('program')->get(),
             'programs' => Program::orderBy('susunan')->get(),
             'kaunter' => KaunterImpak::orderBy('susunan')->get(),
-            'laporan' => LaporanImpak::terbit()->take(3)->get(),
+            'laporan' => LaporanImpak::terbit()->with('program')->take(5)->get(),
         ]);
     }
 

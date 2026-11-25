@@ -28,13 +28,16 @@ class HalamanTest extends TestCase
     public function test_laman_utama_papar_kempen_dan_pautan_bcl(): void
     {
         $this->get('/')
-            ->assertSee('Foodbank Oktober 2026')
+            ->assertSee('Foodbank Bulanan')
+            ->assertSee('RM50')
+            ->assertSee('Sertai Sukarelawan')
             ->assertSee('pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank', false)
             ->assertSee('PPM-002-10-13032020');
     }
 
     public function test_kempen_tanpa_pautan_tidak_papar_butang_infak(): void
     {
+        \App\Models\Kempen::where('slug', 'wakaf-katil')->update(['pautan_bcl' => null]);
         $this->get('/program/wakaf-katil')->assertSee('Pautan infak belum disahkan');
     }
 
