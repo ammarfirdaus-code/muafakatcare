@@ -83,7 +83,8 @@ class HalamanTest extends TestCase
     {
         $this->seed(\Database\Seeders\LaporanTelegramSeeder::class);
         $this->seed(\Database\Seeders\LaporanTelegramSeeder::class); // selamat diulang
-        $this->assertSame(7, LaporanImpak::count());
+        $this->assertSame(14, LaporanImpak::count());
+        $this->get('/impak')->assertSee('Bantuan Palestin: RM50,000 diserahkan kepada Cinta Gaza Malaysia')->assertSee('img/laporan/bantuan-palestin.jpg', false);
 
         $this->get('/')->assertSee('40 keluarga dibantu')->assertDontSee('Laporan agihan bulanan akan dipaparkan di sini');
         $this->get('/impak/2026-04')->assertOk()->assertSee('t.me/muafakatcare/3068', false);

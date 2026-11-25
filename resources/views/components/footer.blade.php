@@ -8,11 +8,12 @@
             <img src="{{ asset('img/logo.png') }}" alt="{{ $mc['nama'] }}" class="flogo">
             <p><strong style="color:#fff">{{ $mc['nama_pertubuhan'] }}<br>({{ $mc['no_ppm'] }})</strong></p>
             <p class="small">{{ $mc['alamat'] ?: __('Alamat: akan dikemas kini') }}</p>
-            @if ($mc['whatsapp']) <a href="https://wa.me/{{ $mc['whatsapp'] }}" rel="noopener">WhatsApp: +{{ $mc['whatsapp'] }}</a> @endif
-            @if ($mc['emel']) <a href="mailto:{{ $mc['emel'] }}">{{ $mc['emel'] }}</a> @endif
-            @if ($mc['sosial'])
-                <div class="sos">@foreach ($mc['sosial'] as $nama => $url)<a href="{{ $url }}" rel="noopener">{{ $nama }}</a>@endforeach</div>
-            @endif
+            @if ($mc['whatsapp']) <a class="baris" href="https://wa.me/{{ $mc['whatsapp'] }}" rel="noopener">@include('components.ikon', ['nama' => 'whatsapp']) +{{ $mc['whatsapp'] }}</a> @endif
+            @if ($mc['emel']) <a class="baris" href="mailto:{{ $mc['emel'] }}">@include('components.ikon', ['nama' => 'emel']) {{ $mc['emel'] }}</a> @endif
+            <div class="sos">
+                @foreach ($mc['sosial'] as $nama => $url)<a class="{{ strtolower($nama) }}" href="{{ $url }}" rel="noopener" aria-label="{{ $nama }}" title="{{ $nama }}">@include('components.ikon', ['nama' => $nama, 'saiz' => 20])</a>@endforeach
+                @if ($mc['whatsapp'])<a class="whatsapp" href="https://wa.me/{{ $mc['whatsapp'] }}" rel="noopener" aria-label="WhatsApp" title="WhatsApp">@include('components.ikon', ['nama' => 'whatsapp', 'saiz' => 20])</a>@endif
+            </div>
         </div>
         <div>
             <h4>{{ __('Pautan') }}</h4>

@@ -84,9 +84,12 @@ form input, form textarea, form select { width: 100%; padding: 12px; border: 1px
 .ftr a { display: block; color: #c9cde0; text-decoration: none; padding: 4px 0; }
 .ftr a:hover { color: #fff; }
 .ftr .small { font-size: .9rem; }
-.ftr .sos { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-.ftr .sos a { padding: 6px 14px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; font-size: .85rem; }
-.ftr .sos a:hover { background: #fff; color: var(--midnight); }
+.ftr .baris { display: flex; align-items: center; gap: 8px; }
+.ftr .sos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.ftr .sos a { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; background: rgba(255,255,255,.12); color: #fff; transition: transform .15s, background .15s; }
+.ftr .sos a:hover { transform: translateY(-2px); }
+.ftr .sos a.facebook:hover { background: #1877F2; } .ftr .sos a.instagram:hover { background: #E4405F; } .ftr .sos a.tiktok:hover { background: #000; }
+.ftr .sos a.telegram:hover { background: #26A5E4; } .ftr .sos a.whatsapp:hover { background: #25D366; }
 .fbank { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 16px; margin-top: 18px; }
 .fbank strong { display: block; color: #fff; font: 700 1.15rem Poppins, sans-serif; letter-spacing: .04em; }
 .fbank .btn { margin-top: 12px; padding: 9px 18px; font-size: .9rem; display: inline-flex; color: #fff; }
@@ -237,3 +240,8 @@ table.data th, table.data td { text-align: left; padding: 8px 16px 8px 0; border
 .hdr.atas .bahasa a[aria-current] { background: #fff; color: var(--indigo); }
 .pasukan .card h3 { margin-bottom: 4px; }
 @media (max-width: 420px) { .act .btn { padding: 9px 14px; font-size: .8rem; } .brand img, .hdr.atas .brand img { height: 40px; } }
+.ikon { flex: none; vertical-align: -3px; }
+h3 .ikon { color: var(--red); }
+.wa-apung { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: #25D366; color: #fff; box-shadow: 0 6px 20px rgba(15,18,53,.25); transition: transform .15s; }
+.wa-apung:hover { transform: scale(1.08); }
+.thumb img[src$=".svg"] { background: var(--off); }
