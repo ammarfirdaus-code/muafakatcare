@@ -59,7 +59,7 @@
 <section class="trio">
     <div class="wrap">
         <a href="{{ lr('tentang') }}"><h3><span>➤</span>{{ __('Ketahui Tentang Kami') }}</h3><p>{{ __('Jom kenali Muafakat Care dan lihat sendiri kebaikan yang boleh kita usahakan bersama.') }}</p></a>
-        <a href="{{ lr('mohon-bantuan') }}"><h3><span>✚</span>{{ __('Mohon Bantuan') }}</h3><p>{{ __('Perlukan foodbank, katil hospital atau bantuan kecemasan? Hantar permohonan kepada pasukan kami.') }}</p></a>
+        <a href="{{ lr('impak') }}"><h3><span>✓</span>{{ __('Lihat Impak Kami') }}</h3><p>{{ __('Laporan agihan dengan tarikh, angka dan pautan ke hebahan asal.') }}</p></a>
         <a href="#kempen"><h3><span>➤</span>{{ __('Kempen Sedang Berlangsung') }}</h3><p>{{ __('Pilih kempen yang sedang berjalan dan salurkan infak anda hari ini.') }}</p></a>
     </div>
 </section>
@@ -150,7 +150,7 @@
         @endif
         <div class="ikuti">
             <a class="btn btn-line" href="{{ lr('impak') }}">{{ __('Lihat semua laporan') }}</a>
-            @foreach ($mc['sosial'] as $nama => $url)<a class="btn btn-line" href="{{ $url }}" rel="noopener">{{ __('Ikuti kami di :nama', ['nama' => $nama]) }}</a>@endforeach
+            @foreach ($mc['sosial'] as $nama => $url)<a class="btn btn-line" href="{{ $url }}" rel="noopener">@include('components.ikon', ['nama' => $nama]){{ __('Ikuti kami di :nama', ['nama' => $nama]) }}</a>@endforeach
         </div>
     </div>
 </section>

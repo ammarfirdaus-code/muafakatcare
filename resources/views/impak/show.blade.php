@@ -8,7 +8,7 @@
         <table class="data">
             @if ($r->sasaran !== null)<tr><th>{{ __('Sasaran') }}</th><td>{{ $r->sasaran }}</td></tr>@endif
             @if ($r->penerima !== null)<tr><th>{{ __('Penerima') }}</th><td>{{ $r->penerima }}</td></tr>@endif
-            @if ($r->kos !== null)<tr><th>{{ __('Kos') }}</th><td>RM{{ number_format($r->kos, 2) }}</td></tr>@endif
+            @if ($r->kos !== null)<tr><th>{{ __('Jumlah') }}</th><td>RM{{ number_format($r->kos, 2) }}</td></tr>@endif
             @if ($r->sumber_dana)<tr><th>{{ __('Sumber dana') }}</th><td>{{ __($r->sumber_dana) }}</td></tr>@endif
         </table>
         @if ($r->nota)<p>{{ __($r->nota) }}</p>@endif

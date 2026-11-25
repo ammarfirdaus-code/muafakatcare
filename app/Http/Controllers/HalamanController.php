@@ -17,7 +17,7 @@ class HalamanController extends Controller
             'kempens' => Kempen::aktif()->with('program')->get(),
             'programs' => Program::orderBy('susunan')->get(),
             'kaunter' => KaunterImpak::orderBy('susunan')->get(),
-            'laporan' => LaporanImpak::terbit()->with('program')->take(5)->get(),
+            'laporan' => LaporanImpak::terbit()->with('program')->take(7)->get(),
         ]);
     }
 

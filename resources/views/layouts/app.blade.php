@@ -46,6 +46,7 @@
     @include('components.header', ['urlMs' => $urlMs, 'urlEn' => $urlEn])
     <main>@yield('content')</main>
     @include('components.footer')
+    @if ($mc['whatsapp'])<a class="wa-apung" href="https://wa.me/{{ $mc['whatsapp'] }}" rel="noopener" aria-label="{{ __('WhatsApp kami') }}" title="{{ __('WhatsApp kami') }}">@include('components.ikon', ['nama' => 'whatsapp', 'saiz' => 28])</a>@endif
     <script>
     (function () {
         var tenang = matchMedia('(prefers-reduced-motion: reduce)').matches;
