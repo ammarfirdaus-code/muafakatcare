@@ -26,7 +26,7 @@ php artisan serve                   # buka http://localhost:8000
 3. Forge cipta DB MySQL. Dalam **Environment**: `APP_URL=https://muafakatcare.com`, `APP_ENV=production`, `APP_DEBUG=false`, DB_*, dan MC_WHATSAPP / MC_EMEL / MC_ALAMAT / MC_FACEBOOK / MC_INSTAGRAM / MC_TIKTOK / MC_TELEGRAM (pautan medsos ada nilai lalai dalam config/muafakat.php).
 4. DNS di pendaftar domain: rekod **A** `@` dan `www` ke IP server Forge.
 5. Forge > SSL > Let's Encrypt.
-6. Deploy kali pertama, kemudian sekali sahaja di Forge > Commands: `php artisan db:seed --class=KandunganAwalSeeder --force`
+6. Deploy kali pertama, kemudian sekali sahaja di Forge > Commands: `php artisan db:seed --force` (kandungan awal + laporan lama dari Telegram; selamat diulang)
 7. Skrip deploy default Forge sudah cukup (composer install, migrate --force).
 
 ## Kemas kini kandungan (sementara, sebelum panel admin)

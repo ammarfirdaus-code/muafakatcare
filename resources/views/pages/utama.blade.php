@@ -133,14 +133,14 @@
                 <article class="butama"><a href="{{ lr('impak.bulan', $utama->bulan) }}">
                     <span class="tag">{{ __($utama->program?->nama ?? 'Laporan agihan') }}</span>
                     <h3>{{ __($utama->tajuk) }}</h3>
-                    <p class="muted">{{ $utama->tarikh_agihan?->format('d/m/Y') }} @if ($utama->lokasi) · {{ $utama->lokasi }} @endif</p>
+                    <p class="muted">{{ $utama->tarikh_agihan?->format('d/m/Y') ?? \Carbon\Carbon::parse($utama->bulan.'-01')->translatedFormat('F Y') }} @if ($utama->lokasi) · {{ $utama->lokasi }} @endif</p>
                     <div class="thumb">@if (!empty($utama->gambar[0]))<img src="{{ asset($utama->gambar[0]) }}" alt="{{ __($utama->tajuk) }}" loading="lazy">@else<span>@if ($utama->penerima !== null){{ $utama->penerima }} {{ __('penerima') }} @else {{ __($utama->tajuk) }} @endif</span>@endif</div>
                 </a></article>
                 <div class="bsen">
                     @foreach ($laporan->skip(1) as $r)
                         <article><a href="{{ lr('impak.bulan', $r->bulan) }}">
                             <div class="thumb">@if (!empty($r->gambar[0]))<img src="{{ asset($r->gambar[0]) }}" alt="{{ __($r->tajuk) }}" loading="lazy">@else<span>{{ __($r->program?->nama ?? 'Agihan') }}</span>@endif</div>
-                            <div><span class="tag">{{ __($r->program?->nama ?? 'Laporan agihan') }}</span><h3>{{ __($r->tajuk) }}</h3><p class="muted" style="margin:0">{{ $r->tarikh_agihan?->format('d/m/Y') }}</p></div>
+                            <div><span class="tag">{{ __($r->program?->nama ?? 'Laporan agihan') }}</span><h3>{{ __($r->tajuk) }}</h3><p class="muted" style="margin:0">{{ $r->tarikh_agihan?->format('d/m/Y') ?? \Carbon\Carbon::parse($r->bulan.'-01')->translatedFormat('F Y') }}</p></div>
                         </a></article>
                     @endforeach
                 </div>

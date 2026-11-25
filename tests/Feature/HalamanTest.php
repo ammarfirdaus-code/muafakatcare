@@ -79,6 +79,17 @@ class HalamanTest extends TestCase
         $this->get('/impak/2026-08')->assertOk()->assertSee('40');
     }
 
+    public function test_laporan_telegram_diterbitkan_dengan_sumber(): void
+    {
+        $this->seed(\Database\Seeders\LaporanTelegramSeeder::class);
+        $this->seed(\Database\Seeders\LaporanTelegramSeeder::class); // selamat diulang
+        $this->assertSame(7, LaporanImpak::count());
+
+        $this->get('/')->assertSee('40 keluarga dibantu')->assertDontSee('Laporan agihan bulanan akan dipaparkan di sini');
+        $this->get('/impak/2026-04')->assertOk()->assertSee('t.me/muafakatcare/3068', false);
+        $this->get('/en/impak/2025-12')->assertOk()->assertSee('Post-flood relief mission in Perlis')->assertSee('200');
+    }
+
     public function test_borang_mohon_bantuan_disimpan(): void
     {
         $this->post('/mohon-bantuan', [
