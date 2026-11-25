@@ -1,6 +1,6 @@
 # Website Muafakat Care (Laravel + Forge)
 Disediakan 2026-10-16 | Ammar > Kamil > Roy > Ilham | Status: DRAF setup kod. Tiada deploy tanpa "lulus" Ammar.
-Domain: **muafakatcare.com** · Rujukan susunan: `../01_PELAN/2026-10-01_RangkaWebsite-MuafakatCare_v1.md` (gaya Cinta Gaza Malaysia).
+Domain: **muafakatcare.my** · Rujukan susunan: `../01_PELAN/2026-10-01_RangkaWebsite-MuafakatCare_v1.md` (gaya Cinta Gaza Malaysia).
 
 ## Apa yang dah ada
 - 14 halaman awam: Utama, Program (4), Papan Impak + laporan bulanan, Cara Infak, Tentang, Soalan Lazim, Laporan, Mohon Bantuan, Sukarelawan, Hubungi, Privasi, `sitemap.xml`.
@@ -22,8 +22,8 @@ php artisan serve                   # buka http://localhost:8000
 
 ## Deploy ke Laravel Forge
 1. Push folder ini ke repo GitHub baru (cth. `ammarfirdaus-code/muafakatcare`). `.env`, `vendor/` dan `database.sqlite` tidak ikut (dah dalam `.gitignore`).
-2. Forge > server (PHP 8.3+) > **New Site** `muafakatcare.com` (+ alias `www.muafakatcare.com`) > sambung repo, branch `main`.
-3. Forge cipta DB MySQL. Dalam **Environment**: `APP_URL=https://muafakatcare.com`, `APP_ENV=production`, `APP_DEBUG=false`, DB_*, dan MC_WHATSAPP / MC_EMEL / MC_ALAMAT / MC_FACEBOOK / MC_INSTAGRAM / MC_TIKTOK / MC_TELEGRAM (pautan medsos ada nilai lalai dalam config/muafakat.php).
+2. Forge > server (PHP 8.3+) > **New Site** `muafakatcare.my` (+ alias `www.muafakatcare.my`) > sambung repo, branch `main`.
+3. Forge cipta DB MySQL. Dalam **Environment**: `APP_URL=https://muafakatcare.my`, `APP_ENV=production`, `APP_DEBUG=false`, DB_*, dan MC_WHATSAPP / MC_EMEL / MC_ALAMAT / MC_FACEBOOK / MC_INSTAGRAM / MC_TIKTOK / MC_TELEGRAM (pautan medsos ada nilai lalai dalam config/muafakat.php).
 4. DNS di pendaftar domain: rekod **A** `@` dan `www` ke IP server Forge.
 5. Forge > SSL > Let's Encrypt.
 6. Deploy kali pertama, kemudian sekali sahaja di Forge > Commands: `php artisan db:seed --force` (kandungan awal + laporan lama dari Telegram; selamat diulang)
