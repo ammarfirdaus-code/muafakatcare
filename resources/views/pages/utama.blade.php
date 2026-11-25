@@ -80,7 +80,9 @@
                         <h3>{{ $p->nama }}</h3>
                         <p>{{ $p->satu_baris }}</p>
                     </a>
-                    @if ($p->kos_seunit)
+                    @if ($p->gambar)
+                        <a class="mk foto" href="{{ route('program', $p) }}"><img src="{{ asset($p->gambar) }}" alt="{{ $p->nama }}" loading="lazy">@if ($p->kos_seunit)<span>{{ $p->kos_seunit }}</span>@endif</a>
+                    @elseif ($p->kos_seunit)
                         <a class="mk" href="{{ route('program', $p) }}"><small>Kos</small><strong>{{ $p->kos_seunit }}</strong><span>Baca lagi →</span></a>
                     @else
                         <a class="mk" href="{{ route('mohon-bantuan') }}"><small>Untuk penerima</small><strong>Perlukan bantuan ini?</strong><span>Mohon bantuan →</span></a>
@@ -115,7 +117,7 @@
     <div class="wrap">
         <h2>Kempen Sedang Berlangsung</h2>
         <p class="lead">Ayuh lakukan kebaikan melalui kempen-kempen yang sedang berjalan.</p>
-        <div class="grid g4" style="margin-top:24px">
+        <div class="grid gk" style="margin-top:24px">
             @foreach ($kempens as $k) @include('components.kempen-card', ['k' => $k]) @endforeach
         </div>
     </div>

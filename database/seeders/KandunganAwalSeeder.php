@@ -17,28 +17,28 @@ class KandunganAwalSeeder extends Seeder
     public function run(): void
     {
         Program::updateOrCreate(['slug' => 'foodbank'], [
-            'ikon' => '🍚', 'nama' => 'Foodbank Bulanan', 'satu_baris' => 'Pek makanan asas setiap bulan untuk asnaf, ibu tunggal, warga emas dan B40.',
+            'ikon' => '🍚', 'gambar' => 'img/foto/pek-bantuan.jpg', 'nama' => 'Foodbank Bulanan', 'satu_baris' => 'Pek makanan asas setiap bulan untuk asnaf, ibu tunggal, warga emas dan B40.',
             'tldr' => 'Foodbank Bulanan Muafakat Care mengagihkan pek makanan asas kepada keluarga yang memerlukan di Bakri dan Muar, Johor, setiap bulan. Satu pek makanan asas bernilai RM50.',
             'apa_kami_buat' => ['Senarai penerima disemak oleh pasukan sukarelawan setiap bulan.', 'Barang dibeli, dibungkus dan dihantar ke rumah penerima.', 'Setiap agihan direkod dan dikongsi di Papan Impak.'],
             'kos_seunit' => 'RM50 = 1 pek makanan asas', 'isi_pek' => [],
             'faq' => [['s' => 'Berapa kos satu pek foodbank?', 'j' => 'RM50 untuk satu pek makanan asas. Infak ikut kemampuan, RM10 pun diterima.'], ['s' => 'Siapa penerima foodbank?', 'j' => 'Asnaf, ibu tunggal, warga emas dan keluarga B40 di kawasan Bakri dan Muar yang disemak oleh pasukan kami.']], 'susunan' => 0,
         ]);
         Program::updateOrCreate(['slug' => 'wakaf-katil'], [
-            'ikon' => '🛏️', 'nama' => 'Wakaf Katil Hospital', 'satu_baris' => 'Katil hospital untuk pesakit terlantar di rumah, dipinjamkan tanpa caj.',
+            'ikon' => '🛏️', 'gambar' => 'img/foto/katil-pasang.jpg', 'nama' => 'Wakaf Katil Hospital', 'satu_baris' => 'Katil hospital untuk pesakit terlantar di rumah, dipinjamkan tanpa caj.',
             'tldr' => 'Program Wakaf Katil Hospital Muafakat Care meminjamkan katil hospital tanpa caj kepada keluarga yang menjaga pesakit terlantar di rumah. Bila tidak digunakan lagi, katil dipulangkan untuk pesakit seterusnya.',
             'apa_kami_buat' => ['Keluarga pesakit memohon melalui WhatsApp atau borang.', 'Pasukan kami hantar dan pasang katil di rumah.', 'Katil dipulangkan bila tidak diperlukan, dan disalurkan kepada pesakit lain.'],
             'kos_seunit' => 'RM50 = 1 slot wakaf', 'isi_pek' => [],
             'faq' => [['s' => 'Ada caj pinjam katil?', 'j' => 'Tiada caj. Katil ini hasil wakaf orang ramai.']], 'susunan' => 1,
         ]);
         Program::updateOrCreate(['slug' => 'sedekah-subuh'], [
-            'ikon' => '🌅', 'nama' => 'Sedekah Subuh & Infak Jumaat', 'satu_baris' => 'Infak harian dan mingguan kecil yang disalurkan kepada program bulanan.',
+            'ikon' => '🌅', 'gambar' => 'img/foto/muat-bekalan.jpg', 'nama' => 'Sedekah Subuh & Infak Jumaat', 'satu_baris' => 'Infak harian dan mingguan kecil yang disalurkan kepada program bulanan.',
             'tldr' => 'Sedekah Subuh dan Infak Jumaat membolehkan sesiapa sahaja menyumbang serendah RM1. Dana dikumpul dan disalurkan kepada program kebajikan Muafakat Care.',
             'apa_kami_buat' => ['Infak dikumpul melalui pautan BCL rasmi.', 'Dana disalurkan kepada program bulanan seperti foodbank dan bantuan kecemasan.'],
             'kos_seunit' => 'Serendah RM1', 'isi_pek' => [],
             'faq' => [], 'susunan' => 2,
         ]);
         Program::updateOrCreate(['slug' => 'bantuan'], [
-            'ikon' => '🤝', 'nama' => 'Bantuan Ziarah & Kecemasan', 'satu_baris' => 'Ziarah, baik pulih rumah dan bantuan segera kepada keluarga terjejas.',
+            'ikon' => '🤝', 'gambar' => 'img/foto/serahan.jpg', 'nama' => 'Bantuan Ziarah & Kecemasan', 'satu_baris' => 'Ziarah, baik pulih rumah dan bantuan segera kepada keluarga terjejas.',
             'tldr' => 'Muafakat Care menziarahi dan membantu keluarga yang terjejas akibat musibah, sakit atau kecemasan di kawasan Bakri dan Muar.',
             'apa_kami_buat' => ['Permohonan diterima melalui borang Mohon Bantuan atau WhatsApp.', 'Pasukan menyemak keperluan sebelum bantuan disalurkan.'],
             'kos_seunit' => null, 'isi_pek' => [],
@@ -46,6 +46,7 @@ class KandunganAwalSeeder extends Seeder
         ]);
 
         Kempen::updateOrCreate(['slug' => 'foodbank'], [
+            'gambar' => 'img/foto/hantar-kotak.jpg',
             'program_id' => Program::where('slug', 'foodbank')->value('id'),
             'aktif' => true, 'label' => 'Kempen bulan ini', 'tajuk' => 'Foodbank Bulanan',
             'ringkas' => 'Bantu isi dapur keluarga asnaf, ibu tunggal dan warga emas di Bakri & Muar. Pek makanan asas dihantar terus ke rumah penerima.',
@@ -55,6 +56,7 @@ class KandunganAwalSeeder extends Seeder
             'susunan' => 0,
         ]);
         Kempen::updateOrCreate(['slug' => 'wakaf-katil'], [
+            'gambar' => 'img/foto/katil-pasang.jpg',
             'program_id' => Program::where('slug', 'wakaf-katil')->value('id'),
             'aktif' => true, 'label' => 'Wakaf', 'tajuk' => 'Wakaf Katil Hospital',
             'ringkas' => 'Katil hospital untuk pesakit terlantar di rumah, dipinjamkan tanpa caj dan dipulangkan bila tak diperlukan.',
@@ -64,6 +66,7 @@ class KandunganAwalSeeder extends Seeder
             'susunan' => 1,
         ]);
         Kempen::updateOrCreate(['slug' => 'tabung-banjir'], [
+            'gambar' => 'img/foto/banjir-redah.jpg',
             'program_id' => Program::where('slug', 'bantuan')->value('id'),
             'aktif' => true, 'label' => 'Siap siaga', 'tajuk' => 'Tabung Banjir Siap Siaga',
             'ringkas' => 'Pek makanan dan kit kebersihan disediakan lebih awal, kemudian dihantar terus ke lokasi banjir.',
@@ -73,6 +76,7 @@ class KandunganAwalSeeder extends Seeder
             'susunan' => 2,
         ]);
         Kempen::updateOrCreate(['slug' => 'infak-subuh'], [
+            'gambar' => 'img/foto/van-bekalan.jpg',
             'program_id' => Program::where('slug', 'sedekah-subuh')->value('id'),
             'aktif' => true, 'label' => 'Harian', 'tajuk' => 'Sedekah Subuh',
             'ringkas' => 'Infak kecil setiap pagi, serendah RM1, disalurkan kepada program bulanan.',
@@ -82,6 +86,7 @@ class KandunganAwalSeeder extends Seeder
             'susunan' => 3,
         ]);
         Kempen::updateOrCreate(['slug' => 'infak-jumaat'], [
+            'gambar' => 'img/foto/hantar-pintu.jpg',
             'program_id' => Program::where('slug', 'sedekah-subuh')->value('id'),
             'aktif' => true, 'label' => 'Mingguan', 'tajuk' => 'Infak Jumaat',
             'ringkas' => 'Sedekah penghulu hari, setiap Jumaat, untuk program kebajikan Muafakat Care.',
