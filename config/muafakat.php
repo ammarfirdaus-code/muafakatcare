@@ -13,9 +13,9 @@ return [
         'Menjadi gerakan kebajikan komuniti yang dipercayai, konsisten dan dekat dengan mereka yang memerlukan.',
     ],
     'kawasan' => 'Bakri dan Muar, Johor',
-    'alamat' => env('MC_ALAMAT'),
-    'whatsapp' => env('MC_WHATSAPP'),   // format 60XXXXXXXXX
-    'emel' => env('MC_EMEL'),
+    'alamat' => env('MC_ALAMAT', 'JBB 29, Kampung Jeram Masjid, 84000 Muar, Johor'),
+    'whatsapp' => env('MC_WHATSAPP', '601112240882'),   // format 60XXXXXXXXX
+    'emel' => env('MC_EMEL', 'muafakatbakri@gmail.com'),
     // Akaun rasmi (boleh ditindih melalui .env; nilai kosong = sembunyi).
     'sosial' => array_filter([
         'Facebook' => env('MC_FACEBOOK', 'https://www.facebook.com/muafakatcare'),

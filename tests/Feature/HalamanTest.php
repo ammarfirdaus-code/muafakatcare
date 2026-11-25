@@ -32,6 +32,8 @@ class HalamanTest extends TestCase
             ->assertSee('RM50')
             ->assertDontSee('Sertai Sukarelawan')
             ->assertSee('t.me/muafakatcare', false)
+            ->assertSee('wa.me/601112240882', false)
+            ->assertSee('84000 Muar')
             ->assertSee('pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank', false)
             ->assertSee('PPM-002-10-13032020');
     }
