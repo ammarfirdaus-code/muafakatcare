@@ -14,10 +14,10 @@ class HalamanController extends Controller
     public function utama()
     {
         return view('pages.utama', [
-            'kempens' => Kempen::aktif()->get(),
+            'kempens' => Kempen::aktif()->with('program')->get(),
             'programs' => Program::orderBy('susunan')->get(),
             'kaunter' => KaunterImpak::orderBy('susunan')->get(),
-            'laporan' => LaporanImpak::terbit()->take(3)->get(),
+            'laporan' => LaporanImpak::terbit()->with('program')->take(5)->get(),
         ]);
     }
 
@@ -58,6 +58,7 @@ class HalamanController extends Controller
         $urls = collect(['/', '/infak', '/impak', '/tentang', '/soalan-lazim', '/laporan', '/mohon-bantuan', '/sukarelawan', '/hubungi'])
             ->merge(Program::pluck('slug')->map(fn ($s) => "/program/$s"))
             ->merge(LaporanImpak::terbit()->pluck('bulan')->unique()->map(fn ($b) => "/impak/$b"));
+        $urls = $urls->merge($urls->map(fn ($u) => rtrim('/en'.$u, '/')));
 
         return response()->view('sitemap', ['urls' => $urls], 200)->header('Content-Type', 'application/xml');
     }

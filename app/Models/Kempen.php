@@ -33,6 +33,6 @@ class Kempen extends Model
 
     public function format(int $n): string
     {
-        return $this->unit === 'RM' ? 'RM'.number_format($n) : $n.' '.$this->unit;
+        return $this->unit === 'RM' ? 'RM'.number_format($n) : $n.' '.__($this->unit);
     }
 }

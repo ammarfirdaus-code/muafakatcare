@@ -2,7 +2,7 @@
 @section('content')
 @include('components.page-head', ['eyebrow' => 'Laporan', 'h1' => 'Laporan & Kewangan', 'lead' => 'Ringkasan tahunan kutipan dan agihan, serta penyata yang dihantar kepada ROS.'])
 <section class="section"><div class="wrap prose">
-    <p>Laporan bulanan: lihat <a href="{{ route('impak') }}">Papan Impak</a>.</p>
-    <p class="todo">GANTI: ringkasan tahunan + PDF penyata ROS selepas lulus Ammar</p>
+    <p>{{ __('Laporan bulanan: lihat') }} <a href="{{ lr('impak') }}">{{ __('Papan Impak') }}</a>.</p>
+    <p>{{ __('Ringkasan tahunan dan penyata akan dikemas kini di sini.') }}</p>
 </div></section>
 @endsection

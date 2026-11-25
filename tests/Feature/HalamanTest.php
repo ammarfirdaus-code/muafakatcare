@@ -25,16 +25,46 @@ class HalamanTest extends TestCase
         }
     }
 
+    public function test_versi_inggeris_dibuka_dan_diterjemah(): void
+    {
+        foreach (['/en', '/en/infak', '/en/impak', '/en/tentang', '/en/soalan-lazim', '/en/laporan', '/en/mohon-bantuan', '/en/sukarelawan', '/en/hubungi', '/en/privasi', '/en/program/foodbank'] as $url) {
+            $this->get($url)->assertOk()->assertSee('<html lang="en">', false);
+        }
+
+        $this->get('/en')
+            ->assertSee('Monthly Foodbank')
+            ->assertSee('one basic food pack')
+            ->assertSee('OUR MISSION')
+            ->assertSee('href="'.url('/en/infak').'"', false)
+            ->assertDontSee('MISI KAMI');
+        $this->get('/')->assertSee('<html lang="ms">', false)->assertSee('MISI KAMI')->assertSee('hreflang="en"', false);
+        $this->get('/en/tentang')->assertSee('since 2020')->assertSee('Chairman');
+    }
+
+    public function test_borang_inggeris_kekal_dalam_bahasa_inggeris(): void
+    {
+        $this->post('/en/mohon-bantuan', [
+            'nama' => 'Test', 'telefon' => '012-3456789', 'kawasan' => 'Bakri',
+            'jenis' => 'Foodbank', 'setuju' => '1',
+        ])->assertRedirect('/en/terima-kasih');
+    }
+
     public function test_laman_utama_papar_kempen_dan_pautan_bcl(): void
     {
         $this->get('/')
-            ->assertSee('Foodbank Oktober 2026')
+            ->assertSee('Foodbank Bulanan')
+            ->assertSee('RM50')
+            ->assertDontSee('Sertai Sukarelawan')
+            ->assertSee('t.me/muafakatcare', false)
+            ->assertSee('wa.me/601112240882', false)
+            ->assertSee('84000 Muar')
             ->assertSee('pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank', false)
             ->assertSee('PPM-002-10-13032020');
     }
 
     public function test_kempen_tanpa_pautan_tidak_papar_butang_infak(): void
     {
+        \App\Models\Kempen::where('slug', 'wakaf-katil')->update(['pautan_bcl' => null]);
         $this->get('/program/wakaf-katil')->assertSee('Pautan infak belum disahkan');
     }
 
@@ -47,6 +77,17 @@ class HalamanTest extends TestCase
         LaporanImpak::create(['bulan' => '2026-08', 'tajuk' => 'Agihan Ogos', 'terbit' => true, 'penerima' => 40]);
         $this->get('/impak')->assertSee('Agihan Ogos');
         $this->get('/impak/2026-08')->assertOk()->assertSee('40');
+    }
+
+    public function test_laporan_telegram_diterbitkan_dengan_sumber(): void
+    {
+        $this->seed(\Database\Seeders\LaporanTelegramSeeder::class);
+        $this->seed(\Database\Seeders\LaporanTelegramSeeder::class); // selamat diulang
+        $this->assertSame(7, LaporanImpak::count());
+
+        $this->get('/')->assertSee('40 keluarga dibantu')->assertDontSee('Laporan agihan bulanan akan dipaparkan di sini');
+        $this->get('/impak/2026-04')->assertOk()->assertSee('t.me/muafakatcare/3068', false);
+        $this->get('/en/impak/2025-12')->assertOk()->assertSee('Post-flood relief mission in Perlis')->assertSee('200');
     }
 
     public function test_borang_mohon_bantuan_disimpan(): void

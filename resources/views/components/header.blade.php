@@ -1,17 +1,22 @@
 @php
-    $menu = ['/' => 'Utama', '/program/foodbank' => 'Program', '/impak' => 'Impak', '/tentang' => 'Tentang Kami', '/soalan-lazim' => 'Soalan Lazim', '/hubungi' => 'Hubungi'];
-    $kini = '/'.ltrim(request()->path(), '/');
+    $en = app()->getLocale() === 'en';
+    $menu = ['utama' => 'Utama', 'tentang' => 'Tentang Kami', 'program' => 'Program Kami', 'mohon-bantuan' => 'Mohon Bantuan', 'impak' => 'Impak', 'hubungi' => 'Hubungi Kami'];
+    $kini = preg_replace('/^en\./', '', request()->route()?->getName() ?? '');
 @endphp
-<header class="hdr">
+<header class="hdr @if ($kini === 'utama') atas @endif">
     <div class="wrap bar">
-        <a href="{{ url('/') }}" class="brand" aria-label="{{ config('muafakat.nama') }}"><img src="{{ asset('img/logo.png') }}" alt="{{ config('muafakat.nama') }}" height="44"></a>
+        <a href="{{ lr('utama') }}" class="brand" aria-label="{{ config('muafakat.nama') }}"><img src="{{ asset('img/logo.png') }}" alt="{{ config('muafakat.nama') }}" height="48"></a>
         <nav class="nav" id="nav">
-            @foreach ($menu as $href => $label)
-                <a href="{{ url($href) }}" @if ($kini === $href) aria-current="page" @endif>{{ $label }}</a>
+            @foreach ($menu as $nama => $label)
+                <a href="{{ $nama === 'program' ? lr('program', 'foodbank') : lr($nama) }}" @if ($kini === $nama) aria-current="page" @endif>{{ __($label) }}</a>
             @endforeach
         </nav>
         <div class="act">
-            <a class="btn btn-red" href="{{ route('infak') }}">Infak</a>
+            <div class="bahasa" role="group" aria-label="{{ __('Bahasa') }}">
+                <a href="{{ $urlMs }}" hreflang="ms" lang="ms" @if (! $en) aria-current="true" @endif>BM</a>
+                <a href="{{ $urlEn }}" hreflang="en" lang="en" @if ($en) aria-current="true" @endif>EN</a>
+            </div>
+            <a class="btn btn-red" href="{{ lr('infak') }}">{{ __('Jom Infak') }}</a>
             <button class="burger" aria-label="Menu" aria-controls="nav" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
         </div>
     </div>

@@ -25,7 +25,7 @@ class BorangController extends Controller
 
         PermohonanBantuan::create($data);
 
-        return redirect()->route('terima-kasih');
+        return redirect(lr('terima-kasih'));
     }
 
     public function sukarelawan(Request $request)
@@ -42,6 +42,6 @@ class BorangController extends Controller
 
         Sukarelawan::create($data);
 
-        return redirect()->route('terima-kasih');
+        return redirect(lr('terima-kasih'));
     }
 }

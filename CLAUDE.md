@@ -3,7 +3,7 @@
 Laravel 13 (PHP 8.3+), Blade, CSS biasa di `public/css/app.css` (tiada Vite/npm). Deploy: Laravel Forge, domain muafakatcare.com.
 
 ## Peraturan
-- Bahasa paparan: Bahasa Melayu. Ikut jenama `02_MUAFAKAT-CARE/_BRAND/2026-10-01_DESIGN-MuafakatCare_v2.md` (token warna di `:root` app.css).
+- Bahasa paparan: dwibahasa. Bahasa Melayu (utama, tanpa awalan) dan Inggeris di `/en`. Teks ditulis dalam BM dalam paparan/seeder dan dibungkus `__()`; terjemahan Inggeris di `lang/en.json` (kunci = ayat BM). Teks baharu mesti ditambah ke situ, jika tidak ia kekal BM di `/en`. Guna `lr('nama-laluan')`, bukan `route()`, dalam paparan. Ikut jenama `02_MUAFAKAT-CARE/_BRAND/2026-10-01_DESIGN-MuafakatCare_v2.md` (token warna di `:root` app.css).
 - JANGAN reka angka impak. Medan `null` dipapar "akan dikemas kini". Angka kempen mesti tally dengan bank + BCL.
 - Maruah penerima: tiada nama penuh, alamat, IC dalam laporan impak. Gambar berizin sahaja; wajah kanak-kanak dikaburkan.
 - `permohonan_bantuans` & `sukarelawans` = data peribadi (PDPA). Jangan salin ke log, seeder, slide atau chat.
