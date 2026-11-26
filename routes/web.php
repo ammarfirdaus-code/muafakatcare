@@ -15,6 +15,7 @@ $halaman = function () {
     Route::get('/soalan-lazim', [HalamanController::class, 'soalanLazim'])->name('soalan-lazim');
 
     Route::view('/tentang', 'pages.tentang')->name('tentang');
+    Route::view('/ebook-percuma', 'pages.ebook')->name('ebook');
     Route::view('/laporan', 'pages.laporan')->name('laporan');
     Route::view('/hubungi', 'pages.hubungi')->name('hubungi');
     Route::view('/privasi', 'pages.privasi')->name('privasi');

@@ -1,6 +1,6 @@
 @php
     $en = app()->getLocale() === 'en';
-    $menu = ['utama' => 'Utama', 'tentang' => 'Tentang Kami', 'program' => 'Program Kami', 'impak' => 'Impak', 'hubungi' => 'Hubungi Kami'];
+    $menu = ['utama' => 'Utama', 'tentang' => 'Tentang Kami', 'program' => 'Program Kami', 'impak' => 'Impak', 'ebook' => 'eBook Percuma', 'hubungi' => 'Hubungi Kami'];
     $kini = preg_replace('/^en\./', '', request()->route()?->getName() ?? '');
 @endphp
 <header class="hdr @if ($kini === 'utama') atas @endif">

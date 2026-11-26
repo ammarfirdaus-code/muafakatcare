@@ -49,6 +49,18 @@ class HalamanTest extends TestCase
         ])->assertRedirect('/en/terima-kasih');
     }
 
+    public function test_halaman_ebook_papar_sepuluh_ebook_dan_fail_wujud(): void
+    {
+        $this->assertCount(10, config('ebook'));
+        $r = $this->get('/ebook-percuma')->assertOk();
+        foreach (config('ebook') as $e) {
+            $r->assertSee($e['tajuk']);
+            $this->assertFileExists(public_path('ebook/'.$e['slug'].'.pdf'));
+            $this->assertFileExists(public_path('img/ebook/'.$e['slug'].'.jpg'));
+        }
+        $this->get('/en/ebook-percuma')->assertOk()->assertSee('Download eBook');
+    }
+
     public function test_laman_utama_papar_kempen_dan_pautan_bcl(): void
     {
         $this->get('/')
