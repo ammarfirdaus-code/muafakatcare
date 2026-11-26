@@ -59,7 +59,9 @@ class HalamanTest extends TestCase
             ->assertSee('wa.me/601112240882', false)
             ->assertSee('84000 Muar')
             ->assertSee('pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank', false)
-            ->assertSee('PPM-002-10-13032020');
+            ->assertSee('PPM-002-10-13032020')
+            ->assertSee('Pengguna katil hospital aktif')
+            ->assertSee('data-kira="15"', false);
     }
 
     public function test_kempen_tanpa_pautan_tidak_papar_butang_infak(): void
