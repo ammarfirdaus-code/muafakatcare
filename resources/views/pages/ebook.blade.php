@@ -6,11 +6,11 @@
     <div class="grid ebuku">
         @foreach (config('ebook') as $e)
             <article class="eb">
-                <a class="eb-kulit" href="{{ asset('ebook/'.$e['slug'].'.pdf') }}" download><img src="{{ asset('img/ebook/'.$e['slug'].'.jpg') }}" alt="{{ $e['tajuk'] }}" loading="lazy" width="520" height="738"></a>
+                <a class="eb-kulit" href="{{ asset('ebook/'.$e['slug'].'.pdf') }}?v={{ filemtime(public_path('ebook/'.$e['slug'].'.pdf')) }}" download="{{ $e['slug'] }}.pdf"><img src="{{ asset('img/ebook/'.$e['slug'].'.jpg') }}?v={{ filemtime(public_path('img/ebook/'.$e['slug'].'.jpg')) }}" alt="{{ $e['tajuk'] }}" loading="lazy" width="560" height="794"></a>
                 <h3>{{ $e['tajuk'] }}</h3>
                 <p>{{ $e['sub'] }}</p>
                 <p class="eb-harga"><b>{{ __('PERCUMA') }}</b> · PDF · {{ $e['hal'] }} {{ __('halaman') }}</p>
-                <a class="btn btn-red" href="{{ asset('ebook/'.$e['slug'].'.pdf') }}" download>{{ __('Muat Turun eBook') }}</a>
+                <a class="btn btn-red" href="{{ asset('ebook/'.$e['slug'].'.pdf') }}?v={{ filemtime(public_path('ebook/'.$e['slug'].'.pdf')) }}" download="{{ $e['slug'] }}.pdf">{{ __('Muat Turun eBook') }}</a>
             </article>
         @endforeach
     </div>

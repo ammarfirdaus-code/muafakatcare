@@ -69,8 +69,17 @@ class Buku:
         return s.hal(f'<h2>{E(tajuk)}</h2><p>{ayat_}</p><div class="cta"><h3>{E(label)}</h3><p style="margin:0">Setiap sumbangan direkod dan dilaporkan di Papan Impak.</p><span class="u">{E(url)}</span></div>'
           '<p class="kecil" style="margin-top:16px">eBook ini diedarkan percuma oleh Muafakat Care, program Pertubuhan Kebajikan Muafakat Bakri (PPM-002-10-13032020). Teks Al-Quran: rasm Uthmani; terjemahan: Tafsir Pimpinan Ar-Rahman (Abdullah Basmeih). Teks hadis diambil daripada kitab yang dinyatakan pada setiap halaman; terjemahan hadis oleh penyusun. Sekiranya terdapat kesilapan, maklumkan kepada kami di muafakatbakri@gmail.com supaya dapat dibetulkan.</p>','Penutup')
     def bina(s,out):
-        t=getattr(s,'tema',('#1E1A68','#5E59A6','#C5162E'))
-        kulit=f'<!doctype html><meta charset="utf-8"><style>{CSS}@page{{margin:0}}.kulit{{background:{t[0]}}}.kulit::before{{background:{t[1]}}}.kulit::after{{background:{t[2]}}}.kulit .tanda{{background:{t[3] if len(t)>3 else "#C5162E"}}}</style><div class="kulit"><div class="logo"><img src="{LOGO}"></div><span class="tanda">eBook Percuma</span><h1>{E(s.tajuk)}</h1><div class="sub">{E(s.sub)}</div><div class="kaki">Muafakat Care · muafakatcare.my</div></div>'
+        g=getattr(s,'seni',None); mod=getattr(s,'mod','gelap'); atas=getattr(s,'atas','44%'); lebar=getattr(s,'lebar','64%'); saiz=getattr(s,'saiz','23pt')
+        kulit=(f'<!doctype html><meta charset="utf-8"><style>{CSS}@page{{margin:0}}'
+          f'.k2{{width:148mm;height:210mm;position:relative;background:url("file://{g}") center/cover;overflow:hidden}}'
+          f'.blok{{position:absolute;left:50%;top:{atas};transform:translate(-50%,-50%);width:{lebar};text-align:center}}'
+          '.blok .logo{display:inline-block;background:#fff;border-radius:9px;padding:5px 9px;box-shadow:0 2px 8px rgba(0,0,0,.25)}.blok .logo img{height:13mm;display:block}'
+          '.blok .tanda{display:block;margin:9px auto 8px;font:600 7pt Inter;letter-spacing:.2em;text-transform:uppercase}'
+          f'.blok h1{{font:800 {saiz}/1.14 Poppins;margin:0 0 8px}}.blok .sub{{font:500 10.5pt/1.4 Inter;margin:0 auto;max-width:92%}}.blok .garis2{{width:26mm;height:1.5px;margin:9px auto}}'
+          '.blok .kaki{font:600 7pt Inter;letter-spacing:.08em;margin-top:2px}'
+          '.gelap h1{color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.45)}.gelap .tanda,.gelap .kaki{color:#F3CF73}.gelap .sub{color:#F1F1F8;text-shadow:0 1px 6px rgba(0,0,0,.5)}.gelap .garis2{background:#E3B341}'
+          '.cerah h1{color:#1E1A68}.cerah .tanda,.cerah .kaki{color:#C5162E}.cerah .sub{color:#2B2E3A}.cerah .garis2{background:#B8892B}'
+          f'</style><div class="k2"><div class="blok {mod}"><span class="logo"><img src="{LOGO}"></span><span class="tanda">eBook Percuma</span><h1>{E(s.tajuk)}</h1><div class="sub">{E(s.sub)}</div><div class="garis2"></div><div class="kaki">MUAFAKAT CARE · muafakatcare.my</div></div></div>')
         isi=f'<!doctype html><meta charset="utf-8"><style>{CSS}</style>'+''.join(s.b)
         os.makedirs(out+'/tmp',exist_ok=True)
         open(f'{out}/tmp/{s.slug}-kulit.html','w',encoding='utf8').write(kulit); open(f'{out}/tmp/{s.slug}-isi.html','w',encoding='utf8').write(isi)
