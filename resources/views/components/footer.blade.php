@@ -28,6 +28,7 @@
             <h4>{{ __('Ketelusan') }}</h4>
             <a href="{{ lr('laporan') }}">{{ __('Laporan') }}</a>
             <a href="{{ lr('soalan-lazim') }}">{{ __('Soalan Lazim') }}</a>
+            <a href="{{ lr('ebook') }}">{{ __('eBook Percuma') }}</a>
             <a href="{{ lr('privasi') }}">{{ __('Notis Privasi (PDPA)') }}</a>
         </div>
         <div>
