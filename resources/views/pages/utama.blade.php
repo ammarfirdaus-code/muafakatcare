@@ -182,7 +182,7 @@
 <div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="pop-tajuk" hidden>
     <div class="pop-kotak">
         <button class="pop-tutup" type="button" aria-label="{{ __('Tutup') }}">×</button>
-        <div class="pop-buku">@foreach ($eb as $e)<img src="{{ asset('img/ebook/'.$e['slug'].'.jpg') }}" alt="{{ $e['tajuk'] }}" loading="lazy">@endforeach</div>
+        <div class="pop-buku">@foreach ($eb as $e)<img src="{{ asset('img/ebook/'.$e['slug'].'.jpg') }}?v={{ filemtime(public_path('img/ebook/'.$e['slug'].'.jpg')) }}" alt="{{ $e['tajuk'] }}" loading="lazy">@endforeach</div>
         <div class="pop-isi">
             <span class="pill">{{ __('PERCUMA') }}</span>
             <h2 id="pop-tajuk">{{ __('Jom dapatkan eBook percuma') }}</h2>
