@@ -178,16 +178,16 @@
     </div>
 </section>
 
-@if ($pop = $kempens->first())
+@php $eb = collect(config('ebook'))->take(3); @endphp
 <div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="pop-tajuk" hidden>
     <div class="pop-kotak">
         <button class="pop-tutup" type="button" aria-label="{{ __('Tutup') }}">×</button>
-        @if ($pop->gambar)<img src="{{ asset($pop->gambar) }}" alt="" loading="lazy">@endif
+        <div class="pop-buku">@foreach ($eb as $e)<img src="{{ asset('img/ebook/'.$e['slug'].'.jpg') }}" alt="{{ $e['tajuk'] }}" loading="lazy">@endforeach</div>
         <div class="pop-isi">
-            @if ($pop->label)<span class="pill">{{ __($pop->label) }}</span>@endif
-            <h2 id="pop-tajuk">{{ __($pop->hero_sorotan ?? $pop->tajuk) }} {{ $pop->hero_ayat ? __($pop->hero_ayat) : '' }}</h2>
-            <p>{{ __($pop->ringkas) }}</p>
-            <a class="btn btn-red" href="{{ $pop->pautan_bcl ?? lr('infak') }}" rel="noopener">{{ __('Infak Sekarang') }}</a>
+            <span class="pill">{{ __('PERCUMA') }}</span>
+            <h2 id="pop-tajuk">{{ __('Jom dapatkan eBook percuma') }}</h2>
+            <p>{{ __(':n eBook tentang sedekah, doa, wakaf dan panduan keluarga. Muat turun terus, tanpa perlu mendaftar.', ['n' => count(config('ebook'))]) }}</p>
+            <a class="btn btn-red" href="{{ lr('ebook') }}">{{ __('Muat Turun') }}</a>
         </div>
     </div>
 </div>
@@ -209,7 +209,6 @@
     window.addEventListener('scroll', semak, { passive: true });
 })();
 </script>
-@endif
 
 @if ($slaid->count() > 1)
 <script>
