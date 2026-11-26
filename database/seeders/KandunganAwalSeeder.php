@@ -97,8 +97,8 @@ class KandunganAwalSeeder extends Seeder
 
         KaunterImpak::updateOrCreate(['label' => 'Pek foodbank diagihkan'], ['nilai' => null, 'susunan' => 0]);
         KaunterImpak::where('label', 'Katil hospital disalurkan')->delete();
-        // Sumber: hebahan rasmi 11 Sep 2026, "kesemua 13 katil sedang digunakan". Kemas kini bila bilangan berubah.
-        KaunterImpak::updateOrCreate(['label' => 'Pengguna katil hospital aktif'], ['nilai' => 13, 'catatan' => 'Setakat 11 September 2026', 'susunan' => 1]);
+        // Bilangan disahkan Ammar pada 26 Nov 2026. Kemas kini bila bilangan berubah.
+        KaunterImpak::updateOrCreate(['label' => 'Pengguna katil hospital aktif'], ['nilai' => 15, 'catatan' => 'Setakat 26 November 2026', 'susunan' => 1]);
         KaunterImpak::updateOrCreate(['label' => 'Keluarga dibantu'], ['nilai' => null, 'susunan' => 2]);
         KaunterImpak::updateOrCreate(['label' => 'Tahun berkhidmat'], ['nilai' => null, 'susunan' => 3]);
 
