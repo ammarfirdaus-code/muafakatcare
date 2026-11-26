@@ -46,7 +46,27 @@
     @include('components.header', ['urlMs' => $urlMs, 'urlEn' => $urlEn])
     <main>@yield('content')</main>
     @include('components.footer')
-    @if ($mc['whatsapp'])<a class="wa-apung" href="https://wa.me/{{ $mc['whatsapp'] }}" rel="noopener" aria-label="{{ __('WhatsApp kami') }}" title="{{ __('WhatsApp kami') }}">@include('components.ikon', ['nama' => 'whatsapp', 'saiz' => 28])</a>@endif
+    @if ($mc['whatsapp'])
+    @php $mesejWa = __('Assalamualaikum Muafakat Care. Saya ada soalan tentang sumbangan.')."\n".url()->current(); @endphp
+    <div class="wa" id="wa">
+        <div class="wa-panel" id="wa-panel" hidden>
+            <div class="wa-kepala"><strong>{{ __('Tanya tentang sumbangan') }}</strong><button type="button" class="wa-tutup" aria-label="{{ __('Tutup') }}">×</button></div>
+            <p>{{ __('Tidak pasti mahu menyumbang ke mana? Tanya kami. Kami bantu terangkan kempen yang sedang berjalan dan cara infak.') }}</p>
+            <a class="btn btn-wa" href="https://wa.me/{{ $mc['whatsapp'] }}?text={{ rawurlencode($mesejWa) }}" rel="noopener">@include('components.ikon', ['nama' => 'whatsapp']){{ __('Mula WhatsApp') }}</a>
+        </div>
+        <span class="wa-tip" id="wa-tip" hidden>{{ __('Ada soalan sumbangan? Klik sini') }}</span>
+        <button class="wa-apung" type="button" aria-label="{{ __('WhatsApp kami') }}" aria-expanded="false" aria-controls="wa-panel">@include('components.ikon', ['nama' => 'whatsapp', 'saiz' => 28])</button>
+    </div>
+    <script>
+    (function () {
+        var wa = document.getElementById('wa'), panel = document.getElementById('wa-panel'), tip = document.getElementById('wa-tip'), btn = wa.querySelector('.wa-apung');
+        function set(buka) { panel.hidden = !buka; tip.hidden = true; btn.setAttribute('aria-expanded', buka ? 'true' : 'false'); }
+        btn.addEventListener('click', function () { set(panel.hidden); });
+        wa.querySelector('.wa-tutup').addEventListener('click', function () { set(false); btn.focus(); });
+        setTimeout(function () { if (panel.hidden) { tip.hidden = false; setTimeout(function () { tip.hidden = true; }, 9000); } }, 3000);
+    })();
+    </script>
+    @endif
     <script>
     (function () {
         var tenang = matchMedia('(prefers-reduced-motion: reduce)').matches;

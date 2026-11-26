@@ -58,9 +58,9 @@
 {{-- 2. Tiga kotak pautan --}}
 <section class="trio">
     <div class="wrap">
-        <a href="{{ lr('tentang') }}"><h3><span>➤</span>{{ __('Ketahui Tentang Kami') }}</h3><p>{{ __('Jom kenali Muafakat Care dan lihat sendiri kebaikan yang boleh kita usahakan bersama.') }}</p></a>
-        <a href="{{ lr('impak') }}"><h3><span>✓</span>{{ __('Lihat Impak Kami') }}</h3><p>{{ __('Laporan agihan dengan tarikh, angka dan pautan ke hebahan asal.') }}</p></a>
-        <a href="#kempen"><h3><span>➤</span>{{ __('Kempen Sedang Berlangsung') }}</h3><p>{{ __('Pilih kempen yang sedang berjalan dan salurkan infak anda hari ini.') }}</p></a>
+        <a href="{{ lr('tentang') }}"><h3><span class="lantun">➤</span>{{ __('Ketahui Tentang Kami') }}</h3><p>{{ __('Jom kenali Muafakat Care dan lihat sendiri kebaikan yang boleh kita usahakan bersama.') }}</p></a>
+        <a href="{{ lr('impak') }}"><h3><span class="lantun">✓</span>{{ __('Lihat Impak Kami') }}</h3><p>{{ __('Laporan agihan dengan tarikh, angka dan pautan ke hebahan asal.') }}</p></a>
+        <a href="#kempen"><h3><span class="lantun">➤</span>{{ __('Kempen Sedang Berlangsung') }}</h3><p>{{ __('Pilih kempen yang sedang berjalan dan salurkan infak anda hari ini.') }}</p></a>
     </div>
 </section>
 
@@ -76,9 +76,18 @@
             @foreach ($programs as $p)
                 <div class="mcol @if ($loop->even) songsang @endif">
                     <a class="mp" href="{{ lr('program', $p) }}">
-                        <span class="ic" aria-hidden="true">{{ $p->ikon }}</span>
-                        <h3>{{ __($p->nama) }}</h3>
-                        <p>{{ __($p->satu_baris) }}</p>
+                        <span class="pusing">
+                            <span class="muka depan">
+                                <span class="ic" aria-hidden="true">{{ $p->ikon }}</span>
+                                <h3>{{ __($p->nama) }}</h3>
+                                <p class="ringkas">{{ __($p->satu_baris) }}</p>
+                            </span>
+                            <span class="muka belakang" aria-hidden="true">
+                                <strong>{{ __($p->nama) }}</strong>
+                                <span>{{ __($p->satu_baris) }}</span>
+                                <em>{{ __('Baca lagi') }} →</em>
+                            </span>
+                        </span>
                     </a>
                     @if ($p->gambar)
                         <a class="mk foto" href="{{ lr('program', $p) }}"><img src="{{ asset($p->gambar) }}" alt="{{ __($p->nama) }}" loading="lazy">@if ($p->kos_seunit)<span>{{ __($p->kos_seunit) }}</span>@endif</a>
@@ -99,13 +108,14 @@
         <div>
             <h2>{{ __('Statistik bantuan') }}</h2>
             <p>{{ __('Bantuan yang telah disalurkan melalui kesemua program Muafakat Care.') }}
-                {{ $adaAngka ? __('Dikemas kini').': '.$kaunter->max('updated_at')->format('d/m/Y').'.' : __('Angka rasmi sedang disemak dengan rekod bank dan akan dikemas kini.') }}</p>
+                @if ($kaunter->whereNull('nilai')->isNotEmpty()) {{ __('Angka rasmi sedang disemak dengan rekod bank dan akan dikemas kini.') }} @endif</p>
         </div>
         <div class="snum">
             @foreach ($kaunter as $c)
                 <div>
-                    @if ($c->nilai !== null)<strong data-kira="{{ $c->nilai }}">{{ number_format($c->nilai) }}</strong>@else<strong class="tunggu">{{ __('Akan dikemas kini') }}</strong>@endif
+                    @if ($c->nilai !== null)<strong class="lantun" data-kira="{{ $c->nilai }}">{{ number_format($c->nilai) }}</strong>@else<strong class="tunggu">{{ __('Akan dikemas kini') }}</strong>@endif
                     <span>{{ __($c->label) }}</span>
+                    @if ($c->catatan)<small>{{ __($c->catatan) }}</small>@endif
                 </div>
             @endforeach
         </div>
@@ -167,6 +177,39 @@
         </ol>
     </div>
 </section>
+
+@if ($pop = $kempens->first())
+<div class="pop" id="pop" role="dialog" aria-modal="true" aria-labelledby="pop-tajuk" hidden>
+    <div class="pop-kotak">
+        <button class="pop-tutup" type="button" aria-label="{{ __('Tutup') }}">×</button>
+        @if ($pop->gambar)<img src="{{ asset($pop->gambar) }}" alt="" loading="lazy">@endif
+        <div class="pop-isi">
+            @if ($pop->label)<span class="pill">{{ __($pop->label) }}</span>@endif
+            <h2 id="pop-tajuk">{{ __($pop->hero_sorotan ?? $pop->tajuk) }} {{ $pop->hero_ayat ? __($pop->hero_ayat) : '' }}</h2>
+            <p>{{ __($pop->ringkas) }}</p>
+            <a class="btn btn-red" href="{{ $pop->pautan_bcl ?? lr('infak') }}" rel="noopener">{{ __('Infak Sekarang') }}</a>
+        </div>
+    </div>
+</div>
+<script>
+(function () {
+    var pop = document.getElementById('pop'), kunci = 'mc-pop';
+    try { if (sessionStorage.getItem(kunci)) return; } catch (e) {}
+    function tutup() { pop.classList.remove('buka'); setTimeout(function () { pop.hidden = true; }, 300); document.removeEventListener('keydown', esc); }
+    function esc(e) { if (e.key === 'Escape') tutup(); }
+    function buka() {
+        window.removeEventListener('scroll', semak);
+        try { sessionStorage.setItem(kunci, '1'); } catch (e) {}
+        pop.hidden = false; requestAnimationFrame(function () { pop.classList.add('buka'); });
+        pop.querySelector('.pop-tutup').focus({ preventScroll: true });
+        document.addEventListener('keydown', esc);
+    }
+    function semak() { if (scrollY / (document.documentElement.scrollHeight - innerHeight) > 0.3) buka(); }
+    pop.addEventListener('click', function (e) { if (e.target === pop || e.target.classList.contains('pop-tutup')) tutup(); });
+    window.addEventListener('scroll', semak, { passive: true });
+})();
+</script>
+@endif
 
 @if ($slaid->count() > 1)
 <script>

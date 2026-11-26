@@ -24,7 +24,7 @@ img { max-width: 100%; display: block; }
 .muted { color: var(--cool); font-size: .9rem; }
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 999px; font: 600 1rem Poppins, Inter, sans-serif; text-decoration: none; border: 2px solid transparent; cursor: pointer; transition: transform .15s, background .15s; }
 .btn { white-space: nowrap; }
-.btn:hover { transform: translateY(-1px); }
+.btn:hover { transform: scale(.95); }
 .btn-red { background: var(--red); color: #fff; }
 .btn-red:hover { background: var(--red-hi); }
 .btn-line { border-color: var(--indigo); color: var(--indigo); background: transparent; }
@@ -87,7 +87,7 @@ form input, form textarea, form select { width: 100%; padding: 12px; border: 1px
 .ftr .baris { display: flex; align-items: center; gap: 8px; }
 .ftr .sos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
 .ftr .sos a { display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border-radius: 50%; background: rgba(255,255,255,.12); color: #fff; transition: transform .15s, background .15s; }
-.ftr .sos a:hover { transform: translateY(-2px); }
+.ftr .sos a:hover { transform: scale(1.15); }
 .ftr .sos a.facebook:hover { background: #1877F2; } .ftr .sos a.instagram:hover { background: #E4405F; } .ftr .sos a.tiktok:hover { background: #000; }
 .ftr .sos a.telegram:hover { background: #26A5E4; } .ftr .sos a.whatsapp:hover { background: #25D366; }
 .fbank { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); padding: 16px; margin-top: 18px; }
@@ -242,6 +242,51 @@ table.data th, table.data td { text-align: left; padding: 8px 16px 8px 0; border
 @media (max-width: 420px) { .act .btn { padding: 9px 14px; font-size: .8rem; } .brand img, .hdr.atas .brand img { height: 40px; } }
 .ikon { flex: none; vertical-align: -3px; }
 h3 .ikon { color: var(--red); }
-.wa-apung { position: fixed; right: 18px; bottom: 18px; z-index: 60; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; background: #25D366; color: #fff; box-shadow: 0 6px 20px rgba(15,18,53,.25); transition: transform .15s; }
-.wa-apung:hover { transform: scale(1.08); }
 .thumb img[src$=".svg"] { background: var(--off); }
+
+/* ---- Widget WhatsApp ---- */
+.wa { position: fixed; right: 18px; bottom: 18px; z-index: 60; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.wa-apung { width: 58px; height: 58px; border: 0; border-radius: 50%; display: grid; place-items: center; background: #25D366; color: #fff; cursor: pointer; box-shadow: 0 6px 20px rgba(15,18,53,.25); transition: transform .15s; animation: denyut 2.6s ease-out infinite; }
+.wa-apung:hover { transform: scale(1.08); }
+@keyframes denyut { 0% { box-shadow: 0 6px 20px rgba(15,18,53,.25), 0 0 0 0 rgba(37,211,102,.55); } 70%, 100% { box-shadow: 0 6px 20px rgba(15,18,53,.25), 0 0 0 16px rgba(37,211,102,0); } }
+.wa-tip { background: #fff; color: var(--text); font-size: .9rem; font-weight: 500; padding: 9px 14px; border-radius: 14px 14px 2px 14px; box-shadow: var(--shadow); animation: masukKanan .4s ease both; }
+.wa-panel { width: min(320px, calc(100vw - 36px)); background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 16px 48px rgba(15,18,53,.28); animation: naik .3s ease both; }
+.wa-kepala { display: flex; justify-content: space-between; align-items: center; background: #128C7E; color: #fff; padding: 14px 16px; }
+.wa-tutup, .pop-tutup { background: none; border: 0; color: inherit; font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.wa-panel p { margin: 16px; background: var(--off); padding: 12px 14px; border-radius: 4px 14px 14px 14px; font-size: .95rem; }
+.btn-wa { background: #25D366; color: #fff; margin: 0 16px 16px; display: flex; justify-content: center; }
+@keyframes masukKanan { from { opacity: 0; transform: translateX(16px); } }
+@keyframes naik { from { opacity: 0; transform: translateY(16px); } }
+/* ---- Pop-up kempen ---- */
+.pop { position: fixed; inset: 0; z-index: 80; display: grid; place-items: center; padding: 16px; background: rgba(15,18,53,.6); opacity: 0; transition: opacity 1.2s ease; }
+.pop[hidden] { display: none; }
+.pop.buka { opacity: 1; }
+.pop-kotak { position: relative; width: min(760px, 100%); max-height: calc(100vh - 32px); overflow: auto; background: #fff; border-radius: 22px; display: grid; grid-template-columns: 1fr 1.1fr; box-shadow: 0 30px 80px rgba(8,10,35,.5); }
+.pop-kotak img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; }
+.pop-isi { padding: 34px 28px; align-self: center; }
+.pop-isi h2 { margin-top: 12px; }
+.pop-tutup { position: absolute; top: 8px; right: 12px; z-index: 1; width: 36px; height: 36px; border-radius: 50%; background: #fff; color: var(--indigo); box-shadow: var(--shadow); }
+@media (max-width: 640px) { .pop-kotak { grid-template-columns: 1fr; } .pop-kotak img { min-height: 0; max-height: 200px; } .pop-isi { padding: 22px 20px 26px; } }
+/* ---- Lantun (bounceIn) & jubin pusing ---- */
+@keyframes lantun { 0% { opacity: 0; transform: scale(.3); } 50% { opacity: 1; transform: scale(1.08); } 70% { transform: scale(.94); } 100% { transform: none; } }
+.js .gerak .lantun { opacity: 0; }
+.js .gerak.nampak .lantun { animation: lantun .9s cubic-bezier(.2,.7,.3,1) .25s both; }
+.snum small { display: block; font-size: .8rem; color: var(--cool); }
+.mp .pusing, .mp .muka { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 100%; }
+.mp .belakang { display: none; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .mp { padding: 0; perspective: 1200px; background: none !important; }
+  .mp:hover { transform: none; }
+  .mp .pusing { position: relative; min-height: 330px; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+  .mp .muka { position: absolute; inset: 0; padding: 28px 24px; border-radius: 28px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+  .mp .depan { background: var(--indigo); }
+  .mcol.songsang .mp .depan { background: var(--red); }
+  .mp .depan .ringkas { display: none; }
+  .mp .depan .ic { font-size: 4rem; }
+  .mp .belakang { display: flex; gap: 12px; transform: rotateY(180deg); background: #fff; color: var(--text); border: 2px solid var(--indigo); }
+  .mcol.songsang .mp .belakang { border-color: var(--red); }
+  .mp .belakang strong { font: 700 1.2rem Poppins, sans-serif; color: var(--indigo); }
+  .mp .belakang em { font-style: normal; font-weight: 600; color: var(--red); }
+  .mp:hover .pusing, .mp:focus-visible .pusing { transform: rotateY(180deg); }
+}
+@media (prefers-reduced-motion: reduce) { .wa-apung, .wa-tip, .wa-panel { animation: none; } .pop { transition: none; } .js .gerak .lantun { opacity: 1; animation: none; } }
