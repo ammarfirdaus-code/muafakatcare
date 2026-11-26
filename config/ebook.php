@@ -8,8 +8,8 @@ return [
     ['slug' => 'wakaf-mudah-faham', 'tajuk' => 'Wakaf Mudah Faham', 'sub' => 'Pahala yang terus mengalir selepas kita tiada', 'hal' => 9],
     ['slug' => 'doa-si-pemberi', 'tajuk' => 'Doa Si Pemberi', 'sub' => 'Doa harian untuk rezeki yang berkat dan hati yang pemurah', 'hal' => 16],
     ['slug' => 'jumaat-penghulu-hari', 'tajuk' => 'Jumaat Penghulu Hari', 'sub' => 'Amalan sunnah dan sedekah pada hari Jumaat', 'hal' => 10],
-    ['slug' => 'menjaga-orang-tersayang-yang-terlantar', 'tajuk' => 'Menjaga Orang Tersayang yang Terlantar', 'sub' => 'Panduan asas untuk penjaga di rumah', 'hal' => 11],
+    ['slug' => 'menjaga-orang-tersayang-yang-terlantar', 'tajuk' => 'Menjaga Orang Tersayang yang Terlantar', 'sub' => 'Panduan asas untuk penjaga di rumah', 'hal' => 10],
     ['slug' => 'didik-anak-suka-memberi', 'tajuk' => 'Didik Anak Suka Memberi', 'sub' => '15 aktiviti keluarga untuk menanam sifat pemurah', 'hal' => 10],
     ['slug' => 'planner-ramadan-si-dermawan', 'tajuk' => 'Planner Ramadan Si Dermawan', 'sub' => '30 hari merancang ibadah dan infak', 'hal' => 10],
-    ['slug' => 'zakat-fidyah-sedekah-wakaf-apa-bezanya', 'tajuk' => 'Zakat, Fidyah, Sedekah, Wakaf: Apa Bezanya?', 'sub' => '20 soalan yang selalu ditanya penyumbang', 'hal' => 8],
+    ['slug' => 'zakat-fidyah-sedekah-wakaf-apa-bezanya', 'tajuk' => 'Zakat, Fidyah, Sedekah, Wakaf: Apa Bezanya?', 'sub' => '15 soalan yang selalu ditanya penyumbang', 'hal' => 8],
 ];
