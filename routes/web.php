@@ -12,6 +12,7 @@ $halaman = function () {
     Route::get('/impak', [HalamanController::class, 'impak'])->name('impak');
     Route::get('/impak/{bulan}', [HalamanController::class, 'impakBulan'])->where('bulan', '\d{4}-\d{2}')->name('impak.bulan');
     Route::get('/infak', [HalamanController::class, 'infak'])->name('infak');
+    Route::get('/infak/{slug}', [HalamanController::class, 'infakKempen'])->where('slug', '[a-z0-9-]+')->name('infak.kempen');
     Route::get('/soalan-lazim', [HalamanController::class, 'soalanLazim'])->name('soalan-lazim');
 
     Route::view('/tentang', 'pages.tentang')->name('tentang');

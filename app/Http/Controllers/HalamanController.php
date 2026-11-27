@@ -48,6 +48,14 @@ class HalamanController extends Controller
         return view('pages.infak', ['kempens' => Kempen::aktif()->get()]);
     }
 
+    public function infakKempen(string $slug)
+    {
+        $kempen = Kempen::aktif()->with('program')->where('slug', $slug)->firstOrFail();
+        abort_if($kempen->urlBenam() === null, 404);
+
+        return view('pages.infak-kempen', ['kempen' => $kempen]);
+    }
+
     public function soalanLazim()
     {
         return view('pages.soalan-lazim', ['soalan' => SoalanLazim::orderBy('susunan')->get()]);

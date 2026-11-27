@@ -309,3 +309,12 @@ h3 .ikon { color: var(--red); }
 .pop-buku img:nth-child(3) { transform: translateX(42%) rotate(9deg); }
 .pop-buku img:nth-child(2) { z-index: 1; width: 50%; }
 @media (max-width: 640px) { .pop-buku { min-height: 230px; } .pop-buku img { width: 34%; max-height: none; } .pop-buku img:nth-child(2) { width: 38%; } }
+
+/* ---- Halaman infak kempen (borang BCL dibenam) ---- */
+.ik { display: grid; grid-template-columns: 1fr 1.15fr; gap: 40px; align-items: start; }
+.ik-info img { width: 100%; border-radius: var(--radius); margin-bottom: 18px; }
+.ik-borang { background: #fff; border: 1px solid var(--gray); border-top: 4px solid var(--red); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+.ik-borang h2 { font-size: 1.3rem; }
+#bcl-payment-form { min-height: 420px; }
+.ik-muat { color: var(--cool); padding: 40px 0; text-align: center; }
+@media (max-width: 900px) { .ik { grid-template-columns: 1fr; } .ik-borang { order: -1; padding: 14px; } }

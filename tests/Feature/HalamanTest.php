@@ -61,6 +61,20 @@ class HalamanTest extends TestCase
         $this->get('/en/ebook-percuma')->assertOk()->assertSee('Download eBook');
     }
 
+    public function test_halaman_infak_kempen_benam_borang_bcl(): void
+    {
+        $this->get('/infak/foodbank')->assertOk()
+            ->assertSee('data-url="https://pertubuhankebajikanmuafakatbakri.bcl.my/embed/form/infak-foodbank"', false)
+            ->assertSee('bc-encrypted-payment-embed.js', false);
+        $this->get('/en/infak/foodbank')->assertOk()->assertSee('Donation form');
+        $this->get('/infak/tiada-kempen')->assertNotFound();
+
+        \App\Models\Kempen::where('slug', 'wakaf-katil')->update(['pautan_bcl' => null]);
+        $this->get('/infak/wakaf-katil')->assertNotFound();
+        \App\Models\Kempen::where('slug', 'infak-subuh')->update(['pautan_bcl' => 'https://contoh.com/form/x']);
+        $this->get('/infak/infak-subuh')->assertNotFound();
+    }
+
     public function test_laman_utama_papar_kempen_dan_pautan_bcl(): void
     {
         $this->get('/')
