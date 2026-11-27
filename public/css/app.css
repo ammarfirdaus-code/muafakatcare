@@ -140,6 +140,10 @@ form input, form textarea, form select { width: 100%; padding: 12px; border: 1px
 .dots button { width: 10px; height: 10px; border-radius: 999px; border: 0; padding: 0; background: rgba(255,255,255,.4); cursor: pointer; transition: width .2s, background .2s; }
 .dots button[aria-current="true"] { width: 28px; background: #fff; }
 /* ---- Tiga kotak pautan ---- */
+/* Video promo di bawah hero */
+.vpromo { background: var(--off); padding: 40px 0; }
+.vpromo-vid { display: block; width: 100%; max-width: 960px; margin: 0 auto; aspect-ratio: 16 / 9; border-radius: var(--radius); background: #e9e8ee; box-shadow: var(--shadow); object-fit: cover; }
+@media (max-width: 640px) { .vpromo { padding: 24px 0; } .vpromo-vid { aspect-ratio: 9 / 16; max-width: 420px; } }
 .trio { background: var(--midnight); color: #c9cde0; }
 .trio .wrap { display: grid; grid-template-columns: repeat(3, 1fr); }
 .trio a { display: block; padding: 38px 32px; text-decoration: none; color: inherit; border-left: 1px solid rgba(255,255,255,.18); transition: background .15s; }

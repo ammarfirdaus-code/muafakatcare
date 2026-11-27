@@ -55,6 +55,17 @@
     @endif
 </section>
 
+{{-- 1b. Video promo: landskap di desktop, potret 9:16 di telefon --}}
+<section class="vpromo">
+    <div class="wrap">
+        <video class="vpromo-vid" autoplay muted loop playsinline controls preload="metadata"
+               poster="{{ asset('video/promo-landskap.jpg') }}" aria-label="{{ __('Video promo Muafakat Care: eBook percuma dan infak online') }}">
+            <source src="{{ asset('video/promo-potret.mp4') }}" type="video/mp4" media="(max-width: 640px)">
+            <source src="{{ asset('video/promo-landskap.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+</section>
+
 {{-- 2. Tiga kotak pautan --}}
 <section class="trio">
     <div class="wrap">
