@@ -325,7 +325,12 @@ h3 .ikon { color: var(--red); }
 .promo-box { position: relative; max-width: 1600px; margin: 0 auto; }
 .promo-video { display: block; width: 100%; max-width: 1600px; margin: 0 auto; aspect-ratio: 16 / 9; max-height: 80vh; object-fit: contain; background: var(--off); }
 .promo-bunyi { position: absolute; top: 16px; right: 16px; line-height: 1; padding: 10px 16px; border: 0; border-radius: 999px; background: var(--red); color: #fff; font: 600 .95rem Poppins, Inter, sans-serif; cursor: pointer; box-shadow: var(--shadow); animation: denyut 1.6s ease-in-out infinite; }
-.promo-bunyi[hidden] { display: none; }
+.promo-bunyi[hidden], .promo-video[hidden] { display: none; }
+.promo .sarrow { z-index: 2; background: rgba(46,42,110,.55); }
+.promo .sarrow:hover { background: var(--red); }
+.promo .dots { bottom: 14px; z-index: 2; pointer-events: none; }
+.promo .dots button { pointer-events: auto; background: rgba(46,42,110,.3); }
+.promo .dots button[aria-current="true"] { background: var(--red); }
 @keyframes denyut { 50% { transform: scale(1.06); } }
 @media (prefers-reduced-motion: reduce) { .promo-bunyi { animation: none; } }
 @media (max-width: 640px) { .promo-bunyi { top: 8px; right: 8px; padding: 7px 11px; font-size: .78rem; } }

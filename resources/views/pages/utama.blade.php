@@ -6,34 +6,56 @@
     $adaAngka = $kaunter->whereNotNull('nilai')->isNotEmpty();
 @endphp
 
-{{-- 0. Video promo di bahagian paling atas --}}
-<section class="promo" aria-label="{{ __('Video promosi Muafakat Care') }}">
+{{-- 0. Slaid video promo di bahagian paling atas: video eBook Infak dahulu, kemudian video promo Muafakat Care --}}
+@php
+    $videos = [
+        ['src' => 'video/ebook-infak.mp4', 'poster' => 'video/ebook-infak-poster.jpg', 'label' => 'Video eBook Infak percuma'],
+        ['src' => 'video/promo-muafakatcare.mp4', 'poster' => 'video/promo-muafakatcare-poster.jpg', 'label' => 'Video promosi Muafakat Care'],
+    ];
+@endphp
+<section class="promo" aria-roledescription="carousel" aria-label="{{ __('Video promosi Muafakat Care') }}">
     <div class="promo-box">
-        <video class="promo-video" id="promo-video" autoplay muted loop playsinline controls preload="auto"
-               poster="{{ asset('video/promo-muafakatcare-poster.jpg') }}">
-            <source src="{{ asset('video/promo-muafakatcare.mp4') }}" type="video/mp4">
-        </video>
+        @foreach ($videos as $v)
+            <video class="promo-video @if ($loop->first) aktif @endif" playsinline controls muted preload="{{ $loop->first ? 'auto' : 'metadata' }}"
+                   poster="{{ asset($v['poster']) }}" aria-label="{{ __($v['label']) }}" @unless ($loop->first) hidden @endunless>
+                <source src="{{ asset($v['src']) }}" type="video/mp4">
+            </video>
+        @endforeach
         <button type="button" class="promo-bunyi" id="promo-bunyi" hidden>🔊 {{ __('Tekan untuk bunyi') }}</button>
+        <button class="sarrow prev" type="button" aria-label="{{ __('Video sebelumnya') }}" data-arah="-1">‹</button>
+        <button class="sarrow next" type="button" aria-label="{{ __('Video seterusnya') }}" data-arah="1">›</button>
+        <div class="dots">@foreach ($videos as $v)<button type="button" aria-label="{{ $loop->iteration }}: {{ __($v['label']) }}" @if ($loop->first) aria-current="true" @endif></button>@endforeach</div>
     </div>
     <script>
     (function () {
-        var v = document.getElementById('promo-video'), b = document.getElementById('promo-bunyi');
-        if (!v) return;
-        // Cuba main dengan bunyi. Jika browser sekat, main tanpa bunyi dan tunjuk butang.
-        function hidupBunyi() {
-            v.muted = false; v.volume = 1;
-            return v.play().then(function () { b.hidden = true; buang(); });
+        var box = document.querySelector('.promo-box'); if (!box) return;
+        var vids = box.querySelectorAll('.promo-video'), dots = box.querySelectorAll('.dots button'),
+            b = document.getElementById('promo-bunyi'), i = 0, bunyi = false;
+        // Main video aktif. Cuba dengan bunyi; jika browser sekat, main tanpa bunyi dan tunjuk butang.
+        function main() {
+            var v = vids[i];
+            v.muted = !bunyi; v.volume = 1;
+            return v.play().catch(function () {
+                if (!v.muted) { v.muted = true; b.hidden = false; return v.play().catch(function () {}); }
+            });
         }
-        function cubaSemula() { hidupBunyi().catch(function () {}); }
-        function buang() { ['pointerdown', 'keydown', 'touchend'].forEach(function (e) { document.removeEventListener(e, cubaSemula); }); }
-        hidupBunyi().catch(function () {
-            v.muted = true; v.play().catch(function () {});
-            b.hidden = false;
-            // Hidupkan bunyi pada sentuhan/klik pertama di mana-mana pada laman.
-            ['pointerdown', 'keydown', 'touchend'].forEach(function (e) { document.addEventListener(e, cubaSemula, { once: true }); });
+        function tukar(n) {
+            vids[i].pause(); vids[i].hidden = true; vids[i].classList.remove('aktif'); dots[i].removeAttribute('aria-current');
+            i = (n + vids.length) % vids.length;
+            vids[i].hidden = false; vids[i].classList.add('aktif'); dots[i].setAttribute('aria-current', 'true');
+            vids[i].currentTime = 0; main();
+        }
+        vids.forEach(function (v) {
+            v.addEventListener('ended', function () { tukar(i + 1); });
+            v.addEventListener('volumechange', function () { if (v === vids[i] && !v.muted) { bunyi = true; b.hidden = true; } });
         });
-        b.addEventListener('click', cubaSemula);
-        v.addEventListener('volumechange', function () { if (!v.muted) b.hidden = true; });
+        box.querySelectorAll('.sarrow').forEach(function (a) { a.addEventListener('click', function () { tukar(i + +a.dataset.arah); }); });
+        dots.forEach(function (d, n) { d.addEventListener('click', function () { if (n !== i) tukar(n); }); });
+        function hidupBunyi() { bunyi = true; vids[i].muted = false; vids[i].play().then(function () { b.hidden = true; }).catch(function () {}); }
+        b.addEventListener('click', hidupBunyi);
+        // Hidupkan bunyi pada sentuhan/klik pertama di mana-mana pada laman.
+        ['pointerdown', 'keydown'].forEach(function (e) { document.addEventListener(e, function f() { if (!bunyi) hidupBunyi(); document.removeEventListener(e, f); }); });
+        bunyi = true; main().then(function () { if (vids[i].muted) bunyi = false; });
     })();
     </script>
 </section>
