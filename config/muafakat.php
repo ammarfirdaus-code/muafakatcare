@@ -23,6 +23,16 @@ return [
         'Amirul Kahar' => 'Ahli Jawatankuasa',
         'Ibrahim Pairan' => 'Ahli Jawatankuasa',
     ],
+    // Titik fokus gambar bila dipotong dalam bingkai (object-position). Lalai: tengah.
+    'fokus' => [
+        'img/foto/puan-seri.jpg' => '50% 18%',
+        'img/foto/katil-pasang.jpg' => '50% 100%',
+        'img/foto/hantar-kotak.jpg' => '50% 15%',
+        'img/foto/van-bekalan.jpg' => '50% 10%',
+        'img/foto/hantar-pintu.jpg' => '50% 20%',
+        'img/foto/pek-bantuan.jpg' => '50% 40%',
+        'img/foto/serahan.jpg' => '50% 30%',
+    ],
     'kawasan' => 'Bakri dan Muar, Johor',
     'alamat' => env('MC_ALAMAT', 'JBB 29, Kampung Jeram Masjid, 84000 Muar, Johor'),
     'whatsapp' => env('MC_WHATSAPP', '601112240882'),   // format 60XXXXXXXXX
