@@ -15,6 +15,11 @@ Laravel 13 (PHP 8.3+), Blade, CSS biasa di `public/css/app.css` (tiada Vite/npm)
 - Halaman: `app/Http/Controllers/HalamanController.php`, borang: `BorangController.php`, laluan: `routes/web.php`, paparan: `resources/views/`.
 - Ujian: `tests/Feature/HalamanTest.php`.
 
+## Landing page kempen
+- `/infak/{kempen}` memaparkan landing page yang sama seperti di BCL (`app/Support/LandingBcl.php`): ditarik terus dari halaman BCL kempen, dicache 6 jam, dengan salinan sandaran di `resources/landing/`. Sunting landing di BCL; laman mengikut dalam masa 6 jam.
+- Suapan "penyumbang baru sahaja infak" yang direka disembunyikan di laman ini. Jangan paparkan rekod sumbangan yang bukan transaksi sebenar.
+- Kempen baharu: tambah baris `kempens` (seeder + migrasi data, kerana seeder tidak berjalan semasa deploy).
+
 ## Fasa seterusnya (belum dibina)
 - Panel admin (cadangan: Filament) untuk Farid/Suhaila/Mira kemas kini kempen, kaunter, Papan Impak dan semak permohonan.
 - Muat naik gambar laporan impak, notifikasi permohonan baru (emel/WhatsApp).

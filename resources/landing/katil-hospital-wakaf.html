@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wakaf Katil Hospital | Muafakat Care</title>
+    <meta name="description" content="Sertai Kempen Wakaf Katil Hospital Muafakat Care. Bantu pesakit asnaf dan warga emas mendapatkan keselesaan rawatan. Pahala berterusan (Sedekah Jariyah).">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                        },
+                        gold: {
+                            primary: '#d4af37',
+                            hover: '#b8860b',
+                            light: '#fde047',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+        
+        .hero-pattern {
+            background-color: #0f172a;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
+                             url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+            box-shadow: 0 12px 24px -10px rgba(212, 175, 55, 0.5);
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.08);
+        }
+
+        .evidence-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 4/5;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .evidence-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .evidence-card:hover img {
+            transform: scale(1.1);
+        }
+        .evidence-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            color: white;
+        }
+
+        @keyframes bounce-arrow {
+            0%, 100% { transform: translateY(0); opacity: 0.6; }
+            50% { transform: translateY(15px); opacity: 1; }
+        }
+        .animate-arrow {
+            animation: bounce-arrow 1.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-navy-900 antialiased">
+
+    <!-- Navigasi -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center space-x-3">
+                    <img src="https://i.postimg.cc/Fs6wPgJR/483537983-959794776349801-1612308803781939979-n.jpg" alt="Logo Muafakat Care" class="h-10 w-10 rounded-full border border-gold-primary/20">
+                    <div>
+                        <p class="font-extrabold text-sm text-navy-900 leading-none tracking-tight uppercase">Muafakat Care</p>
+                        <p class="text-[8px] text-amber-600 font-bold tracking-[0.2em] mt-1">PPM 002 10 13032020</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <a href="https://t.me/muafakatcare" target="_blank" class="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full border border-slate-200 text-slate-600 text-[10px] font-bold tracking-wide hover:bg-slate-50 transition-colors">
+                        KEMASKINI AGIHAN <i class="fab fa-telegram text-[#0088cc] text-base"></i>
+                    </a>
+                    <a href="#sumbang" class="btn-gold px-6 py-2.5 rounded-full text-white text-xs font-bold tracking-wide uppercase">INFAK SEKARANG</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-36 pb-32 hero-pattern text-white text-center px-6">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="inline-block px-4 py-1.5 border border-gold-primary/40 bg-gold-primary/10 text-gold-light rounded-full text-[10px] font-bold tracking-[0.2em] uppercase mb-8">
+                Sedekah Jariyah: Wakaf Perubatan
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-[1.15] tracking-tight">
+                Satu Katil, <br><span class="text-gold-primary">Seribu Keselesaan</span> <br>Buat Pesakit.
+            </h1>
+            
+            <p class="text-base md:text-lg text-slate-300 mb-12 max-w-2xl mx-auto font-medium opacity-90 leading-relaxed">
+                Bantu kami menyediakan katil hospital boleh laras (adjustable) untuk dipinjamkan secara <b>PERCUMA</b> kepada pesakit terlantar, asnaf, dan warga emas yang memerlukan.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <a href="#sumbang" class="btn-gold px-10 py-4 rounded-xl font-bold text-lg w-full sm:w-auto shadow-xl uppercase tracking-wider">
+                    INFAK SEKARANG
+                </a>
+                <a href="#bukti" class="bg-white/10 backdrop-blur-sm border border-white/20 px-10 py-4 rounded-xl font-bold text-lg w-full sm:w-auto hover:bg-white/20 transition-all uppercase tracking-wider">
+                    Lihat Rekod Agihan
+                </a>
+            </div>
+
+            <!-- Animasi Arrow Kebawah di Hero -->
+            <div class="animate-arrow">
+                <a href="#impak" class="text-gold-primary">
+                    <i class="fas fa-chevron-down text-4xl"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Laporan & Statistik -->
+    <section id="impak" class="py-20 bg-white border-b border-slate-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 -mt-32 relative z-20">
+                <div class="bg-navy-900 text-white rounded-[2rem] p-8 md:p-12 shadow-2xl border border-white/10 flex items-center justify-between group hover:border-gold-primary/50 transition-all">
+                    <div>
+                        <p class="text-gold-primary font-bold text-4xl md:text-5xl mb-2">30 ++</p>
+                        <p class="text-slate-400 font-bold uppercase tracking-widest text-sm">Pengguna Katil Terlantar</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-2xl text-gold-primary">
+                        <i class="fas fa-bed text-4xl"></i>
+                    </div>
+                </div>
+                <div class="bg-navy-900 text-white rounded-[2rem] p-8 md:p-12 shadow-2xl border border-white/10 flex items-center justify-between group hover:border-gold-primary/50 transition-all">
+                    <div>
+                        <p class="text-gold-primary font-bold text-4xl md:text-5xl mb-2">20 ++</p>
+                        <p class="text-slate-400 font-bold uppercase tracking-widest text-sm">Pengguna Kerusi Roda</p>
+                    </div>
+                    <div class="bg-white/5 p-5 rounded-2xl text-gold-primary">
+                        <i class="fas fa-wheelchair text-4xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kenapa Wakaf Katil -->
+    <section class="py-24 bg-white overflow-hidden relative">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 tracking-tight">Kenapa Wakaf Katil Hospital?</h2>
+                <div class="w-16 h-1 bg-gold-primary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 card-shadow">
+                    <div class="w-14 h-14 bg-gold-primary/10 rounded-2xl flex items-center justify-center text-gold-primary text-2xl mb-6">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 text-xl mb-3">Keselesaan Pesakit</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Memudahkan pesakit untuk makan, minum, dan berehat dengan posisi yang betul bagi mengelakkan luka kudis (bedsores).</p>
+                </div>
+                
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 card-shadow">
+                    <div class="w-14 h-14 bg-gold-primary/10 rounded-2xl flex items-center justify-center text-gold-primary text-2xl mb-6">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 text-xl mb-3">Meringankan Penjaga</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Fungsi boleh laras mengurangkan beban fizikal kepada ahli keluarga yang menjaga pesakit di rumah.</p>
+                </div>
+
+                <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 card-shadow">
+                    <div class="w-14 h-14 bg-gold-primary/10 rounded-2xl flex items-center justify-center text-gold-primary text-2xl mb-6">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h4 class="font-bold text-navy-900 text-xl mb-3">Pahala Berterusan</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">Selagi katil digunakan oleh pesakit, selagi itulah pahala mengalir buat pewakaf sebagai sedekah jariyah.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Agihan -->
+    <section id="bukti" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <p class="text-gold-primary text-[10px] font-bold tracking-[0.2em] uppercase mb-4">Amanah Anda, Bakti Kami</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 tracking-tight">Rekod Penyerahan Katil Wakaf</h2>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <article class="evidence-card shadow-lg">
+                    <img src="https://i.postimg.cc/tJDqRnL7/photo-2025-01-15-15-11-31.jpg" alt="Penyerahan Katil Hospital 1">
+                    <div class="evidence-overlay">
+                        <div>
+                            <p class="text-[9px] text-gold-light font-bold uppercase tracking-widest mb-1">Muar, Johor</p>
+                            <h3 class="text-xs md:text-sm font-bold leading-tight">Penyerahan Katil Pesakit</h3>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="evidence-card shadow-lg">
+                    <img src="https://i.postimg.cc/J7Q45SG7/photo-2025-01-16-10-14-51.jpg" alt="Penyerahan Katil Hospital 2">
+                    <div class="evidence-overlay">
+                        <div>
+                            <p class="text-[9px] text-gold-light font-bold uppercase tracking-widest mb-1">Bakri</p>
+                            <h3 class="text-xs md:text-sm font-bold leading-tight">Bantuan Untuk Pesakit Terlantar</h3>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="evidence-card shadow-lg">
+                    <img src="https://i.postimg.cc/Qx48R5QJ/photo-2025-01-28-09-31-37.jpg" alt="Penyerahan Katil Hospital 3">
+                    <div class="evidence-overlay">
+                        <div>
+                            <p class="text-[9px] text-gold-light font-bold uppercase tracking-widest mb-1">Kebajikan</p>
+                            <h3 class="text-xs md:text-sm font-bold leading-tight">Pemasangan Katil Wakaf Baru</h3>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="evidence-card shadow-lg">
+                    <img src="https://i.postimg.cc/Zq3JBM1M/photo-2025-05-15-16-16-17.jpg" alt="Penyerahan Katil Hospital 4">
+                    <div class="evidence-overlay">
+                        <div>
+                            <p class="text-[9px] text-gold-light font-bold uppercase tracking-widest mb-1">Amanah</p>
+                            <h3 class="text-xs md:text-sm font-bold leading-tight">Selesai Agihan Unit Wakaf</h3>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lokasi Pengguna Terkini -->
+    <section class="py-24 bg-white border-y border-slate-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-navy-900 tracking-tight">Lokasi Pengguna Terkini Katil Hospital Wakaf</h2>
+                <p class="text-slate-500 mt-4">Peralatan wakaf sedang digunakan secara aktif di lokasi berikut:</p>
+                <div class="w-16 h-1 bg-gold-primary mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Lokasi List -->
+                <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-gold-primary/30 transition-colors">
+                    <div class="bg-gold-primary/10 p-3 rounded-xl text-gold-primary"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="font-bold text-navy-700 text-sm uppercase tracking-wide">Batu 18, Air Hitam</span>
+                </div>
+                <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-gold-primary/30 transition-colors">
+                    <div class="bg-gold-primary/10 p-3 rounded-xl text-gold-primary"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="font-bold text-navy-700 text-sm uppercase tracking-wide">Parit Haji Zain</span>
+                </div>
+                <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-gold-primary/30 transition-colors">
+                    <div class="bg-gold-primary/10 p-3 rounded-xl text-gold-primary"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="font-bold text-navy-700 text-sm uppercase tracking-wide">Parit Bakar</span>
+                </div>
+                <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-gold-primary/30 transition-colors">
+                    <div class="bg-gold-primary/10 p-3 rounded-xl text-gold-primary"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="font-bold text-navy-700 text-sm uppercase tracking-wide">Simpang Jeram</span>
+                </div>
+                <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-gold-primary/30 transition-colors">
+                    <div class="bg-gold-primary/10 p-3 rounded-xl text-gold-primary"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="font-bold text-navy-700 text-sm uppercase tracking-wide">Parit Beting</span>
+                </div>
+                <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-gold-primary/30 transition-colors">
+                    <div class="bg-gold-primary/10 p-3 rounded-xl text-gold-primary"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="font-bold text-navy-700 text-sm uppercase tracking-wide">Parit Keroma</span>
+                </div>
+                <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-gold-primary/30 transition-colors">
+                    <div class="bg-gold-primary/10 p-3 rounded-xl text-gold-primary"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="font-bold text-navy-700 text-sm uppercase tracking-wide">Jalan Parit Tiram</span>
+                </div>
+                <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-gold-primary/30 transition-colors">
+                    <div class="bg-gold-primary/10 p-3 rounded-xl text-gold-primary"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="font-bold text-navy-700 text-sm uppercase tracking-wide">Bakri Batu 6</span>
+                </div>
+                <div class="flex items-center gap-4 p-5 rounded-2xl bg-slate-50 border border-slate-100 hover:border-gold-primary/30 transition-colors">
+                    <div class="bg-gold-primary/10 p-3 rounded-xl text-gold-primary"><i class="fas fa-map-marker-alt"></i></div>
+                    <span class="font-bold text-navy-700 text-sm uppercase tracking-wide">Batu 2, Parit Beting</span>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center p-8 rounded-[2rem] bg-gold-primary/5 border border-gold-primary/20">
+                <p class="text-navy-900 font-bold italic uppercase tracking-wider text-sm">Katil dan kerusi roda akan dipusingkan (rotate) kepada pesakit lain sebaik sahaja peminjam sebelum ini sudah tidak memerlukannya.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Saluran Sumbangan -->
+    <section id="sumbang" class="py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold text-navy-900 mb-4 tracking-tight">Saluran Wakaf Rasmi</h2>
+                <p class="text-slate-500 font-medium">Anda boleh menyumbang mengikut kemampuan serendah RM 10 <br class="hidden md:block"> atau menaja penuh satu unit katil lengkap (RM 2,500).</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                
+                <!-- Bahagian Bank -->
+                <div class="bg-navy-900 rounded-[2.5rem] p-10 lg:p-12 flex flex-col justify-center shadow-2xl relative overflow-hidden text-white">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-gold-primary/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+                    
+                    <div class="mb-10 relative z-10">
+                        <p class="text-[10px] font-bold text-gold-primary tracking-[0.2em] uppercase mb-4">Akaun Maybank Rasmi</p>
+                        <img src="https://logos-world.net/wp-content/uploads/2023/02/Maybank-Logo.png" alt="Maybank" class="h-8 w-auto brightness-0 invert object-contain">
+                    </div>
+
+                    <div class="space-y-8 relative z-10">
+                        <div>
+                            <p class="text-slate-400 text-xs font-bold tracking-widest uppercase mb-4 flex items-center gap-2">
+                                <i class="fas fa-university text-gold-primary"></i> NOMBOR AKAUN MUAFAKAT CARE
+                            </p>
+                            <div onclick="copyToClipboard('551043525257')" class="bg-white/5 rounded-2xl p-6 border-2 border-white/10 flex items-center justify-between group hover:border-gold-primary/50 transition-all cursor-pointer">
+                                <span class="text-2xl md:text-4xl font-mono font-black text-gold-primary tracking-[0.15em]">551043535257</span>
+                                <div class="bg-gold-primary text-navy-900 p-3 rounded-xl shadow-md group-active:scale-90 transition-transform">
+                                    <i class="far fa-copy text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-8 border-t border-white/10 space-y-4">
+                            <div>
+                                <p class="text-slate-400 text-[10px] font-bold tracking-widest uppercase mb-1">Nama Pemilik Akaun</p>
+                                <p class="text-sm md:text-base font-bold text-white uppercase leading-tight tracking-wide">PERTUBUHAN KEBAJIKAN MUAFAKAT BAKRI</p>
+                            </div>
+                            <div class="flex items-center gap-2 text-gold-light bg-gold-primary/10 px-3 py-2 rounded-lg w-fit">
+                                <i class="fas fa-info-circle text-xs"></i>
+                                <p class="text-[10px] font-bold uppercase tracking-wider">Rujukan: "Wakaf Katil"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bahagian QR -->
+                <div class="bg-white rounded-[2.5rem] p-10 flex flex-col items-center text-center card-shadow border border-slate-100">
+                    <div class="bg-slate-50 w-16 h-16 rounded-2xl flex items-center justify-center text-gold-primary mb-6">
+                        <i class="fas fa-qrcode text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-navy-900 uppercase">Imbas QR DuitNow</h3>
+                    <p class="text-slate-500 text-sm mb-8">Terima semua jenis perbankan online & e-wallet.</p>
+                    
+                    <div class="bg-white p-3 rounded-2xl shadow-lg border border-slate-100 mb-6 max-w-[260px] w-full">
+                        <img src="https://i.postimg.cc/d0SYYPhZ/photo-2024-02-07-09-42-03-(1).jpg" alt="QR DuitNow Muafakat Care" class="w-full h-auto rounded-lg">
+                    </div>
+                    
+                    <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest bg-slate-100 px-4 py-2 rounded-full">Screenshot & Scan Untuk Wakaf</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-900 py-24 text-center px-6">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-2xl md:text-4xl font-bold text-white mb-6 tracking-tight">Kekalkan Kebajikan Walau Sudah Tiada</h3>
+            <p class="text-slate-400 mb-12 text-sm md:text-base leading-relaxed max-w-2xl mx-auto font-medium opacity-80">
+                "Apabila anak Adam itu mati, maka terputuslah amalannya kecuali tiga perkara: Sedekah jariyah, ilmu yang bermanfaat, atau anak soleh yang mendoakannya." (HR Muslim)
+            </p>
+            
+            <div class="flex flex-col items-center gap-6 mb-16">
+                <!-- Butang Bawah: Link Dikosongkan -->
+                <a href="javascript:void(0)" class="btn-gold px-12 py-5 rounded-2xl font-black text-lg shadow-2xl tracking-widest uppercase flex items-center gap-3">
+                    INFAK SEKARANG <i class="fas fa-heart"></i>
+                </a>
+
+                <!-- Animasi Arrow Kebawah di Paling Bawah -->
+                <div class="mt-8 animate-arrow">
+                    <i class="fas fa-chevron-down text-gold-primary text-4xl"></i>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-slate-500 text-[11px] font-bold uppercase tracking-widest pt-12 border-t border-white/5">
+                <p>Bakri, Muar, Johor</p>
+                <p>Muafakat Care (PPM-002-10-13032020)</p>
+                <p>Infaq Peralatan Perubatan</p>
+            </div>
+            
+            <p class="mt-16 text-[9px] text-slate-600 font-medium tracking-[0.3em] uppercase">
+                &copy; 2026 MUAFAKAT CARE | SEMUA HAK TERPELIHARA
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function copyToClipboard(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            textArea.style.top = '0';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                // Silently fail
+            }
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html></div>
+
+                    
+            
+            <div id="bcl-payment-form" data-url="https://pertubuhankebajikanmuafakatbakri.bcl.my/embed/form/katil-hospital-wakaf" style="overflow: hidden; margin-top: 20px; padding-bottom: 20px;">
+                <iframe id="bcl-iframe" src="https://pertubuhankebajikanmuafakatbakri.bcl.my/embed/form/katil-hospital-wakaf?embed=true" title="Wakaf Katil Hospital" referrerpolicy="no-referrer-when-downgrade" style="width:100%;height:70vh;border:0;border-radius:8px;display:block;background:#fff"></iframe>
+            </div>
+            
+            <script src="https://pertubuhankebajikanmuafakatbakri.bcl.my/js/bc-encrypted-payment-embed.js?v=1795362438" defer></script>

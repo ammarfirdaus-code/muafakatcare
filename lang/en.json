@@ -33,6 +33,7 @@
   "Bahasa": "Language",
   "Bakri dan Muar, Johor": "Bakri and Muar, Johor",
   "Bantu Mereka": "Help Them",
+  "Bantu Penjagaan Puan Seri": "Help Care for Puan Seri",
   "Bantu isi dapur keluarga asnaf, ibu tunggal dan warga emas di Bakri & Muar. Pek makanan asas dihantar terus ke rumah penerima.": "Help stock the kitchens of asnaf families, single mothers and the elderly in Bakri & Muar. Basic food packs are delivered straight to recipients' homes.",
   "Bantuan": "Aid",
   "Bantuan Palestin: RM10,000 diserahkan kepada Cinta Gaza Malaysia": "Palestine aid: RM10,000 handed over to Cinta Gaza Malaysia",
@@ -86,6 +87,7 @@
   "Impak": "Impact",
   "Infak": "Give",
   "Infak Jumaat": "Friday Giving",
+  "Infak Jumaat minggu ini": "This week's Friday Giving",
   "Infak Kasih Ramadan 2025: 512 kotak disalurkan": "Infak Kasih Ramadan 2025: 512 boxes delivered",
   "Infak Sekarang": "Donate Now",
   "Infak dikumpul melalui pautan BCL rasmi.": "Donations are collected through the official BCL links.",
@@ -209,8 +211,10 @@
   "Program Hot Meal For Gaza dilaksanakan pada 25 dan 26 September 2024. Pada Oktober 2024, bantuan air bersih dan sayur-sayuran segar turut sampai kepada penduduk Gaza. Semua bantuan disalurkan melalui Cinta Gaza Malaysia dan sukarelawan di sana.": "The Hot Meal For Gaza programme was carried out on 25 and 26 September 2024. In October 2024, clean water and fresh vegetables also reached people in Gaza. All aid was delivered through Cinta Gaza Malaysia and volunteers on the ground.",
   "Program Kami": "Our Programmes",
   "Program Wakaf Katil Hospital Muafakat Care meminjamkan katil hospital tanpa caj kepada keluarga yang menjaga pesakit terlantar di rumah. Bila tidak digunakan lagi, katil dipulangkan untuk pesakit seterusnya.": "Muafakat Care's Hospital Bed Waqf lends hospital beds free of charge to families caring for a bedridden patient at home. When a bed is no longer needed, it is returned for the next patient.",
+  "Puan Seri, pesakit kanser tahap 4 di Taman Bakri Jaya, Muar, kini terlantar dan bergantung pada bantuan pernafasan. Suaminya menjaga seorang diri.": "Puan Seri, a stage 4 cancer patient in Taman Bakri Jaya, Muar, is now bedridden and dependent on breathing support. Her husband cares for her on his own.",
   "QR DuitNow": "DuitNow QR",
   "RM": "RM",
+  "RM5,000": "RM5,000",
   "RM50": "RM50",
   "RM50 = 1 pek makanan asas": "RM50 = 1 basic food pack",
   "RM50 = 1 slot wakaf": "RM50 = 1 waqf slot",
@@ -282,5 +286,6 @@
   "pek": "packs",
   "penerima": "recipients",
   "sebelum banjir tiba.": "before the floods arrive.",
-  "untuk pesakit seterusnya.": "for the next patient."
+  "untuk pesakit seterusnya.": "for the next patient.",
+  "untuk ringankan kos penjagaan Puan Seri.": "to ease the cost of caring for Puan Seri."
 }

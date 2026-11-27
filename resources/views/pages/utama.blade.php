@@ -17,7 +17,7 @@
                         <{{ $loop->first ? 'h1' : 'h2' }} class="hl"><mark>{{ __($k->hero_sorotan ?? $k->tajuk) }}</mark> {{ $k->hero_ayat ? __($k->hero_ayat) : '' }}</{{ $loop->first ? 'h1' : 'h2' }}>
                         <p class="hsub">{{ __($k->ringkas) }}</p>
                         <div class="cta">
-                            <a class="btn btn-white" href="{{ $k->pautan_bcl ?? lr('infak') }}" rel="noopener">{{ __('Bantu Mereka') }}</a>
+                            <a class="btn btn-white" href="{{ $k->urlBenam() ? route('infak.kempen', $k->slug) : ($k->pautan_bcl ?? lr('infak')) }}" rel="noopener">{{ __('Bantu Mereka') }}</a>
                             <a class="btn btn-ghost" href="{{ $k->program ? lr('program', $k->program) : lr('impak') }}">{{ __('Ketahui Selanjutnya') }}</a>
                         </div>
                     </div>

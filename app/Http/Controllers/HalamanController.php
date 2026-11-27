@@ -7,6 +7,7 @@ use App\Models\Kempen;
 use App\Models\LaporanImpak;
 use App\Models\Program;
 use App\Models\SoalanLazim;
+use App\Support\LandingBcl;
 use Illuminate\Http\Response;
 
 class HalamanController extends Controller
@@ -52,6 +53,11 @@ class HalamanController extends Controller
     {
         $kempen = Kempen::aktif()->with('program')->where('slug', $slug)->firstOrFail();
         abort_if($kempen->urlBenam() === null, 404);
+
+        // Landing page yang sama seperti di BCL, dipaparkan di domain sendiri.
+        if ($landing = LandingBcl::untuk($kempen)) {
+            return view('pages.landing', ['kempen' => $kempen, 'landing' => $landing]);
+        }
 
         return view('pages.infak-kempen', ['kempen' => $kempen]);
     }

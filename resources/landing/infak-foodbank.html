@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infak Foodbank | Muafakat Care</title>
+<meta name="description" content="Bantu isi dapur keluarga yang memerlukan. Bermula RM10 sahaja. Foodbank Muafakat Care.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{text-decoration:none;}
+  h1,h2,h3,h4{font-family:'Outfit',sans-serif;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+  /* NAV */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid #eef1f5;box-shadow:0 1px 14px -8px rgba(15,23,42,.2);}
+  .nav-in{max-width:1180px;margin:0 auto;padding:0 24px;height:72px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand img{height:40px;width:40px;border-radius:50%;border:1px solid rgba(212,175,55,.3);object-fit:cover;}
+  .brand b{font-family:'Outfit',sans-serif;font-weight:800;font-size:14px;letter-spacing:.02em;text-transform:uppercase;display:block;}
+  .brand span{font-size:8px;font-weight:700;letter-spacing:.22em;color:#b8860b;display:block;margin-top:4px;}
+  .btn-gold{background:linear-gradient(135deg,#d4af37,#b8860b);color:#1a1505;font-weight:800;text-transform:uppercase;border-radius:14px;box-shadow:0 14px 32px -14px rgba(212,175,55,.65);transition:transform .25s,filter .25s;display:inline-flex;align-items:center;justify-content:center;gap:10px;}
+  .btn-gold:hover{transform:translateY(-2px);filter:brightness(1.07);}
+  .nav .btn-gold{padding:11px 22px;border-radius:999px;font-size:11px;letter-spacing:.08em;}
+  /* HERO */
+  .hero{position:relative;padding:96px 24px 120px;text-align:center;color:#fff;background-color:#0f172a;background-image:linear-gradient(rgba(15,23,42,.82),rgba(15,23,42,.95)),url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&q=80');background-size:cover;background-position:center;}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border:1px solid rgba(212,175,55,.4);background:rgba(212,175,55,.1);color:#fde047;border-radius:999px;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;margin-bottom:28px;}
+  .dot{width:7px;height:7px;border-radius:50%;background:#fde047;animation:pulse 1.6s infinite;}
+  .hero h1{font-weight:800;font-size:clamp(32px,6vw,64px);line-height:1.12;letter-spacing:-.02em;margin-bottom:24px;}
+  .hero h1 .g{color:#d4af37;}
+  .hero p{font-size:clamp(15px,2vw,19px);line-height:1.65;color:#cbd5e1;max-width:620px;margin:0 auto 36px;font-weight:500;}
+  .cta-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;margin-bottom:48px;}
+  .btn-lg{padding:17px 38px;font-size:17px;letter-spacing:.04em;border-radius:14px;}
+  .btn-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;font-weight:700;display:inline-flex;align-items:center;justify-content:center;transition:background .25s;}
+  .btn-ghost:hover{background:rgba(255,255,255,.16);}
+  .arrow{color:#d4af37;animation:bounce 1.6s infinite;display:inline-block;font-size:30px;}
+  /* STATS */
+  .stats{background:#fff;border-bottom:1px solid #eef1f5;padding:0 24px 70px;}
+  .stats-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;transform:translateY(-56px);}
+  .stat{background:#0f172a;color:#fff;border-radius:28px;padding:34px 38px;box-shadow:0 30px 60px -30px rgba(15,23,42,.6);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;gap:16px;}
+  .stat .num{font-family:'Outfit',sans-serif;font-weight:800;font-size:46px;color:#d4af37;line-height:1;margin-bottom:6px;}
+  .stat .lbl{color:#94a3b8;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;}
+  .stat .ic{background:rgba(255,255,255,.05);padding:18px;border-radius:18px;color:#d4af37;font-size:34px;}
+  /* SECTION */
+  .sec{padding:88px 24px;}
+  .eyebrow{color:#b8860b;font-size:11px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:14px;}
+  .sec h2{font-weight:800;font-size:clamp(26px,4vw,40px);letter-spacing:-.02em;line-height:1.2;}
+  .lead{font-size:17px;line-height:1.8;color:#475569;font-weight:500;}
+  /* SOLUTION */
+  .split{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;align-items:center;}
+  .feat{display:flex;align-items:center;gap:14px;margin-top:14px;}
+  .feat i{flex:none;width:42px;height:42px;border-radius:12px;background:rgba(212,175,55,.12);color:#b8860b;display:flex;align-items:center;justify-content:center;font-size:17px;}
+  .feat span{font-weight:600;color:#1e293b;}
+  .ph{border-radius:28px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -30px rgba(15,23,42,.4);}
+  .ph img{width:100%;height:100%;object-fit:cover;}
+  /* OFFER */
+  .offer{background:#0f172a;position:relative;overflow:hidden;}
+  .blob{position:absolute;top:-80px;right:-60px;width:320px;height:320px;background:rgba(212,175,55,.12);border-radius:50%;filter:blur(80px);}
+  .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;position:relative;z-index:2;}
+  .tier{display:flex;flex-direction:column;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:30px 26px;transition:transform .25s,border-color .25s,background .25s;}
+  .tier:hover{transform:translateY(-8px);border-color:#d4af37;background:rgba(212,175,55,.08);}
+  .tier.feat-tier{border-color:rgba(212,175,55,.55);}
+  .tier .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+  .tier .ic{width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.06);color:#fde047;display:flex;align-items:center;justify-content:center;font-size:19px;}
+  .tier.feat-tier .ic{background:#d4af37;color:#1a1505;}
+  .pill{font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#1a1505;background:#d4af37;padding:5px 10px;border-radius:999px;}
+  .tier .amt{font-family:'Outfit',sans-serif;font-weight:900;font-size:36px;color:#fff;line-height:1;margin-bottom:4px;}
+  .tier .name{font-weight:700;font-size:15px;color:#d4af37;margin-bottom:10px;}
+  .tier .desc{font-size:13px;line-height:1.6;color:#94a3b8;flex:1;margin-bottom:22px;}
+  .tier .go{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(255,255,255,.08);color:#fff;font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;padding:13px;border-radius:12px;}
+  .tier.feat-tier .go{background:linear-gradient(135deg,#d4af37,#b8860b);color:#1a1505;}
+  /* TRUST */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
+  .card{background:#f8fafc;border:1px solid #eef1f5;border-radius:22px;padding:32px;box-shadow:0 10px 40px -22px rgba(15,23,42,.12);}
+  .card .ic{width:54px;height:54px;border-radius:16px;background:rgba(212,175,55,.12);color:#b8860b;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;}
+  .card h4{font-weight:700;font-size:18px;margin-bottom:10px;}
+  .card p{font-size:14px;line-height:1.65;color:#475569;}
+  /* GALLERY */
+  .gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .ev{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:#e2e8f0;box-shadow:0 14px 40px -20px rgba(15,23,42,.3);}
+  .ev img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;}
+  .ev:hover img{transform:scale(1.08);}
+  .ev .ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,23,42,.9),transparent 58%);display:flex;align-items:flex-end;padding:20px;}
+  .ev .tag{font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#fde047;margin-bottom:5px;}
+  .ev h3{font-weight:700;font-size:14px;color:#fff;line-height:1.25;}
+  /* DONATE */
+  .pay{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:stretch;}
+  .bank{background:#0f172a;border-radius:32px;padding:42px;position:relative;overflow:hidden;color:#fff;box-shadow:0 30px 60px -30px rgba(15,23,42,.6);}
+  .bank .blob2{position:absolute;top:-60px;right:-60px;width:240px;height:240px;background:rgba(212,175,55,.12);border-radius:50%;filter:blur(70px);}
+  .bank .in{position:relative;z-index:2;}
+  .acc{background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;display:flex;align-items:center;justify-content:space-between;gap:14px;cursor:pointer;margin-bottom:30px;transition:border-color .25s;}
+  .acc:hover{border-color:rgba(212,175,55,.5);}
+  .acc .no{font-family:'Outfit',sans-serif;font-weight:900;font-size:clamp(22px,3.4vw,32px);letter-spacing:.1em;color:#d4af37;}
+  .acc .cp{flex:none;background:#d4af37;color:#0f172a;padding:13px;border-radius:13px;font-size:18px;display:flex;}
+  .qr{background:#fff;border:1px solid #eef1f5;border-radius:32px;padding:42px;display:flex;flex-direction:column;align-items:center;text-align:center;box-shadow:0 14px 50px -26px rgba(15,23,42,.18);}
+  .qr .box{background:#fff;padding:12px;border-radius:20px;box-shadow:0 14px 40px -20px rgba(15,23,42,.25);border:1px solid #eef1f5;max-width:250px;width:100%;margin-bottom:22px;}
+  .qr .box img{width:100%;height:auto;border-radius:12px;display:block;}
+  /* BCL EMBED */
+  .bcl-card{max-width:680px;margin:0 auto 22px;background:#fff;border:1px solid #eef1f5;border-radius:32px;padding:34px;box-shadow:0 24px 60px -28px rgba(15,23,42,.22);}
+  .bcl-head{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+  .bcl-ic{flex:none;width:54px;height:54px;border-radius:16px;background:linear-gradient(135deg,#d4af37,#b8860b);color:#1a1505;display:flex;align-items:center;justify-content:center;font-size:22px;}
+  .bcl-head h3{font-weight:800;font-size:20px;margin-bottom:4px;}
+  .bcl-head p{font-size:13px;color:#64748b;line-height:1.5;}
+  #bcl-payment-form{min-height:120px;}
+  #bcl-payment-form iframe{width:100%;border:0;display:block;}
+  .pay-or{text-align:center;max-width:680px;margin:0 auto 22px;color:#94a3b8;font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;position:relative;}
+  /* MODAL */
+  .modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;background:rgba(15,23,42,.72);backdrop-filter:blur(4px);padding:40px 16px;overflow-y:auto;}
+  .modal.show{display:flex;}
+  .modal-panel{background:#fff;border-radius:24px;width:100%;max-width:560px;padding:26px;position:relative;box-shadow:0 40px 90px -30px rgba(0,0,0,.5);animation:modalIn .35s cubic-bezier(.22,1,.36,1);}
+  @keyframes modalIn{from{transform:translateY(24px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+  .modal-x{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;border:0;background:#f1f5f9;color:#475569;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+  .modal-x:hover{background:#e2e8f0;}
+  .modal-head{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid #eef1f5;}
+  .modal-head img{height:44px;width:44px;border-radius:50%;object-fit:cover;border:1px solid rgba(212,175,55,.3);}
+  .modal-head b{font-family:'Outfit',sans-serif;font-weight:800;font-size:15px;display:block;line-height:1.2;}
+  .modal-head span{font-size:11px;color:#b8860b;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+  .modal-load{text-align:center;color:#94a3b8;font-size:13px;padding:40px 0;}
+  /* FOOTER */
+  .foot{background:#0f172a;padding:90px 24px 52px;text-align:center;color:#94a3b8;}
+  .foot h3{color:#fff;font-weight:800;font-size:clamp(24px,4vw,40px);letter-spacing:-.02em;line-height:1.2;margin-bottom:22px;}
+  .foot .quote{font-size:15px;line-height:1.8;max-width:600px;margin:0 auto 40px;font-weight:500;}
+  .foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;padding-top:36px;margin-top:50px;border-top:1px solid rgba(255,255,255,.07);color:#64748b;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;}
+  /* POPUP */
+  #pop{position:fixed;left:22px;bottom:22px;z-index:90;display:flex;align-items:center;gap:13px;background:#fff;border:1px solid #eef1f5;border-radius:16px;padding:13px 16px;max-width:320px;box-shadow:0 18px 44px -16px rgba(15,23,42,.32);transform:translateY(28px);opacity:0;transition:transform .5s cubic-bezier(.22,1,.36,1),opacity .5s;pointer-events:none;}
+  #pop.show{transform:translateY(0);opacity:1;}
+  #pop .av{flex:none;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#d4af37,#b8860b);display:flex;align-items:center;justify-content:center;color:#1a1505;font-family:'Outfit',sans-serif;font-weight:800;font-size:17px;}
+  #pop .nm{font-size:13px;font-weight:700;color:#0f172a;line-height:1.3;margin-bottom:3px;}
+  #pop .nm s{color:#94a3b8;font-weight:600;text-decoration:none;}
+  #pop .sub{font-size:12px;color:#64748b;line-height:1.3;}
+  #pop .sub b{color:#b8860b;}
+  #pop .ok{flex:none;display:flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,.12);color:#16a34a;font-size:11px;}
+  /* TOAST */
+  #toast{position:fixed;left:50%;bottom:30px;z-index:100;background:#1e293b;color:#fff;font-weight:600;font-size:14px;padding:15px 24px;border-radius:14px;box-shadow:0 18px 44px -16px rgba(15,23,42,.5);transform:translate(-50%,24px);opacity:0;pointer-events:none;transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .4s;}
+  #toast.show{transform:translate(-50%,0);opacity:1;}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.6);opacity:.4;}}
+  @keyframes bounce{0%,100%{transform:translateY(0);opacity:.55;}50%{transform:translateY(12px);opacity:1;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="brand">
+      <img src="https://i.postimg.cc/Fs6wPgJR/483537983-959794776349801-1612308803781939979-n.jpg" alt="Muafakat Care">
+      <div><b>Muafakat Care</b><span>PPM 002 10 13032020</span></div>
+    </div>
+    <a href="https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank" class="btn-gold">Infak Sekarang</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap" style="max-width:880px;position:relative;z-index:2;">
+    <div class="badge"><span class="dot"></span> Foodbank Muafakat Care</div>
+    <h1>Bantu Isi Dapur Keluarga<br>Yang Memerlukan —<br><span class="g">Bermula RM10 Sahaja</span></h1>
+    <p>Setiap sumbangan anda terus menjadi pek makanan untuk keluarga asnaf dan B40 di sekitar kita. Bukan janji, tapi makanan yang sampai ke tangan mereka.</p>
+    <div class="cta-row">
+      <a href="#sumbang" class="js-pay btn-gold btn-lg">Sumbang Sekarang</a>
+      <a href="#bukti" class="btn-ghost btn-lg">Lihat Rekod Agihan</a>
+    </div>
+    <a href="#masalah" class="arrow"><i class="fas fa-chevron-down"></i></a>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="stats-grid">
+    <div class="stat"><div><div class="num">40&ndash;60</div><div class="lbl">Keluarga Dibantu / Bulan</div></div><div class="ic"><i class="fas fa-box-open"></i></div></div>
+    <div class="stat"><div><div class="num">RM 50</div><div class="lbl">Satu Pek Makanan Asas</div></div><div class="ic"><i class="fas fa-hand-holding-heart"></i></div></div>
+  </div>
+</section>
+
+<section id="masalah" class="sec" style="background:#f8fafc;text-align:center;">
+  <div class="wrap" style="max-width:780px;">
+    <p class="eyebrow">Realiti Di Sekeliling Kita</p>
+    <h2 style="margin-bottom:28px;">Soalan paling berat mereka bukan <span style="color:#b8860b;">"nak makan apa"</span>, tapi <span style="color:#b8860b;">"ada lagi tak yang boleh dimakan"</span>.</h2>
+    <p class="lead">Harga barang naik. Gaji tak cukup. Anak-anak balik sekolah dalam keadaan lapar. Ibu bapa berlapar diam-diam supaya anak boleh makan. Ini bukan cerita jauh &mdash; ia berlaku di kampung dan taman kita sendiri.</p>
+  </div>
+</section>
+
+<section class="sec" style="background:#fff;">
+  <div class="split">
+    <div>
+      <p class="eyebrow">Penyelesaian</p>
+      <h2 style="margin-bottom:22px;">Foodbank yang sampai ke tangan keluarga yang betul-betul perlu.</h2>
+      <p class="lead" style="font-size:16px;margin-bottom:20px;">Foodbank Muafakat Care mengumpul dan mengagihkan pek makanan asas kepada keluarga yang paling memerlukan &mdash; dengan rekod dan bukti penyampaian untuk setiap agihan.</p>
+      <div class="feat"><i class="fas fa-bowl-rice"></i><span>Beras, minyak, gula &amp; makanan dalam tin</span></div>
+      <div class="feat"><i class="fas fa-route"></i><span>Agihan terus kepada asnaf &amp; B40 yang disahkan</span></div>
+      <div class="feat"><i class="fas fa-clipboard-check"></i><span>Setiap penyampaian direkod &amp; dikongsi</span></div>
+    </div>
+    <div class="ph"><img src="https://i.postimg.cc/C1yqJtFp/photo_2023_02_09_19_55_23.jpg" alt="Agihan Foodbank"></div>
+  </div>
+</section>
+
+<section id="sumbang" class="sec offer">
+  <div class="blob"></div>
+  <div class="wrap" style="max-width:1120px;position:relative;z-index:2;">
+    <div style="text-align:center;margin-bottom:48px;">
+      <p class="eyebrow" style="color:#d4af37;">Pilihan Sumbangan</p>
+      <h2 style="color:#fff;margin-bottom:14px;">Pilih Tahap Infak Anda</h2>
+      <p style="color:#94a3b8;font-size:16px;font-weight:500;">Sekecil mana pun sumbangan, ia tetap menjadi hidangan buat mereka.</p>
+    </div>
+    <div class="tiers">
+      <a href="https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank" class="tier">
+        <div class="top"><span class="ic"><i class="fas fa-seedling"></i></span></div>
+        <div class="amt">RM10</div><div class="name">Sedekah Jumaat</div>
+        <div class="desc">Sumbangan kecil yang berterusan &mdash; pahala terus mengalir.</div>
+        <span class="go">Infak RM10 <i class="fas fa-arrow-right" style="font-size:11px;"></i></span>
+      </a>
+      <a href="https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank" class="tier">
+        <div class="top"><span class="ic"><i class="fas fa-basket-shopping"></i></span></div>
+        <div class="amt">RM30</div><div class="name">Satu Pek Makanan kecik</div>
+        <div class="desc">Cukup untuk bekalan asas satu keluarga asnaf.</div>
+        <span class="go">Infak RM30 <i class="fas fa-arrow-right" style="font-size:11px;"></i></span>
+      </a>
+      <a href="https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank" class="tier feat-tier">
+        <div class="top"><span class="ic"><i class="fas fa-hand-holding-heart"></i></span><span class="pill">Paling Membantu</span></div>
+        <div class="amt">RM50</div><div class="name">Taja Satu Keluarga</div>
+        <div class="desc">Bantu satu keluarga lengkap dengan keperluan dapur.</div>
+        <span class="go">Infak RM50 <i class="fas fa-arrow-right" style="font-size:11px;"></i></span>
+      </a>
+      <a href="https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank" class="tier">
+        <div class="top"><span class="ic"><i class="fas fa-boxes-stacked"></i></span></div>
+        <div class="amt">RM100</div><div class="name">Bantuan Foodbank</div>
+        <div class="desc">Bantu beberapa keluarga sekali gus dalam satu agihan.</div>
+        <span class="go">Infak RM100 <i class="fas fa-arrow-right" style="font-size:11px;"></i></span>
+      </a>
+    </div>
+    <p style="text-align:center;color:#64748b;font-size:13px;margin-top:34px;font-weight:500;">Sumbangan seikhlas hati dalam jumlah lain juga amat dialu-alukan.</p>
+  </div>
+</section>
+
+<section class="sec" style="background:#fff;">
+  <div class="wrap" style="max-width:1000px;">
+    <div style="text-align:center;margin-bottom:46px;">
+      <p class="eyebrow">Bukti &amp; Kepercayaan</p>
+      <h2>Amanah anda dijaga, setiap sen direkod.</h2>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="ic"><i class="fas fa-shield-halved"></i></div><h4>NGO Berdaftar</h4><p>Diuruskan oleh Pertubuhan Kebajikan Muafakat Bakri, sebuah NGO kebajikan berdaftar (PPM-002-10-13032020).</p></div>
+      <div class="card"><div class="ic"><i class="fas fa-camera-retro"></i></div><h4>Bukti Penyampaian</h4><p>Setiap penyampaian direkod dan dikongsi sebagai bukti kepada penyumbang melalui saluran rasmi kami.</p></div>
+      <div class="card"><div class="ic"><i class="fas fa-people-roof"></i></div><h4>Sampai Kepada Yang Tepat</h4><p>Agihan terus kepada keluarga asnaf dan B40 yang telah disahkan benar-benar memerlukan bantuan.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="bukti" class="sec" style="background:#f8fafc;">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:44px;">
+      <p class="eyebrow">Amanah Anda, Bakti Kami</p>
+      <h2>Rekod Agihan Bantuan Makanan</h2>
+    </div>
+    <div class="gal">
+      <article class="ev"><img src="https://i.postimg.cc/C1yqJtFp/photo_2023_02_09_19_55_23.jpg" alt="Agihan Foodbank"><div class="ov"><div><div class="tag">Muar</div><h3>Serahan Set Foodbank</h3></div></div></article>
+      <article class="ev"><img src="https://i.postimg.cc/bwV3QH8z/photo-2025-01-22-15-08-31.jpg" alt="Agihan Foodbank"><div class="ov"><div><div class="tag">Bakri</div><h3>Bantuan Keperluan Dapur</h3></div></div></article>
+      <article class="ev"><img src="https://i.postimg.cc/QCDbXfgF/photo-2025-05-13-15-59-15.jpg" alt="Agihan Foodbank"><div class="ov"><div><div class="tag">Asnaf</div><h3>Ziarah Kebajikan</h3></div></div></article>
+      <article class="ev"><img src="https://i.postimg.cc/bNzTWFwN/photo-2025-02-18-16-26-10.jpg" alt="Agihan Foodbank"><div class="ov"><div><div class="tag">Amanah</div><h3>Selesai Agihan Bulanan</h3></div></div></article>
+    </div>
+    <p style="text-align:center;margin-top:34px;color:#64748b;font-size:14px;font-style:italic;">"Kami mengagihkan 40&ndash;60 set setiap bulan secara konsisten mengikut senarai asnaf berdaftar."</p>
+  </div>
+</section>
+
+<section class="sec" style="background:#fff;">
+  <div class="wrap" style="max-width:1080px;">
+    <div style="text-align:center;margin-bottom:46px;">
+      <h2 style="font-size:clamp(28px,4.5vw,46px);margin-bottom:12px;">Saluran Infak Foodbank</h2>
+      <p style="color:#64748b;font-size:16px;font-weight:500;">Pindahan terus ke akaun rasmi, atau imbas QR DuitNow.</p>
+    </div>
+    <div class="bcl-card">
+      <div class="bcl-head">
+        <span class="bcl-ic"><i class="fas fa-shield-heart"></i></span>
+        <div>
+          <h3>Borang Infak Selamat</h3>
+          <p>Pilih jumlah &amp; bayar terus dengan FPX, kad atau e-wallet.</p>
+        </div>
+      </div>
+      <button type="button" class="js-pay btn-gold btn-lg" style="width:100%;padding:18px;border:0;cursor:pointer;font-family:inherit;border-radius:14px;">Buka Borang Infak <i class="fas fa-arrow-right" style="font-size:13px;"></i></button>
+    </div>
+
+    <p class="pay-or">Atau, sumbang secara manual</p>
+
+    <div class="pay">
+      <div class="bank"><div class="blob2"></div><div class="in">
+        <p style="color:#d4af37;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;">Akaun Maybank Rasmi</p>
+        <p style="font-family:'Outfit',sans-serif;font-weight:900;font-size:24px;letter-spacing:.04em;margin-bottom:34px;">maybank</p>
+        <p style="color:#94a3b8;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:14px;"><i class="fas fa-building-columns" style="color:#d4af37;"></i> Nombor Akaun Muafakat Care</p>
+        <div class="acc" onclick="copyAcc()"><span class="no">551043535257</span><span class="cp"><i class="far fa-copy"></i></span></div>
+        <div style="padding-top:26px;border-top:1px solid rgba(255,255,255,.1);">
+          <p style="color:#94a3b8;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px;">Nama Pemilik Akaun</p>
+          <p style="color:#fff;font-weight:800;font-size:15px;letter-spacing:.02em;text-transform:uppercase;line-height:1.4;margin-bottom:16px;">Pertubuhan Kebajikan Muafakat Bakri</p>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,.12);color:#fde047;padding:8px 14px;border-radius:10px;"><i class="fas fa-tag" style="font-size:11px;"></i><span style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">Rujukan: "Foodbank"</span></div>
+        </div>
+      </div></div>
+      <div class="qr">
+        <div style="width:62px;height:62px;border-radius:18px;background:#f8fafc;color:#b8860b;display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:22px;"><i class="fas fa-qrcode"></i></div>
+        <h3 style="font-weight:800;font-size:24px;text-transform:uppercase;margin-bottom:10px;">Imbas QR DuitNow</h3>
+        <p style="color:#64748b;font-size:14px;margin-bottom:28px;">Imbas guna mana-mana perbankan online &amp; e-wallet.</p>
+        <div class="box"><img src="https://i.postimg.cc/d0SYYPhZ/photo-2024-02-07-09-42-03-(1).jpg" alt="QR DuitNow"></div>
+        <p style="font-size:10px;color:#94a3b8;font-weight:800;letter-spacing:.16em;text-transform:uppercase;background:#f1f5f9;padding:9px 18px;border-radius:999px;">Scan Untuk Sedekah Jariah</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap" style="max-width:760px;">
+    <h3>Sedekah anda hari ini, hidangan mereka hari ini juga.</h3>
+    <p class="quote">"Barangsiapa yang memberi makan seorang mukmin sehingga dia kenyang daripada kelaparan, maka Allah akan memasukkannya ke dalam salah satu pintu syurga." <span style="display:block;margin-top:8px;color:#64748b;font-size:13px;">(HR Tabrani)</span></p>
+    <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;">
+      <a href="https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank" class="btn-gold btn-lg" style="border-radius:16px;">Infak Sekarang <i class="fas fa-heart"></i></a>
+      <a href="https://t.me/muafakatcare" class="btn-ghost btn-lg" style="border-radius:16px;">Sertai Telegram <i class="fab fa-telegram" style="color:#38bdf8;"></i></a>
+    </div>
+    <div class="foot-grid">
+      <p>Bakri, Muar, Johor</p>
+      <p>PPM-002-10-13032020</p>
+      <p>Infaq Foodbank Bulanan</p>
+    </div>
+    <p style="margin-top:40px;color:#475569;font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;">&copy; 2026 Muafakat Care &mdash; Semua Hak Terpelihara</p>
+  </div>
+</footer>
+
+<div id="payModal" class="modal" onclick="if(event.target===this)closePay()">
+  <div class="modal-panel">
+    <button class="modal-x" type="button" onclick="closePay()" aria-label="Tutup"><i class="fas fa-times"></i></button>
+    <div class="modal-head">
+      <img src="https://i.postimg.cc/Fs6wPgJR/483537983-959794776349801-1612308803781939979-n.jpg" alt="Muafakat Care">
+      <div><b>Infak Foodbank</b><span>Muafakat Care</span></div>
+    </div>
+    <div id="bcl-payment-form" data-url="https://pertubuhankebajikanmuafakatbakri.bcl.my/embed/form/infak-foodbank"><div class="modal-load"><i class="fas fa-spinner fa-spin"></i> Memuatkan borang infak…</div></div>
+  </div>
+</div>
+
+<div id="pop">
+  <div class="av" id="pop-av">AF</div>
+  <div style="min-width:0;">
+    <div class="nm"><span id="pop-name">Ahmad Faizal</span> <s>&middot; <span id="pop-loc">Muar</span></s></div>
+    <div class="sub">baru sahaja infak <b id="pop-amt">RM50</b> &middot; <span id="pop-time">baru sahaja</span></div>
+  </div>
+  <span class="ok"><i class="fas fa-check"></i></span>
+</div>
+
+<div id="toast"><i class="fas fa-circle-check" style="color:#4ade80;margin-right:8px;"></i>Nombor akaun berjaya disalin!</div>
+
+<script>
+  // ---- Salin nombor akaun ----
+  function copyAcc(){
+    var t="551043535257";
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(showToast).catch(function(){fb(t);});}
+    else{fb(t);}
+  }
+  function fb(t){try{var a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.left="-9999px";document.body.appendChild(a);a.focus();a.select();document.execCommand("copy");document.body.removeChild(a);showToast();}catch(e){}}
+  function showToast(){var el=document.getElementById("toast");el.classList.add("show");clearTimeout(window._tt);window._tt=setTimeout(function(){el.classList.remove("show");},2600);}
+
+  // ---- Popup borang infak (bcl) ----
+  var bclLoaded=false;
+  function openPay(){
+    document.getElementById("payModal").classList.add("show");
+    document.body.style.overflow="hidden";
+    if(!bclLoaded){
+      bclLoaded=true;
+      var s=document.createElement("script");
+      s.src="https://bcl.my/js/bc-encrypted-payment-embed.js";
+      document.body.appendChild(s);
+    }
+  }
+  function closePay(){document.getElementById("payModal").classList.remove("show");document.body.style.overflow="";}
+  document.addEventListener("click",function(e){
+    var a=e.target.closest&&e.target.closest("a,button");
+    if(!a)return;
+    var href=a.getAttribute("href")||"";
+    if(a.classList.contains("js-pay")||href.indexOf("/form/infak-foodbank")>-1){e.preventDefault();openPay();}
+  });
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closePay();});
+
+  // ---- Live donation feed (dummy) ----
+  var donors=[
+    {n:"Ahmad Faizal",l:"Muar",a:"RM50",i:"AF"},
+    {n:"Nurul Aina",l:"Bakri",a:"RM30",i:"NA"},
+    {n:"Hamba Allah",l:"Pagoh",a:"RM100",i:"HA"},
+    {n:"Mohd Hafiz",l:"Parit Jawa",a:"RM10",i:"MH"},
+    {n:"Siti Zaleha",l:"Bukit Pasir",a:"RM50",i:"SZ"},
+    {n:"Abdul Rahman",l:"Tangkak",a:"RM30",i:"AR"},
+    {n:"Farah Liyana",l:"Muar",a:"RM10",i:"FL"},
+    {n:"Hjh Salmah",l:"Sungai Mati",a:"RM100",i:"HS"},
+    {n:"Zainal Abidin",l:"Lenga",a:"RM30",i:"ZA"},
+    {n:"Norazlin",l:"Bakri",a:"RM50",i:"NB"},
+    {n:"Hamba Allah",l:"Muar",a:"RM20",i:"HA"},
+    {n:"Mohd Iqbal",l:"Bukit Gambir",a:"RM50",i:"MI"}
+  ];
+  var times=["baru sahaja","1 minit lalu","2 minit lalu","3 minit lalu","5 minit lalu"];
+  var idx=0,pop=document.getElementById("pop");
+  function showDonor(){
+    var d=donors[idx%donors.length];
+    document.getElementById("pop-av").textContent=d.i;
+    document.getElementById("pop-name").textContent=d.n;
+    document.getElementById("pop-loc").textContent=d.l;
+    document.getElementById("pop-amt").textContent=d.a;
+    document.getElementById("pop-time").textContent=times[idx%times.length];
+    idx++;
+    pop.classList.add("show");
+    setTimeout(function(){pop.classList.remove("show");},4800);
+  }
+  setTimeout(showDonor,3500);
+  setInterval(showDonor,8000);
+</script>
+</body>
+</html>
