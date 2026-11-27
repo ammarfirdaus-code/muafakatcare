@@ -22,6 +22,16 @@ class Kempen extends Model
         return $q->where('aktif', true)->orderBy('susunan');
     }
 
+    /** URL borang BCL untuk dibenamkan di laman sendiri (ciri embed rasmi BCL), atau null jika tiada. */
+    public function urlBenam(): ?string
+    {
+        if (! $this->pautan_bcl || ! preg_match('#^https://[a-z0-9-]+\.bcl\.my/form/[A-Za-z0-9_-]+$#', $this->pautan_bcl)) {
+            return null;
+        }
+
+        return str_replace('.bcl.my/form/', '.bcl.my/embed/form/', $this->pautan_bcl);
+    }
+
     public function peratus(): ?int
     {
         if (! $this->sasaran || $this->terkumpul === null) {
