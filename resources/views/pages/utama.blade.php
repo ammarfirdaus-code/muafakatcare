@@ -6,38 +6,6 @@
     $adaAngka = $kaunter->whereNotNull('nilai')->isNotEmpty();
 @endphp
 
-{{-- 0. Video promo di bahagian paling atas --}}
-<section class="promo" aria-label="{{ __('Video promosi Muafakat Care') }}">
-    <div class="promo-box">
-        <video class="promo-video" id="promo-video" autoplay muted loop playsinline controls preload="auto"
-               poster="{{ asset('video/promo-muafakatcare-poster.jpg') }}">
-            <source src="{{ asset('video/promo-muafakatcare.mp4') }}" type="video/mp4">
-        </video>
-        <button type="button" class="promo-bunyi" id="promo-bunyi" hidden>🔊 {{ __('Tekan untuk bunyi') }}</button>
-    </div>
-    <script>
-    (function () {
-        var v = document.getElementById('promo-video'), b = document.getElementById('promo-bunyi');
-        if (!v) return;
-        // Cuba main dengan bunyi. Jika browser sekat, main tanpa bunyi dan tunjuk butang.
-        function hidupBunyi() {
-            v.muted = false; v.volume = 1;
-            return v.play().then(function () { b.hidden = true; buang(); });
-        }
-        function cubaSemula() { hidupBunyi().catch(function () {}); }
-        function buang() { ['pointerdown', 'keydown', 'touchend'].forEach(function (e) { document.removeEventListener(e, cubaSemula); }); }
-        hidupBunyi().catch(function () {
-            v.muted = true; v.play().catch(function () {});
-            b.hidden = false;
-            // Hidupkan bunyi pada sentuhan/klik pertama di mana-mana pada laman.
-            ['pointerdown', 'keydown', 'touchend'].forEach(function (e) { document.addEventListener(e, cubaSemula, { once: true }); });
-        });
-        b.addEventListener('click', cubaSemula);
-        v.addEventListener('volumechange', function () { if (!v.muted) b.hidden = true; });
-    })();
-    </script>
-</section>
-
 {{-- 1. Hero slaid: satu slaid bagi setiap kempen aktif --}}
 <section class="hero" aria-roledescription="carousel" aria-label="{{ __('Kempen Sedang Berlangsung') }}">
     <div class="slides" id="slides" tabindex="0">
@@ -85,6 +53,38 @@
         <button class="sarrow next" type="button" aria-label="{{ __('Slaid seterusnya') }}" data-arah="1">›</button>
         <div class="dots">@foreach ($slaid as $k)<button type="button" aria-label="{{ $loop->iteration }}: {{ __($k->tajuk) }}" @if ($loop->first) aria-current="true" @endif></button>@endforeach</div>
     @endif
+</section>
+
+{{-- 1b. Video promo, terus di bawah slaid kempen --}}
+<section class="promo" aria-label="{{ __('Video promosi Muafakat Care') }}">
+    <div class="promo-box">
+        <video class="promo-video" id="promo-video" autoplay muted loop playsinline controls preload="auto"
+               poster="{{ asset('video/promo-muafakatcare-poster.jpg') }}">
+            <source src="{{ asset('video/promo-muafakatcare.mp4') }}" type="video/mp4">
+        </video>
+        <button type="button" class="promo-bunyi" id="promo-bunyi" hidden>🔊 {{ __('Tekan untuk bunyi') }}</button>
+    </div>
+    <script>
+    (function () {
+        var v = document.getElementById('promo-video'), b = document.getElementById('promo-bunyi');
+        if (!v) return;
+        // Cuba main dengan bunyi. Jika browser sekat, main tanpa bunyi dan tunjuk butang.
+        function hidupBunyi() {
+            v.muted = false; v.volume = 1;
+            return v.play().then(function () { b.hidden = true; buang(); });
+        }
+        function cubaSemula() { hidupBunyi().catch(function () {}); }
+        function buang() { ['pointerdown', 'keydown', 'touchend'].forEach(function (e) { document.removeEventListener(e, cubaSemula); }); }
+        hidupBunyi().catch(function () {
+            v.muted = true; v.play().catch(function () {});
+            b.hidden = false;
+            // Hidupkan bunyi pada sentuhan/klik pertama di mana-mana pada laman.
+            ['pointerdown', 'keydown', 'touchend'].forEach(function (e) { document.addEventListener(e, cubaSemula, { once: true }); });
+        });
+        b.addEventListener('click', cubaSemula);
+        v.addEventListener('volumechange', function () { if (!v.muted) b.hidden = true; });
+    })();
+    </script>
 </section>
 
 {{-- 2. Tiga kotak pautan --}}
