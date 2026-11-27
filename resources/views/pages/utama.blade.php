@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="svis">
-                        @if ($k->gambar)<div class="thumb"><img src="{{ asset($k->gambar) }}" alt="{{ __($k->tajuk) }}"></div>@endif
+                        @if ($k->gambar)<div class="thumb"><img src="{{ asset($k->gambar) }}" alt="{{ __($k->tajuk) }}" style="{{ fokus($k->gambar) }}"></div>@endif
                         <span class="pill">{{ __($k->program?->nama ?? 'Kempen') }}</span>
                         <h3>{{ __($k->tajuk) }}</h3>
                         @if ($k->sasaran)
@@ -90,7 +90,7 @@
                         </span>
                     </a>
                     @if ($p->gambar)
-                        <a class="mk foto" href="{{ lr('program', $p) }}"><img src="{{ asset($p->gambar) }}" alt="{{ __($p->nama) }}" loading="lazy">@if ($p->kos_seunit)<span>{{ __($p->kos_seunit) }}</span>@endif</a>
+                        <a class="mk foto" href="{{ lr('program', $p) }}"><img src="{{ asset($p->gambar) }}" alt="{{ __($p->nama) }}" loading="lazy" style="{{ fokus($p->gambar) }}">@if ($p->kos_seunit)<span>{{ __($p->kos_seunit) }}</span>@endif</a>
                     @elseif ($p->kos_seunit)
                         <a class="mk" href="{{ lr('program', $p) }}"><small>{{ __('Kos') }}</small><strong>{{ __($p->kos_seunit) }}</strong><span>{{ __('Baca lagi') }} →</span></a>
                     @else

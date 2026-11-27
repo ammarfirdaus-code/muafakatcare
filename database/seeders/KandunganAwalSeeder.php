@@ -19,8 +19,8 @@ class KandunganAwalSeeder extends Seeder
         'aktif' => true, 'label' => 'Infak Jumaat minggu ini', 'tajuk' => 'Bantu Penjagaan Puan Seri',
         'ringkas' => 'Puan Seri, pesakit kanser tahap 4 di Taman Bakri Jaya, Muar, kini terlantar dan bergantung pada bantuan pernafasan. Suaminya menjaga seorang diri.',
         'hero_sorotan' => 'RM5,000', 'hero_ayat' => 'untuk ringankan kos penjagaan Puan Seri.',
-        'gambar' => 'img/ilustrasi/jaga-pesakit.jpg',
-        'unit' => 'RM', 'sasaran' => 5000, 'terkumpul' => null,
+        'gambar' => 'img/foto/puan-seri.jpg',  // gambar sebenar, dengan izin keluarga; aurat ditutup
+        'unit' => 'RM', 'sasaran' => 5000, 'terkumpul' => 460,  // BCL berjaya setakat 27 Nov 2026, 4 petang (15 transaksi); belum termasuk pindahan bank
         'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/bantu-puan-seri',
         'susunan' => 0,
     ];

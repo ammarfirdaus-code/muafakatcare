@@ -1,5 +1,5 @@
 <article class="card kc">
-    <div class="thumb">@if ($k->gambar)<img src="{{ asset($k->gambar) }}" alt="{{ __($k->tajuk) }}" loading="lazy">@else<span>{{ __($k->tajuk) }}</span>@endif</div>
+    <div class="thumb">@if ($k->gambar)<img src="{{ asset($k->gambar) }}" alt="{{ __($k->tajuk) }}" loading="lazy" style="{{ fokus($k->gambar) }}">@else<span>{{ __($k->tajuk) }}</span>@endif</div>
     @if ($k->label)<span class="pill">{{ __($k->label) }}</span>@endif
     <h3>{{ __($k->tajuk) }}</h3>
     <p>{{ __($k->ringkas) }}</p>

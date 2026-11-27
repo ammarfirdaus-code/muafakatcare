@@ -101,8 +101,9 @@ form input, form textarea, form select { width: 100%; padding: 12px; border: 1px
 .kc .btn { margin-top: auto; align-self: flex-start; }
 .kc .pill { align-self: flex-start; }
 .thumb { aspect-ratio: 16/9; border-radius: 10px; background: linear-gradient(135deg, var(--indigo), var(--indigo-tint)); color: #fff; display: grid; place-items: center; overflow: hidden; margin-bottom: 10px; font: 700 1.1rem Poppins, sans-serif; text-align: center; padding: 12px; }
-.thumb img { width: 100%; height: 100%; object-fit: cover; }
-.thumb:has(img) { padding: 0; aspect-ratio: 4/3; }
+.thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.thumb:has(img) { position: relative; padding: 0; aspect-ratio: 4/3; }
+.kc .thumb:has(img) { aspect-ratio: 5/4; }
 .nums { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 0 0 12px; }
 .nums strong { color: var(--red); font-size: 1.2rem; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0 12px; }
@@ -163,7 +164,7 @@ form input, form textarea, form select { width: 100%; padding: 12px; border: 1px
 .mk strong { font: 700 1.25rem/1.3 Poppins, sans-serif; color: var(--red); margin: 6px 0; }
 .mk span { font-size: .9rem; color: var(--indigo); font-weight: 600; }
 .mk.foto { position: relative; padding: 0; overflow: hidden; min-height: 0; aspect-ratio: 4/3; border: 0; }
-.mk.foto img { width: 100%; height: 100%; object-fit: cover; }
+.mk.foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .mk.foto span { position: absolute; left: 12px; bottom: 12px; background: #fff; color: var(--red); font: 700 .85rem Poppins, sans-serif; padding: 6px 12px; border-radius: 999px; }
 /* ---- Statistik ---- */
 .stat { background: var(--midnight); color: #c9cde0; padding: 56px 0; }
