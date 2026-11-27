@@ -14,6 +14,17 @@ use Illuminate\Database\Seeder;
  */
 class KandunganAwalSeeder extends Seeder
 {
+    /** Kempen Infak Jumaat: Bantu Penjagaan Puan Seri (dilancar 26 Nov 2026; sasaran RM5,000). */
+    public const PUAN_SERI = [
+        'aktif' => true, 'label' => 'Infak Jumaat minggu ini', 'tajuk' => 'Bantu Penjagaan Puan Seri',
+        'ringkas' => 'Puan Seri, pesakit kanser tahap 4 di Taman Bakri Jaya, Muar, kini terlantar dan bergantung pada bantuan pernafasan. Suaminya menjaga seorang diri.',
+        'hero_sorotan' => 'RM5,000', 'hero_ayat' => 'untuk ringankan kos penjagaan Puan Seri.',
+        'gambar' => 'img/ilustrasi/jaga-pesakit.jpg',
+        'unit' => 'RM', 'sasaran' => 5000, 'terkumpul' => null,
+        'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/bantu-puan-seri',
+        'susunan' => 0,
+    ];
+
     public function run(): void
     {
         Program::updateOrCreate(['slug' => 'foodbank'], [
@@ -45,6 +56,9 @@ class KandunganAwalSeeder extends Seeder
             'faq' => [], 'susunan' => 3,
         ]);
 
+        Kempen::updateOrCreate(['slug' => 'bantu-puan-seri'], self::PUAN_SERI + [
+            'program_id' => Program::where('slug', 'bantuan')->value('id'),
+        ]);
         Kempen::updateOrCreate(['slug' => 'foodbank'], [
             'gambar' => 'img/foto/hantar-kotak.jpg',
             'program_id' => Program::where('slug', 'foodbank')->value('id'),
@@ -53,7 +67,7 @@ class KandunganAwalSeeder extends Seeder
             'hero_sorotan' => 'RM50', 'hero_ayat' => '= satu pek makanan asas.',
             'unit' => 'pek', 'sasaran' => null, 'terkumpul' => null,  // sasaran bulanan: isi bila Ammar sahkan
             'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank',
-            'susunan' => 0,
+            'susunan' => 1,
         ]);
         Kempen::updateOrCreate(['slug' => 'wakaf-katil'], [
             'gambar' => 'img/foto/katil-pasang.jpg',
@@ -63,7 +77,7 @@ class KandunganAwalSeeder extends Seeder
             'hero_sorotan' => 'Satu katil', 'hero_ayat' => 'untuk pesakit seterusnya.',
             'unit' => 'katil', 'sasaran' => null, 'terkumpul' => null,
             'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/katil-hospital-wakaf',
-            'susunan' => 1,
+            'susunan' => 2,
         ]);
         Kempen::updateOrCreate(['slug' => 'tabung-banjir'], [
             'gambar' => 'img/foto/banjir-redah.jpg',
@@ -73,7 +87,7 @@ class KandunganAwalSeeder extends Seeder
             'hero_sorotan' => 'Siap siaga', 'hero_ayat' => 'sebelum banjir tiba.',
             'unit' => 'RM', 'sasaran' => null, 'terkumpul' => null,
             'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/banjir-selangor-pantai-timur',
-            'susunan' => 2,
+            'susunan' => 3,
         ]);
         Kempen::updateOrCreate(['slug' => 'infak-subuh'], [
             'gambar' => 'img/foto/van-bekalan.jpg',
@@ -83,7 +97,7 @@ class KandunganAwalSeeder extends Seeder
             'hero_sorotan' => 'Serendah RM1', 'hero_ayat' => 'mulakan pagi dengan sedekah.',
             'unit' => 'RM', 'sasaran' => null, 'terkumpul' => null,
             'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-subuh',
-            'susunan' => 3,
+            'susunan' => 4,
         ]);
         Kempen::updateOrCreate(['slug' => 'infak-jumaat'], [
             'gambar' => 'img/foto/hantar-pintu.jpg',
@@ -92,7 +106,7 @@ class KandunganAwalSeeder extends Seeder
             'ringkas' => 'Sedekah penghulu hari, setiap Jumaat, untuk program kebajikan Muafakat Care.',
             'unit' => 'RM', 'sasaran' => null, 'terkumpul' => null,
             'pautan_bcl' => 'https://pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-jumaat',
-            'susunan' => 4,
+            'susunan' => 5,
         ]);
 
         KaunterImpak::updateOrCreate(['label' => 'Pek foodbank diagihkan'], ['nilai' => null, 'susunan' => 0]);

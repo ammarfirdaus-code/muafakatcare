@@ -61,18 +61,35 @@ class HalamanTest extends TestCase
         $this->get('/en/ebook-percuma')->assertOk()->assertSee('Download eBook');
     }
 
-    public function test_halaman_infak_kempen_benam_borang_bcl(): void
+    public function test_halaman_infak_kempen_papar_landing_bcl_di_domain_sendiri(): void
     {
-        $this->get('/infak/foodbank')->assertOk()
-            ->assertSee('data-url="https://pertubuhankebajikanmuafakatbakri.bcl.my/embed/form/infak-foodbank"', false)
-            ->assertSee('bc-encrypted-payment-embed.js', false);
-        $this->get('/en/infak/foodbank')->assertOk()->assertSee('Donation form');
+        // Landing disalin daripada BCL (salinan dalam resources/landing semasa ujian).
+        $this->get('/infak/foodbank')->assertOk()->assertSee('embed/form/infak-foodbank', false);
+        $this->get('/infak/bantu-puan-seri')->assertOk()->assertSee('Suaminya jaga sorang-sorang')->assertSee('embed/form/bantu-puan-seri', false);
+        $this->get('/en/infak/wakaf-katil')->assertOk();
         $this->get('/infak/tiada-kempen')->assertNotFound();
+
+        // Tiada salinan landing: halaman borang benam biasa.
+        \App\Models\Kempen::where('slug', 'infak-jumaat')->update(['pautan_bcl' => 'https://contoh.bcl.my/form/tiada-salinan']);
+        $this->get('/infak/infak-jumaat')->assertOk()
+            ->assertSee('data-url="https://contoh.bcl.my/embed/form/tiada-salinan"', false)
+            ->assertSee('Borang infak');
 
         \App\Models\Kempen::where('slug', 'wakaf-katil')->update(['pautan_bcl' => null]);
         $this->get('/infak/wakaf-katil')->assertNotFound();
         \App\Models\Kempen::where('slug', 'infak-subuh')->update(['pautan_bcl' => 'https://contoh.com/form/x']);
         $this->get('/infak/infak-subuh')->assertNotFound();
+    }
+
+    public function test_petik_landing_daripada_halaman_bcl(): void
+    {
+        $html = '<html><body><main><div class="e"><div id="content-container"><div id="mc"><p>'.str_repeat('isi ', 200).'</p><div id="bcl-payment-form"></div></div></div></div></main></body></html>';
+        $isi = \App\Support\LandingBcl::petik($html);
+        $this->assertStringStartsWith('<div id="mc">', $isi);
+        $this->assertSame(substr_count($isi, '<div'), substr_count($isi, '</div>'));
+        $this->assertNull(\App\Support\LandingBcl::petik('<html>tiada</html>'));
+        $this->assertStringContainsString('#pop{display:none', \App\Support\LandingBcl::tapis('<div id="pop"><span id="pop-name">X</span></div>'));
+        $this->get('/infak/foodbank')->assertSee('#pop{display:none!important}', false);
     }
 
     public function test_laman_utama_papar_kempen_dan_pautan_bcl(): void
@@ -84,7 +101,9 @@ class HalamanTest extends TestCase
             ->assertSee('t.me/muafakatcare', false)
             ->assertSee('wa.me/601112240882', false)
             ->assertSee('84000 Muar')
-            ->assertSee('pertubuhankebajikanmuafakatbakri.bcl.my/form/infak-foodbank', false)
+            ->assertSee('href="'.url('/infak/foodbank').'"', false)
+            ->assertSee('Bantu Penjagaan Puan Seri')
+            ->assertSee('href="'.url('/infak/bantu-puan-seri').'"', false)
             ->assertSee('PPM-002-10-13032020')
             ->assertSee('Pengguna katil hospital aktif')
             ->assertSee('data-kira="15"', false);

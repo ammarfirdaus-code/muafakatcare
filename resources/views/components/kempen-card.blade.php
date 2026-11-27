@@ -14,7 +14,7 @@
         </p>
     @endif
     @if ($k->pautan_bcl)
-        <a class="btn btn-red" href="{{ $k->pautan_bcl }}" rel="noopener">{{ __('Infak Sekarang') }}</a>
+        <a class="btn btn-red" href="{{ $k->urlBenam() ? route('infak.kempen', $k->slug) : $k->pautan_bcl }}" rel="noopener">{{ __('Infak Sekarang') }}</a>
     @else
         <span class="todo">{{ __('Pautan infak belum disahkan') }}</span>
     @endif
