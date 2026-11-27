@@ -319,3 +319,7 @@ h3 .ikon { color: var(--red); }
 #bcl-payment-form { min-height: 420px; }
 .ik-muat { color: var(--cool); padding: 40px 0; text-align: center; }
 @media (max-width: 900px) { .ik { grid-template-columns: 1fr; } .ik-borang { order: -1; padding: 14px; } }
+
+/* Video promo di atas laman utama */
+.promo { background: var(--off); line-height: 0; }
+.promo-video { display: block; width: 100%; max-width: 1600px; margin: 0 auto; aspect-ratio: 16 / 9; max-height: 80vh; object-fit: contain; background: var(--off); }

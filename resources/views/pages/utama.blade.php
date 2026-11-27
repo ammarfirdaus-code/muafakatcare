@@ -6,6 +6,14 @@
     $adaAngka = $kaunter->whereNotNull('nilai')->isNotEmpty();
 @endphp
 
+{{-- 0. Video promo di bahagian paling atas --}}
+<section class="promo" aria-label="{{ __('Video promosi Muafakat Care') }}">
+    <video class="promo-video" autoplay muted loop playsinline controls preload="metadata"
+           poster="{{ asset('video/promo-muafakatcare-poster.jpg') }}">
+        <source src="{{ asset('video/promo-muafakatcare.mp4') }}" type="video/mp4">
+    </video>
+</section>
+
 {{-- 1. Hero slaid: satu slaid bagi setiap kempen aktif --}}
 <section class="hero" aria-roledescription="carousel" aria-label="{{ __('Kempen Sedang Berlangsung') }}">
     <div class="slides" id="slides" tabindex="0">
