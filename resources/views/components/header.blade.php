@@ -3,7 +3,8 @@
     $menu = ['utama' => 'Utama', 'tentang' => 'Tentang Kami', 'program' => 'Program Kami', 'impak' => 'Impak', 'ebook' => 'eBook Percuma', 'hubungi' => 'Hubungi Kami'];
     $kini = preg_replace('/^en\./', '', request()->route()?->getName() ?? '');
 @endphp
-<header class="hdr @if ($kini === 'utama') atas @endif">
+{{-- Laman utama kini bermula dengan video promo (latar cerah), jadi pengepala biasa digunakan; gaya .hdr.atas dikekalkan jika hero gelap kembali di atas. --}}
+<header class="hdr">
     <div class="wrap bar">
         <a href="{{ lr('utama') }}" class="brand" aria-label="{{ config('muafakat.nama') }}"><img src="{{ asset('img/logo.png') }}" alt="{{ config('muafakat.nama') }}" height="48"></a>
         <nav class="nav" id="nav">
